@@ -23,8 +23,10 @@ const toggleDark = useToggle(isDark)
   <button @click="colorMode = 'light'">light Mode</button>
   <button @click="colorMode = 'dim'">Dim Mode</button>
   <button @click="colorMode = 'cafe'">cafe Mode</button>
-  <p>123456</p>
-  <p>1611213216</p>
+  <br>
+  <RouterLink to="/">Home</RouterLink> |
+  <RouterLink to="/about">About</RouterLink>
+  <RouterView />
   <p>1515656</p>
   <p>8447845621</p>
   <p>527456254</p>
