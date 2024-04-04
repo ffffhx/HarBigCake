@@ -1,38 +1,90 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { useDark, useToggle, useColorMode } from '@vueuse/core'
-
-const isDark = useDark() //true or false
-const colorMode = useColorMode({
-  modes: {
-    dim: 'dim',
-    cafe: 'cafe'
-  },
-});//'light' or 'dark'
-const toggleDark = useToggle(isDark)
-
+const router = useRouter();
+function pushToLogin() {
+  router.push('/login')
+}
+function pushToRegister() {
+  router.push('/register')
+}
+function pushToPhoneVerify() {
+  router.push('/phoneverify')
+}
+function pushToFindPassword() {
+  router.push('/findpassword')
+}
 </script>
 
 <template>
-  {{ isDark }}
-  <br>
-  <button @click="toggleDark()">Toggle Daek Mode</button>
-  <br>
-  {{ colorMode }}
-  <button @click="colorMode = 'dark'">Dark Mode</button>
-  <button @click="colorMode = 'light'">light Mode</button>
-  <button @click="colorMode = 'dim'">Dim Mode</button>
-  <button @click="colorMode = 'cafe'">cafe Mode</button>
-  <br>
-  <RouterLink to="/">Home</RouterLink> |
-  <RouterLink to="/about">About</RouterLink>
-  <RouterView />
-  <p>1515656</p>
-  <p>8447845621</p>
-  <p>527456254</p>
+  <div class="container">
+    <div class="containerRight">
+      <div class="navHeader">
+        <div class="login">
+          <p @click="pushToLogin">登录</p>
+        </div>
+        <div class="register">
+          <p @click="pushToRegister">注册</p>
+        </div>
+      </div>
+      <div class="routerMain">
+        <RouterView></RouterView>
+      </div>
+      <div class="navFooter">
+        <div class="loginByPhone"><span @click="pushToPhoneVerify">手机验证登录</span></div>
+        <div class="forgetPassword"><span @click='pushToFindPassword'>找回密码</span></div>
+      </div>
+    </div>
+  </div>
+
+
+
 </template>
 
 <style scoped lang="less">
+template {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  background-color: yellow;
+  height: 100vh;
+  width: 100vw;
+
+  .containerRight {
+    width: 350px;
+    height: 600px;
+    background-color: red;
+
+    .navHeader {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      background-color: blue;
+      width: 350px;
+      font-size: 30px
+    }
+
+    .routerMain {
+      background-color: pink;
+      height: 500px;
+      width: 350px;
+    }
+    .navFooter {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      background-color: blue;
+      width: 350px;
+      font-size: 30px
+    }
+
+  }
+}
+
+
 
 .dark {
   background: gray;
@@ -42,6 +94,4 @@ const toggleDark = useToggle(isDark)
 .dim {
   background: aqua;
 }
-
-
 </style>
