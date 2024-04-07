@@ -27,7 +27,9 @@
                         <el-input placeholder="请输入验证码" v-model="form.validCode"></el-input>
                     </el-form-item>
                 </div>
-                <div class="getCaptcha">获取验证码</div>
+                <div class="getCaptcha">
+                    <validCode3></validCode3>
+                </div>
             </div>
             <div class="registerButton">
                 <el-form-item>
@@ -87,6 +89,7 @@ const onSubmit = async () => {
     })
     ElMessage.success("登录成功")
 }
+import validCode3 from '../components/validCode3.vue'
 </script>
 <style lang="less">
 .loginContainer {

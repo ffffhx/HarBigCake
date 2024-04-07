@@ -14,11 +14,12 @@
             <div class="verify">
                 <div class="yourCaptcha">
                     <el-form-item prop="validCode" label="验证码">
-                        <el-input placeholder="请输入验证码" v-model="form.validCode" size="large"></el-input>
+                        <el-input placeholder="请输入验证码" v-model="form.validCode" size="large" @click="login">
+                        </el-input>
                     </el-form-item>
                 </div>
                 <div class="AFCK">AFCK</div>
-                <div class="getCaptcha">获取验证码</div>
+                <div class="getCaptcha"><validCode></validCode></div>
             </div>
             <div class="other">
 
@@ -37,8 +38,12 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { ElMessage } from 'element-plus';
+import validCode from '../components/validCode.vue'
 const formRef = ref()
 //登录事件处理
+const login = () => {
+    ElMessage.success("登录成功")
+}
 const onSubmit = async () => {
     await formRef.value?.validate().catch((err) => {
         ElMessage.error("表单校验失败")

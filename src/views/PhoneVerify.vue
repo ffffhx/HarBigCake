@@ -11,7 +11,9 @@
                     <el-form-item prop="validCode" label="验证码">
                         <el-input placeholder="请输入验证码" v-model="form.validCode"></el-input>
                     </el-form-item></div>
-                <div class="getCaptcha">获取验证码</div>
+                <div class="getCaptcha">
+                    <!-- <validCode2></validCode2> -->
+                </div>
             </div>
             <div class="registerButton">
                 <el-form-item>
@@ -27,6 +29,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus';
+import validCode2 from '../components/validCode2.vue'
 const formRef = ref()
 const form = reactive({
     username: '',
