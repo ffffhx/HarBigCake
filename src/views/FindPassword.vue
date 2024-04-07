@@ -80,6 +80,7 @@ const onSubmit = async () => {
         ElMessage.error("表单校验失败")
         throw err
     })
+    ElMessage.success("登录成功")
 }
 </script>
 <style lang="less">

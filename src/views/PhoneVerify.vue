@@ -44,11 +44,11 @@ const rules = reactive({
     ],
 })
 const onSubmit = async () => {
-    console.log(666);
     await formRef.value?.validate().catch((err) => {
         ElMessage.error("表单校验失败")
         throw err
     })
+    ElMessage.success("登录成功")
 }
 </script>
 <style lang="less">

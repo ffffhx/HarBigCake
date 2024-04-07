@@ -47,17 +47,11 @@ const form = reactive({
 const formRef = ref()
 //登录事件处理
 const onSubmit = async () => {
-    console.log(666);
     await formRef.value?.validate().catch((err) => {
         ElMessage.error("表单校验失败")
         throw err
-        // console.log(777);
     })
-    //正式发送登录请求
-    // console.log("正式登录请求");
-    // const res = login();
-    // console.log(res)
-    // console.log('test2');
+    ElMessage.success("登录成功")
     
 }
 const rules = reactive({
