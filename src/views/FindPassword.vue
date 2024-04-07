@@ -28,7 +28,7 @@
                     </el-form-item>
                 </div>
                 <div class="getCaptcha">
-                    <validCode3></validCode3>
+                    <!-- <validCode3></validCode3> -->
                 </div>
             </div>
             <div class="registerButton">

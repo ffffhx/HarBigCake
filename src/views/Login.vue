@@ -19,14 +19,14 @@
                     </el-form-item>
                 </div>
                 <div class="AFCK">AFCK</div>
-                <div class="getCaptcha"><validCode></validCode></div>
+                <div class="getCaptcha"><validCode @click="toggleDark()"></validCode></div>
             </div>
             <div class="other">
 
             </div>
             <div class="loginButton">
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit" primary>
+                    <el-button type="primary" @click="onSubmit" >
                         Create
                     </el-button>
                 </el-form-item>
@@ -38,7 +38,10 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import { ElMessage } from 'element-plus';
-import validCode from '../components/validCode.vue'
+import validCode from '@/components/validCode.vue'
+import { useDark,useToggle,useColorMode } from "@vueuse/core";
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 const formRef = ref()
 //登录事件处理
 const login = () => {
@@ -57,6 +60,10 @@ const form = reactive({
     password: '12345678',
     validCode:''
 })
+
+
+
+
 const rules = reactive({
     username: [
         {
