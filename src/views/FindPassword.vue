@@ -1,24 +1,24 @@
 <template>
     <div class="loginContainer">
-        <el-form :model="form" :rules="rules">
+        <el-form :model="form" :rules="rules" ref="formRef">
             <div class="username">
-                <el-form-item label="用户名">
-                    <el-input placeholder="用户名"></el-input>
+                <el-form-item label="用户名" prop="username">
+                    <el-input placeholder="用户名" v-model="form.username"></el-input>
                 </el-form-item>
             </div>
             <div class="password">
-                <el-form-item label="密码">
-                    <el-input placeholder="密码"></el-input>
+                <el-form-item label="密码" prop="password">
+                    <el-input placeholder="密码" v-model="form.password"></el-input>
                 </el-form-item>
             </div>
             <div class="identifyPassword">
-                <el-form-item label="确认新密码">
-                    <el-input placeholder="确认新密码"></el-input>
+                <el-form-item label="确认新密码" prop="identifyPassword">
+                    <el-input placeholder="确认新密码" v-model="form.identifyPassword"></el-input>
                 </el-form-item>
             </div>
             <div class="phoneNumber">
-                <el-form-item label="请输入您的电话号码 ">
-                    <el-input placeholder="请输入您的电话号码 "></el-input>
+                <el-form-item label="请输入您的电话号码 " prop="phone">
+                    <el-input placeholder="请输入您的电话号码 " v-model="form.phone"></el-input>
                 </el-form-item>
             </div>
             <div class="verify">
@@ -26,7 +26,11 @@
                 <div class="getCaptcha">获取验证码</div>
             </div>
             <div class="registerButton">
-                重置密码
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">
+                        Reset
+                    </el-button>
+                </el-form-item>
             </div>
         </el-form>
     </div>
@@ -40,6 +44,7 @@ const form = ref({
     identifyPassword: '',
     phone: ''
 })
+const formRef = ref()
 const rules = reactive({
     username: [
         {
@@ -70,6 +75,12 @@ const rules = reactive({
         }
     ]
 })
+const onSubmit = async () => {
+    await formRef.value?.validate().catch((err) => {
+        ElMessage.error("表单校验失败")
+        throw err
+    })
+}
 </script>
 <style lang="less">
 .loginContainer {

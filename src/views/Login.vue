@@ -1,14 +1,14 @@
 <template>
     <div class="loginContainer">
-        <el-form>
+        <el-form :model="form" :rules="rules" ref="formRef">
             <div class="username">
-                <el-form-item label="用户名">
-                    <el-input placeholder="请输入用户名"></el-input>
+                <el-form-item prop="username" label="用户名" >
+                    <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
                 </el-form-item>
             </div>
             <div class="password">
-                <el-form-item label="密码">
-                    <el-input placeholder="请输入密码"></el-input>
+                <el-form-item prop="password" label="密码">
+                    <el-input placeholder="请输入密码" v-model="form.password"></el-input>
                 </el-form-item>
             </div>
             <div class="verify">
@@ -20,14 +20,53 @@
 
             </div>
             <div class="loginButton">
-                登录
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">
+                        Create
+                    </el-button>
+                </el-form-item>
             </div>
         </el-form>
     </div>
 
 </template>
 <script setup>
-
+import { reactive,ref } from "vue";
+import { ElMessage } from 'element-plus';
+const formRef = ref()
+//登录事件处理
+const onSubmit = async () => {
+    console.log(666);
+    await formRef.value?.validate().catch((err) => {
+        ElMessage.error("表单校验失败")
+        throw err
+    })
+}
+const form = reactive({
+    username: '',
+    password: '',
+})
+const rules = reactive({
+    username: [
+        {
+        required: true,
+        message: '请输入用户名',
+        trigger: 'blur'
+        }
+    ],
+    password: [
+        {
+            required: true,
+            message: '请输入电话号码',
+            trigger: 'blur'
+        },
+        {
+            pattern: /^1[3-9]\d{9}$/,//1开头，中间必须是3-9的数字，共10位
+            message: '请输入正确的电话号码',
+            trigger: 'blur'
+        }
+    ],
+})
 </script>
 <style lang="less">
 .loginContainer {
