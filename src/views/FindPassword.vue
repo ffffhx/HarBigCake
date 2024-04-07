@@ -22,8 +22,14 @@
                 </el-form-item>
             </div>
             <div class="verify">
-                <div class="yourCaptcha">输入验证码</div>
-                <div class="getCaptcha">获取验证码</div>
+                <div class="yourCaptcha">
+                    <el-form-item prop="validCode" label="验证码">
+                        <el-input placeholder="请输入验证码" v-model="form.validCode"></el-input>
+                    </el-form-item>
+                </div>
+                <div class="getCaptcha">
+                    <validCode3></validCode3>
+                </div>
             </div>
             <div class="registerButton">
                 <el-form-item>
@@ -42,7 +48,8 @@ const form = ref({
     username: '',
     password: '',
     identifyPassword: '',
-    phone: ''
+    phone: '',
+    validCode:''
 })
 const formRef = ref()
 const rules = reactive({

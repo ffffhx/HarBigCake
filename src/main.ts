@@ -9,6 +9,8 @@ import './assets/main.less'
 import App from './App.vue'
 import router from './router'
 import 'element-plus/theme-chalk/dark/css-vars.css'//暗黑模式主题切换
+// import 'element-plus/lib/theme-chalk/index.css'
+// import 'element-plus/lib/theme-chalk/el-icon.css'
 const app = createApp(App)
 
 app.use(createPinia())
