@@ -3,59 +3,76 @@ template {
   padding: 0;
   border: 0;
 }
+@background-color: #d8e1ff;
 
 .background {
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  position: absolute;
-  background-color: #d8e1ff;
-
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: @background-color;
   .container {
     position: relative;
     background-color: transparent;
     border-radius: 12px;
-    height: 66%;
+    height: 100%;
     width: 100%;
 
     .containerRight {
-      position: relative;
-      border-radius: inherit;
-      left: 50%;
-      margin-left: 160px;
+      display: flex;
       width: 400px;
       height: 488px;
+      top: 50%;
+      left: 50%;
+      margin-top: -238px;
+      margin-left: 160px;
+      border-radius: inherit;
+      text-align: left;
+      position: absolute;
       background-color: #fff;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
 
       .navHeader {
-        height: 80px;
+        display: flex;
         background-color: transparent;
         border-radius: inherit;
         width: 100%;
         font-size: 30px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
         .logintitle {
-          padding: 48px 0 0;
+          padding: 10px 0 0;
           color: #141414;
           font-size: 24px;
           line-height: 32px;
           text-align: center;
+          margin-block-start: 0.83em;
+          margin-block-end: 0.83em;
+          margin-inline-start: 0px;
+          margin-inline-end: 0px;
+          font-weight: bold;
+          unicode-bidi: isolate;
         }
       }
 
       .routerMain {
-        background-color: pink;
-        height: 500px;
-        width: 350px;
+        background-color: transparent;
+        height: 273px;
+        width: 100%;
       }
       .navFooter {
         display: flex;
         justify-content: space-between;
         height: 80px;
-        background-color: blue;
+        background-color: transparent;
         width: 350px;
         font-size: 30px;
       }
@@ -70,4 +87,94 @@ template {
 
 .dim {
   background: aqua;
+}
+
+.loginContainer {
+  display: flex;
+  width: 100%;
+  height: 277px;
+  background-color: #fff;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  .username {
+    display: flex;
+    width: 350px;
+    height: 60px;
+    background-color: transparent;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .password {
+    display: flex;
+    width: 350px;
+    height: 60px;
+    background-color: transparent;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search_form {
+    width: 245px;
+  }
+  .search_icon {
+    height:32px;
+  }
+
+  .loginicon {
+    width: 25px;
+    height: 25px;
+  }
+
+  .identifyPassword {
+    width: 350px;
+    height: 60px;
+    background-color: transparent;
+  }
+
+  .phoneNumber {
+    width: 350px;
+    height: 60px;
+    background-color: transparent;
+  }
+
+  .verify {
+    width: 350px;
+    height: 50px;
+    display: flex;
+    background-color: transparent;
+
+    .yourCaptcha {
+      width: 180px;
+      background-color: transparent;
+      margin-right: 20px;
+    }
+
+    .getCaptcha {
+      width: 160px;
+      background-color: transparent;
+    }
+  }
+
+  .loginByPhone {
+    width: 150px;
+  }
+
+  .forgetPassword {
+    width: 150px;
+  }
+
+  .registerButton {
+    width: 150px;
+    height: 50px;
+    background-color: transparent;
+    font-size: 20px;
+  }
 }
