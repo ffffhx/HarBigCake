@@ -1,20 +1,21 @@
 <template>
     <div class="loginContainer">
-        <el-form :model="form" :rules="rules" ref="formRef">
+        <el-form :model="form" :rules="rules" ref="formRef"
+        :size="large">
             <div class="username">
-                <el-item-form prop="username">
+                <el-form-item prop="username" label="用户名" >
                     <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
-                </el-item-form>
+                </el-form-item>
             </div>
             <div class="password">
-                <el-item-form prop="password">
+                <el-form-item prop="password" label="密码">
                     <el-input placeholder="请输入密码" v-model="form.password"></el-input>
-                </el-item-form>
+                </el-form-item>
             </div>
             <div class="phoneNumber">
-                <el-item-form prop="phone">
+                <el-form-item prop="phone" label="电话号码">
                     <el-input placeholder="请输入您的电话号码" v-model="form.phone"></el-input>
-                </el-item-form>
+                </el-form-item>
             </div>
 
 
@@ -34,8 +35,10 @@
 
 </template>
 <script setup lang="ts">
-import { reactive,ref } from 'vue'
+import { reactive, ref } from 'vue'
 import type { FormRules } from 'element-plus'
+import { ElMessage } from 'element-plus';
+// import { login } from '../api/users'
 const form = reactive({
     username: '',
     password: '',
@@ -43,10 +46,28 @@ const form = reactive({
 })
 const formRef = ref()
 //登录事件处理
-const onSubmit = () => {
-formRef.value?.validate()
+const onSubmit = async () => {
+    console.log(666);
+    await formRef.value?.validate().catch((err) => {
+        ElMessage.error("表单校验失败")
+        throw err
+        // console.log(777);
+    })
+    //正式发送登录请求
+    // console.log("正式登录请求");
+    // const res = login();
+    // console.log(res)
+    // console.log('test2');
+    
 }
 const rules = reactive({
+    username: [
+        {
+            required: true,
+            message: '请输入用户名',
+            trigger: 'blur'
+        }
+    ],
     phone: [
         {
             required: true,
@@ -88,7 +109,7 @@ const rules = reactive({
     .username {
         width: 350px;
         height: 60px;
-        background-color: red;
+        // background-color: yellowgreen;
     }
 
     .password {

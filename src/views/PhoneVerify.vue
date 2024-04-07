@@ -1,6 +1,11 @@
 <template>
     <div class="loginContainer">
-        <div class="phoneNumber">请输入您的电话号码</div>
+        <el-form>
+        <div class="phoneNumber">
+            <el-form-item label="电话号码">
+                <el-input placeholder="请输入您的电话号码"></el-input>
+            </el-form-item>
+        </div>
         <div class="verify">
             <div class="yourCaptcha">输入验证码</div>
             <div class="getCaptcha">获取验证码</div>
@@ -8,6 +13,7 @@
         <div class="registerButton">
             登录
         </div>
+    </el-form>
     </div>
 
 </template>

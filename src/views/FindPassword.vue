@@ -1,21 +1,75 @@
 <template>
     <div class="loginContainer">
-        <div class="username">用户名</div>
-        <div class="password">密码</div>
-        <div class="identifyPassword">确认新密码</div>
-        <div class="phoneNumber">请输入您的电话号码</div>
-        <div class="verify">
-            <div class="yourCaptcha">输入验证码</div>
-            <div class="getCaptcha">获取验证码</div>
-        </div>
-        <div class="registerButton">
-            重置密码
-        </div>
+        <el-form :model="form" :rules="rules">
+            <div class="username">
+                <el-form-item label="用户名">
+                    <el-input placeholder="用户名"></el-input>
+                </el-form-item>
+            </div>
+            <div class="password">
+                <el-form-item label="密码">
+                    <el-input placeholder="密码"></el-input>
+                </el-form-item>
+            </div>
+            <div class="identifyPassword">
+                <el-form-item label="确认新密码">
+                    <el-input placeholder="确认新密码"></el-input>
+                </el-form-item>
+            </div>
+            <div class="phoneNumber">
+                <el-form-item label="请输入您的电话号码 ">
+                    <el-input placeholder="请输入您的电话号码 "></el-input>
+                </el-form-item>
+            </div>
+            <div class="verify">
+                <div class="yourCaptcha">输入验证码</div>
+                <div class="getCaptcha">获取验证码</div>
+            </div>
+            <div class="registerButton">
+                重置密码
+            </div>
+        </el-form>
     </div>
 
 </template>
 <script setup>
-
+import { reactive, ref } from "vue";
+const form = ref({
+    username: '',
+    password: '',
+    identifyPassword: '',
+    phone: ''
+})
+const rules = reactive({
+    username: [
+        {
+            required: true,
+            message: '请输入用户名',
+            trigger: 'blur'
+        }
+    ],
+    password: [
+        {
+            required: true,
+            message: '请输入密码',
+            trigger: blur
+        }
+    ],
+    identifyPassword: [
+        {
+            required: true,
+            message: '请输入确认密码',
+            trigger: blur
+        }
+    ],
+    phone: [
+        {
+            required: true,
+            message: '请输入电话号码',
+            trigger: 'blur'
+        }
+    ]
+})
 </script>
 <style lang="less">
 .loginContainer {
@@ -34,16 +88,19 @@
         height: 60px;
         background-color: pink;
     }
-    .identifyPassword{
+
+    .identifyPassword {
         width: 350px;
         height: 60px;
         background-color: goldenrod;
     }
-    .phoneNumber{
+
+    .phoneNumber {
         width: 350px;
         height: 60px;
         background-color: skyblue;
     }
+
     .verify {
         width: 350px;
         height: 50px;
