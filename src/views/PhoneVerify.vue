@@ -1,33 +1,37 @@
 <template>
     <div class="loginContainer">
         <el-form :model="form" :rules="rules" ref="formRef">
-        <div class="phoneNumber">
-            <el-form-item prop="phone" label="电话号码">
+            <div class="phoneNumber">
+                <el-form-item prop="phone" label="电话号码">
                     <el-input placeholder="请输入您的电话号码" v-model="form.phone"></el-input>
                 </el-form-item>
-        </div>
-        <div class="verify">
-            <div class="yourCaptcha">输入验证码</div>
-            <div class="getCaptcha">获取验证码</div>
-        </div>
-        <div class="registerButton">
-            <el-form-item>
+            </div>
+            <div class="verify">
+                <div class="yourCaptcha">
+                    <el-form-item prop="validCode" label="验证码">
+                        <el-input placeholder="请输入验证码" v-model="form.validCode"></el-input>
+                    </el-form-item></div>
+                <div class="getCaptcha">获取验证码</div>
+            </div>
+            <div class="registerButton">
+                <el-form-item>
                     <el-button type="primary" @click="onSubmit">
                         Create
                     </el-button>
                 </el-form-item>
-        </div>
-    </el-form>
+            </div>
+        </el-form>
     </div>
 
 </template>
 <script setup>
-import {reactive,ref} from 'vue'
+import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus';
 const formRef = ref()
 const form = reactive({
     username: '',
     password: '',
+    validCode:''
 })
 const rules = reactive({
     phone: [
@@ -58,11 +62,12 @@ const onSubmit = async () => {
     background-color: #fff;
 
 
-    .phoneNumber{
+    .phoneNumber {
         width: 350px;
         height: 60px;
         background-color: skyblue;
     }
+
     .verify {
         width: 350px;
         height: 50px;

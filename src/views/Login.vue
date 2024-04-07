@@ -3,16 +3,20 @@
         <el-form :model="form" :rules="rules" ref="formRef">
             <div class="username">
                 <el-form-item prop="username" label="用户名">
-                    <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
+                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" prefix-icon="el-icon-user"></el-input>
                 </el-form-item>
             </div>
             <div class="password">
                 <el-form-item prop="password" label="密码">
-                    <el-input placeholder="请输入密码" v-model="form.password"></el-input>
+                    <el-input placeholder="请输入密码" v-model="form.password" size="large" prefix-icon="el-icon-lock"></el-input>
                 </el-form-item>
             </div>
             <div class="verify">
-                <div class="yourCaptcha">输入验证码</div>
+                <div class="yourCaptcha">
+                    <el-form-item prop="validCode" label="验证码">
+                        <el-input placeholder="请输入验证码" v-model="form.validCode" size="large"></el-input>
+                    </el-form-item>
+                </div>
                 <div class="AFCK">AFCK</div>
                 <div class="getCaptcha">获取验证码</div>
             </div>
@@ -21,7 +25,7 @@
             </div>
             <div class="loginButton">
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">
+                    <el-button type="primary" @click="onSubmit" primary>
                         Create
                     </el-button>
                 </el-form-item>
@@ -46,6 +50,7 @@ const onSubmit = async () => {
 const form = reactive({
     username: '17862926305',
     password: '12345678',
+    validCode:''
 })
 const rules = reactive({
     username: [
