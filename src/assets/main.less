@@ -1,0 +1,73 @@
+template {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.background {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  position: absolute;
+  background-color: #d8e1ff;
+
+  .container {
+    position: relative;
+    background-color: transparent;
+    border-radius: 12px;
+    height: 66%;
+    width: 100%;
+
+    .containerRight {
+      position: relative;
+      border-radius: inherit;
+      left: 50%;
+      margin-left: 160px;
+      width: 400px;
+      height: 488px;
+      background-color: #fff;
+
+      .navHeader {
+        height: 80px;
+        background-color: transparent;
+        border-radius: inherit;
+        width: 100%;
+        font-size: 30px;
+        .logintitle {
+          padding: 48px 0 0;
+          color: #141414;
+          font-size: 24px;
+          line-height: 32px;
+          text-align: center;
+        }
+      }
+
+      .routerMain {
+        background-color: pink;
+        height: 500px;
+        width: 350px;
+      }
+      .navFooter {
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+        background-color: blue;
+        width: 350px;
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+.dark {
+  background: gray;
+  color: pink;
+}
+
+.dim {
+  background: aqua;
+}
