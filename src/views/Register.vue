@@ -1,28 +1,30 @@
 <template>
     <div class="loginContainer">
-        <el-form :model="form">
-            <!-- <div class="username">
-                <el-item-form>
-                    <el-input placeholder="请输入用户名"></el-input>
+        <el-form :model="form" :rules="rules" ref="formRef">
+            <div class="username">
+                <el-item-form prop="username">
+                    <el-input placeholder="请输入用户名" v-model="form.username"></el-input>
                 </el-item-form>
-            </div> -->
+            </div>
             <div class="password">
-                <el-item-form>
+                <el-item-form prop="password">
                     <el-input placeholder="请输入密码" v-model="form.password"></el-input>
                 </el-item-form>
             </div>
             <div class="phoneNumber">
-                <el-item-form rules="rules" label="电话号码" prop="phone" :model-value="phone" :model="phone">
-                    <el-input placeholder="请输入您的电话号码"></el-input>
+                <el-item-form prop="phone">
+                    <el-input placeholder="请输入您的电话号码" v-model="form.phone"></el-input>
                 </el-item-form>
             </div>
+
+
             <div class="verify">
                 <div class="yourCaptcha">输入验证码</div>
                 <div class="getCaptcha">获取验证码</div>
             </div>
             <div class="registerButton">
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm(ruleFormRef)">
+                    <el-button type="primary" @click="onSubmit">
                         Create
                     </el-button>
                 </el-form-item>
@@ -32,19 +34,19 @@
 
 </template>
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive,ref } from 'vue'
 import type { FormRules } from 'element-plus'
 const form = reactive({
     username: '',
-    password: '111111',
-    phone: '18201288771'
+    password: '',
+    phone: '',
 })
-//登录时间处理
+const formRef = ref()
+//登录事件处理
 const onSubmit = () => {
-    console.log('submit!')
-    ElMessage.success('登录成功')
+formRef.value?.validate()
 }
-const rules = reactive<FormRules>({
+const rules = reactive({
     phone: [
         {
             required: true,
@@ -52,7 +54,7 @@ const rules = reactive<FormRules>({
             trigger: 'blur'
         },
         {
-            pattern: /^1[3-9]\d{9}$/,
+            pattern: /^1[3-9]\d{9}$/,//1开头，中间必须是3-9的数字，共10位
             message: '请输入正确的电话号码',
             trigger: 'blur'
         }
