@@ -17,7 +17,7 @@ function pushToRegister() {
   <div class="background">
     <div class="container">
       <div class="themeChange" @click="toggleDark()"><button>
-        主题色切换
+        黑夜模式
       </button></div>
       <div class="name">"哈大饼"前端控制台 </div>
       <div class="service">

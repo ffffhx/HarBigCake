@@ -1,6 +1,6 @@
 <template>
     <div class="loginContainer">
-        <el-form class="form2"   :model="form" :rules="rules" ref="formRef">
+        <el-form class="form2" :model="form" :rules="rules" ref="formRef">
 
             <div class="username">
                 <el-form-item style="width: 87%;" prop="username" label="用户名">
