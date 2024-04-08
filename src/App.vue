@@ -21,7 +21,8 @@ function pushToFindPassword() {
     <div class="container">
       <div class="containerRight">
         <div class="navHeader">
-          <p class="logintitle" @click="pushToLogin">登录</p>
+          <p class="logintitle" @click="pushToLogin">账号登录</p>
+          <p class="logintitle" @click="pushToRegister">注册</p>
         </div>
         <div class="routerMain">
           <RouterView></RouterView>
@@ -30,9 +31,6 @@ function pushToFindPassword() {
         <div class="navFooter">
           <div class="loginByPhone"><span @click="pushToPhoneVerify">手机验证登录</span></div>
           <div class="forgetPassword"><span @click='pushToFindPassword'>找回密码</span></div>
-          <div class="register">
-            <p @click="pushToRegister">注册</p>
-          </div>
         </div>
       </div>
     </div>
