@@ -3,13 +3,26 @@
         <el-form :model="form" :rules="rules" ref="formRef">
             <div class="phoneNumber">
                 <el-form-item prop="phone" label="电话号码">
-                    <el-input placeholder="请输入您的电话号码" v-model="form.phone"></el-input>
+                    <el-input placeholder="请输入您的电话号码" v-model="form.phone">
+                        <template #prefix>
+                            <el-icon>
+                                <Avatar />
+                            </el-icon>
+                        </template>
+                    </el-input>
                 </el-form-item>
             </div>
             <div class="verify">
                 <div class="yourCaptcha">
                     <el-form-item prop="validCode" label="验证码">
-                        <el-input placeholder="请输入验证码" v-model="form.validCode"></el-input>
+                        <el-input placeholder="请输入验证码" v-model="form.validCode">
+                            <!-- <el-icon><Finished /></el-icon> -->
+                            <template #prefix>
+                            <el-icon>
+                                <Finished />
+                            </el-icon>
+                        </template>
+                        </el-input>
                     </el-form-item></div>
                 <div class="getCaptcha">
                     <!-- <validCode2></validCode2> -->
@@ -17,8 +30,8 @@
             </div>
             <div class="registerButton">
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">
-                        Create
+                    <el-button type="primary" @click="onSubmit" style="width: 260px; height: 40px;">
+                        登录
                     </el-button>
                 </el-form-item>
             </div>
@@ -30,6 +43,8 @@
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus';
 import validCode2 from '../components/validCode2.vue'
+import { Avatar,Lock,Finished } from "@element-plus/icons-vue";
+
 const formRef = ref()
 const form = reactive({
     username: '',

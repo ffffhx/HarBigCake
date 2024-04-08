@@ -3,6 +3,7 @@ template {
   padding: 0;
   border: 0;
 }
+
 @background-color: #d8e1ff;
 
 .background {
@@ -16,6 +17,7 @@ template {
   background-position: center;
   background-color: @background-color;
   background-image: url(./public/1.png);
+
   .container {
     position: relative;
     background-color: transparent;
@@ -49,6 +51,7 @@ template {
         flex-direction: row;
         justify-content: space-around;
         align-items: flex-start;
+
         .logintitle {
           padding: 10px 0 0;
           color: #141414;
@@ -68,7 +71,20 @@ template {
         background-color: transparent;
         height: 273px;
         width: 100%;
+
+        .other {
+          display: flex;
+          width: 100%;
+          margin-top: -8px;
+          margin-bottom: 17px;
+          flex-direction: row;
+          justify-content: space-around;
+          flex-wrap: nowrap;
+          align-content: center;
+          align-items: center;
+        }
       }
+
       .navFooter {
         display: flex;
         justify-content: space-between;
@@ -82,8 +98,7 @@ template {
 }
 
 .dark {
-  background: gray;
-  color: pink;
+  color: #141414;
 }
 
 .dim {
@@ -99,6 +114,15 @@ template {
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
+
+  .form2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
 
   .username {
     display: flex;
@@ -125,8 +149,9 @@ template {
   .search_form {
     width: 245px;
   }
+
   .search_icon {
-    height:32px;
+    height: 32px;
   }
 
   .loginicon {
@@ -147,29 +172,40 @@ template {
   }
 
   .verify {
-    width: 350px;
+    width: 363px;
     height: 50px;
     display: flex;
     background-color: transparent;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
 
     .yourCaptcha {
-      width: 180px;
+      width: 177px;
       background-color: transparent;
-      margin-right: 20px;
+      margin-right: 21px;
     }
 
     .getCaptcha {
-      width: 160px;
+      width: 108px;
       background-color: transparent;
     }
   }
 
   .loginByPhone {
-    width: 150px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .loginByPhone:hover{
+    color: #66ccff;
   }
 
   .forgetPassword {
-    width: 150px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .forgetPassword:hover{
+    color: #66ccff;
   }
 
   .registerButton {

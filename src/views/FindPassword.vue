@@ -3,12 +3,24 @@
         <el-form :model="form" :rules="rules" ref="formRef">
             <div class="username">
                 <el-form-item label="用户名" prop="username">
-                    <el-input placeholder="用户名" v-model="form.username"></el-input>
+                    <el-input placeholder="用户名" v-model="form.username">
+                        <template #prefix>
+                            <el-icon class="el-input_icon">
+                                <Avatar />
+                            </el-icon>
+                        </template>
+                    </el-input>
                 </el-form-item>
             </div>
             <div class="password">
                 <el-form-item label="密码" prop="password">
-                    <el-input placeholder="密码" v-model="form.password"></el-input>
+                    <el-input placeholder="密码" v-model="form.password">
+                        <template #prefix>
+                            <el-icon class="el-input_icon">
+                                <Lock />
+                            </el-icon>
+                        </template>
+                    </el-input>
                 </el-form-item>
             </div>
             <div class="identifyPassword">
@@ -34,7 +46,7 @@
             <div class="registerButton">
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">
-                        Reset
+                        重置密码
                     </el-button>
                 </el-form-item>
             </div>
@@ -44,6 +56,8 @@
 </template>
 <script setup>
 import { reactive, ref } from "vue";
+import { Avatar,Lock } from "@element-plus/icons-vue";
+
 const form = ref({
     username: '',
     password: '',

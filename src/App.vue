@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { useDark, useToggle, useColorMode } from '@vueuse/core'
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 const router = useRouter();
 function pushToLogin() {
   router.push('/login')
@@ -8,17 +10,21 @@ function pushToLogin() {
 function pushToRegister() {
   router.push('/register')
 }
-function pushToPhoneVerify() {
-  router.push('/phoneverify')
-}
-function pushToFindPassword() {
-  router.push('/findpassword')
-}
+
 </script>
 
 <template>
   <div class="background">
     <div class="container">
+      <div class="themeChange" @click="toggleDark()"><button>
+        主题色切换
+      </button></div>
+      <div class="name">"哈大饼"前端控制台 </div>
+      <div class="service">
+        <div class="Bug">Bug反馈</div>
+        <div class="opinion">改进意见</div>
+        <div class="clientService">人工客服</div>
+      </div>
       <div class="containerRight">
         <div class="navHeader">
           <p class="logintitle" @click="pushToLogin">账号登录</p>
@@ -29,8 +35,7 @@ function pushToFindPassword() {
         </div>
 
         <div class="navFooter">
-          <div class="loginByPhone"><span @click="pushToPhoneVerify">手机验证登录</span></div>
-          <div class="forgetPassword"><span @click='pushToFindPassword'>找回密码</span></div>
+
         </div>
       </div>
     </div>
