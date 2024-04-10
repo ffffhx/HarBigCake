@@ -1,11 +1,12 @@
 <template>
     <div class="loginContainer">
-        <button @click="toggleDark2">测试</button>
+        <!-- <div class="test6">666</div> -->
+        <!-- <button @click="toggleDark2">测试</button> -->
         <el-form class="form2" :model="form" :rules="rules" ref="formRef">
 
             <div class="username" >
-                <el-form-item style="width: 87%; background-color: #f5f7fa;" prop="username" label="用户名">
-                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" ref="test">
+                <el-form-item style="width: 87%; " prop="username" label="用户名">
+                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" ref="test" class="test100">
                         <template #prefix>
                             <el-icon>
                                 <Avatar />
