@@ -27,6 +27,7 @@
     "@vue/tsconfig": "^0.5.1",
     "less": "^4.2.0",
     "npm-run-all2": "^6.1.2",
+    "style-resources-loader": "^1.5.0",
     "typescript": "~5.4.0",
     "vite": "^5.1.5",
     "vue-tsc": "^2.0.6"

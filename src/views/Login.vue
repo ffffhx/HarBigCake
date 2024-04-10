@@ -1,10 +1,11 @@
 <template>
     <div class="loginContainer">
+        <button @click="toggleDark2">测试</button>
         <el-form class="form2" :model="form" :rules="rules" ref="formRef">
 
-            <div class="username">
-                <el-form-item style="width: 87%;" prop="username" label="用户名">
-                    <el-input placeholder="请输入用户名" v-model="form.username" size="large">
+            <div class="username" >
+                <el-form-item style="width: 87%; background-color: #f5f7fa;" prop="username" label="用户名">
+                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" ref="test">
                         <template #prefix>
                             <el-icon>
                                 <Avatar />
@@ -14,7 +15,7 @@
                 </el-form-item>
             </div>
             <div class="password">
-                <el-form-item style="width: 310px;margin-right: -32px;"prop="password" label="密码">
+                <el-form-item style="width: 310px;margin-right: -32px;" prop="password" label="密码">
                     <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large">
                         <template #prefix>
                             <el-icon>
@@ -33,7 +34,7 @@
                     </el-form-item>
                 </div>
                 <div class="getCaptcha">
-                    <validCode @click="toggleDark()"></validCode>
+                    <validCode @click="toggleDark2"></validCode>
                 </div>
             </div>
             <div class="other">
@@ -56,15 +57,14 @@ import { reactive, ref } from "vue";
 import { ElMessage } from 'element-plus';
 import validCode from '@/components/validCode.vue'
 import { useDark, useToggle, useColorMode } from "@vueuse/core";
-import { Avatar,Lock } from "@element-plus/icons-vue";
-
+import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 const router = useRouter();
 function pushToPhoneVerify() {
-  router.push('/phoneverify')
+    router.push('/phoneverify')
 }
 function pushToFindPassword() {
-  router.push('/findpassword')
+    router.push('/findpassword')
 }
 
 const isDark = useDark();
@@ -121,5 +121,10 @@ const rules = reactive({
         }
     ]
 })
+const test = ref<HTMLDivElement | null>(null)
+function toggleDark2() {
+    console.log('successfulTest2');
+    test.value?.classList.toggle('darkMode');
+}
 </script>
 <style lang="less"></style>

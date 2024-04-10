@@ -3,8 +3,23 @@ template {
   padding: 0;
   border: 0;
 }
+@background-color: red;
+@background-color-light: red;
+@background-color-dark: gray;
+@font-color-light: black;
+@font-color-dark: pink;
+.darkMode{
+  --background-color: @background-color-dark ;
+  --font-color: @font-color-dark;
+}
 
-@background-color: #d8e1ff;
+// .themeChange{
+//   background-color: var(--background-color, @background-color-light);
+// }
+
+
+
+
 
 .background {
   position: fixed;
@@ -19,11 +34,23 @@ template {
   background-image: url(./public/1.png);
 
   .container {
+    background-color: var(--background-color, #fff);
     position: relative;
     background-color: transparent;
     border-radius: 12px;
     height: 100%;
     width: 100%;
+    .service{
+      position: relative;
+      top: 560px;
+      a{
+        text-decoration: none;
+        color: pink;
+      }
+      div{
+        margin-top: 10px;
+      }
+    }
 
     .containerRight {
       display: flex;
@@ -36,7 +63,7 @@ template {
       border-radius: inherit;
       text-align: left;
       position: absolute;
-      background-color: #fff;
+      background-color: var(--background-color, #fff);
       flex-direction: column;
       flex-wrap: nowrap;
       justify-content: space-around;
@@ -98,12 +125,12 @@ template {
 }
 
 .dark {
-  color: #141414;
+  color: pink;
 }
 
-.dim {
-  background: aqua;
-}
+// .dim {
+//   background: aqua;
+// }
 
 .loginContainer {
   display: flex;
