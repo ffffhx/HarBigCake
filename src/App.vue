@@ -108,12 +108,14 @@ const value1 = ref(false)
 const value2 = ref(false)
 
 function autoPlayFunction() {
-  if (value2.value) {
+  if (value1.value) {
     const timer = setInterval(changeImgNext, 2000);
-    //     clearInterval(timer);
-    console.log(666);
+    console.log('判断功能没有问题');
   }
+  console.log('点击事件没有问题');
+  
 }
+// const timer = setInterval(changeImgNext, 2000);
 
 onUpdated(() => {
   //   autoPlay.addEventListenr('click', () => {
@@ -137,7 +139,7 @@ const background = ref<HTMLDivElement | null>(null);
       </div>
       <div class="changeImgPre" @click="changeImgPre()">
         < </div>
-          <div class="autoPlay" ref="autoPlay">自动播放 <el-switch v-model="value1" @click="autoPlayFunction()" /></div>
+          <div class="autoPlay" ref="autoPlay" @click="autoPlayFunction()">自动播放 <el-switch v-model="value1"  /></div>
           <div class="name">
             <p style="font-family:peiqin">哈大饼前端控制台</p>
           </div>
@@ -146,7 +148,7 @@ const background = ref<HTMLDivElement | null>(null);
             <div class="opinion"><a href="#">改进意见</a></div>
             <div class="clientService"><a href="">人工客服</a></div>
           </div>
-          <div class="containerRight" ref="containerRight">
+          <div class="containerRight" ref="containerRight" :style="{backgroundImage: `url(${images[i]})`}">
             <div class="navHeader">
               <p class="logintitle" @click="pushToLogin">账号登录</p>
               <p class="logintitle" @click="pushToRegister">注册</p>
@@ -167,6 +169,24 @@ const background = ref<HTMLDivElement | null>(null);
 </template>
 
 <style scoped lang="less">
+.containerRight {
+  display: flex;
+      width: 400px;
+      height: 488px;
+      top: 50%;
+      left: 50%;
+      margin-top: -238px;
+      margin-left: 160px;
+      border-radius: inherit;
+      text-align: left;
+      position: absolute;
+      color: var(--font-color, #000);
+      
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+}
 .background {
   position: fixed;
   top: 0;
