@@ -6,22 +6,24 @@ template {
 
 @background-color-dark: gray;
 @font-color-dark: white;
-
+@background-image: url('./public/2.png');
 .darkMode {
   --background-color: @background-color-dark ;
   --font-color: @font-color-dark;
+  --background-imgage: @background-image;
 }
 
-.el-form-item__label{
+.el-form-item__label {
   color: var(--font-color, #000);
   // .el-form-item{
   //   background-image: url('./public/3.png');
   //   }
 }
 
-.test6{
+.test6 {
   color: var(--font-color, #000);
 }
+
 // .el-form .el-form--default .el-form--label-right .form2{
 
 // }
@@ -37,6 +39,43 @@ template {
     border-radius: 12px;
     height: 100%;
     width: 100%;
+    .name{
+      p{
+        // color: red;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      }
+    }
+    .changeImgNext {
+      cursor: pointer;
+      width: 25px;
+      border-radius: 80%;
+      text-align: center;
+      font-size: 20px;
+      position: absolute;
+      top: 100px;
+      left: 30px;
+      color: var(--font-color,#000);
+      // color: red;
+    }
+
+    .changeImgNext:hover {
+      background-color: pink;
+    }
+
+    .changeImgPre {
+      cursor: pointer;
+      width: 25px;
+      border-radius: 80%;
+      text-align: center;
+      font-size: 20px;
+      position: absolute;
+      top: 100px;
+      color: var(--font-color,#000);
+    }
+
+    .changeImgPre:hover {
+      background-color: pink;
+    }
 
     .service {
       position: relative;
@@ -44,7 +83,9 @@ template {
 
       a {
         text-decoration: none;
-        color: pink;
+      color: var(--font-color,#000);
+
+        // color: pink;
       }
 
       div {
@@ -53,7 +94,7 @@ template {
     }
 
     .containerRight {
-      
+
 
       .navHeader {
         display: flex;
@@ -66,6 +107,7 @@ template {
         align-items: flex-start;
 
         .logintitle {
+          cursor: pointer;
           padding: 10px 0 0;
           --font-color: @font-color-dark;
           font-size: 24px;
@@ -83,6 +125,7 @@ template {
       .routerMain {
         height: 273px;
         width: 100%;
+
         .other {
           display: flex;
           width: 100%;
@@ -111,6 +154,9 @@ template {
 
 
 .loginContainer {
+  // .el-form-item__content{
+  //   width: 300px;
+  // }
   display: flex;
   width: 100%;
   height: 277px;
@@ -144,9 +190,10 @@ template {
     align-items: center;
 
   }
-// .test100{
-//   height: 100px;
-// }
+
+  // .test100{
+  //   height: 100px;
+  // }
   .password {
     display: flex;
     width: 350px;
@@ -177,6 +224,13 @@ template {
     width: 350px;
     height: 60px;
     background-color: transparent;
+    .el-form-item.is-required.asterisk-left{
+      width: 350px;
+      .el-form-item__content{
+        width: 350px;
+      }
+    }
+
   }
 
   .phoneNumber {
@@ -225,9 +279,13 @@ template {
   }
 
   .registerButton {
-    width: 150px;
+    width: 240px;
     height: 50px;
     background-color: transparent;
     font-size: 20px;
+    .el-button.el-button--primary{
+      width: 240px;
+      height: 40px;
+    }
   }
 }

@@ -17,7 +17,7 @@
             </div>
             <div class="password">
                 <el-form-item style="width: 310px;margin-right: -32px;" prop="password" label="密码">
-                    <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large">
+                    <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large" type="password">
                         <template #prefix>
                             <el-icon>
                                 <Lock />
@@ -75,13 +75,24 @@ const formRef = ref()
 const login = () => {
     ElMessage.success("登录成功")
 }
-const onSubmit = async () => {
-    await formRef.value?.validate().catch((err: any) => {
-        ElMessage.error("表单校验失败")
-        throw err
-    })
-    ElMessage.success("登录成功")
 
+// 登录事件处理函数，接受用户输入的登录信息，并进行表单验证。如果验证成功，则显示登录成功的提示信息。如果验证失败，则显示错误信息。
+const onSubmit = async () => {
+    try {
+        // 等待formRef对应的表单完成验证，如果验证失败，则抛出错误并显示错误信息
+        await formRef.value?.validate()
+        // 登录成功，显示提示信息
+        ElMessage.success("登录成功")
+    } catch (err) {
+        // 验证失败，显示错误信息
+        ElMessage.error("表单校验失败")
+        console.log('before');
+        
+        // 重新抛出错误，可以在外部进行错误处理
+        throw err
+        // console.log('after');
+        
+    }
 }
 const form = reactive({
     username: '17862926305',

@@ -64,6 +64,14 @@ const rules = reactive({
             trigger: 'blur'
         }
     ],
+    validCode: [
+        {
+            required: true,
+            message: '请输入验证码',
+            trigger: 'blur'
+
+        }
+    ]
 })
 const onSubmit = async () => {
     await formRef.value?.validate().catch((err) => {

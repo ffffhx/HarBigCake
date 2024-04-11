@@ -121,6 +121,14 @@ const rules = reactive({
             message: '密码必须由中文加英文组成',
             trigger: 'blur'
         }
+    ],
+    validCode: [
+        {
+            required: true,
+            message: '请输入验证码',
+            trigger: 'blur'
+
+        }
     ]
 })
 </script>

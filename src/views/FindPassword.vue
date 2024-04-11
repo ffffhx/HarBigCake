@@ -29,7 +29,7 @@
                 </el-form-item>
             </div>
             <div class="phoneNumber">
-                <el-form-item label="请输入您的电话号码 " prop="phone">
+                <el-form-item label="电话号码 " prop="phone">
                     <el-input placeholder="请输入您的电话号码 " v-model="form.phone"></el-input>
                 </el-form-item>
             </div>
@@ -92,6 +92,18 @@ const rules = reactive({
         {
             required: true,
             message: '请输入电话号码',
+            trigger: 'blur'
+        },
+        {
+            pattern: /^[0-9]{11}$/,
+            message: '请输入11位数字',
+            trigger: 'blur'
+        },
+    ],
+    validCode: [
+        {
+            required: true,
+            message: '请输入验证码',
             trigger: 'blur'
         }
     ]
