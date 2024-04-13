@@ -18,6 +18,8 @@ const routerMain = ref<HTMLDivElement | null>(null);
 const changeImgNext2 = ref<HTMLDivElement | null>(null)
 const service = ref<HTMLDivElement | null>(null)
 const changeImgPre2 = ref<HTMLDivElement | null>(null)
+const logintitle1 = ref<HTMLDivElement | null>(null)
+const logintitle2 = ref<HTMLDivElement | null>(null)
 // onMounted(() => {
 // console.log(themeChange.value);
 // // console.log(containerRight.value);
@@ -51,11 +53,16 @@ function toggleDark() {
 
 
 const router = useRouter();
+
 function pushToLogin() {
   router.push('/login')
+  logintitle1.value?.classList.add('loginTitleHover')
+  logintitle2.value?.classList.remove('loginTitleHover')
 }
 function pushToRegister() {
   router.push('/register')
+  logintitle2.value?.classList.add('loginTitleHover')
+  logintitle1.value?.classList.remove('loginTitleHover')
 }
 const images = ref<string[]>([
   './public/0.jpg',
@@ -166,11 +173,11 @@ let timerId: ReturnType<typeof setInterval> | null;
 function autoPlayFunction() {
   if (value1.value) {
     console.log(value1.value);
-    
+
     // if (timerId) {
     //   console.log(timerId);
     //   console.log(666);
-      
+
     //   // 如果已经存在定时器，说明之前是开启了自动播放，此时不需要再创建新的定时器
     //   return;
     // }
@@ -200,16 +207,20 @@ const background = ref<HTMLDivElement | null>(null);
 <template>
   <div class="background" ref="background" :style="{ backgroundImage: `url(${images[i]})` }">
     <div class="container">
-      <div class="themeChange" @click="toggleDark" ref="themeChange">
-        <el-switch v-model="value2" class="ml-2" style="--el-switch-on-color: black; --el-switch-off-color: #fff"
-          active-text="暗黑模式" inactive-text="亮白模式" />
+      <div class="changeButton">
+        <div class="themeChange" @click="toggleDark" ref="themeChange">
+          <el-switch v-model="value2" class="ml-2" style="--el-switch-on-color: black; --el-switch-off-color: #fff"
+            active-text="暗黑模式" inactive-text="亮白模式" />
+        </div>
+        <div class="autoPlay" ref="autoPlay" @click="autoPlayFunction()">自动更换背景图片 <el-switch v-model="value1" /></div>
       </div>
+
       <div class="changeImgNext" @click="changeImgNext()" ref="changeImgNext2">
         >
       </div>
       <div class="changeImgPre" @click="changeImgPre()" ref="changeImgPre2">
         < </div>
-          <div class="autoPlay" ref="autoPlay" @click="autoPlayFunction()">自动播放 <el-switch v-model="value1" /></div>
+
           <div class="name">
             <p>哈大饼前端控制台</p>
           </div>
@@ -220,8 +231,8 @@ const background = ref<HTMLDivElement | null>(null);
           </div>
           <div class="containerRight" ref="containerRight" :style="{ backgroundImage: `url(${images[i]})` }">
             <div class="navHeader">
-              <p class="logintitle" @click="pushToLogin">账号登录</p>
-              <p class="logintitle" @click="pushToRegister">注册</p>
+              <p class="logintitle" @click="pushToLogin" ref="logintitle1" >账号登录</p>
+              <p class="logintitle" @click="pushToRegister" ref="logintitle2">注册</p>
             </div>
             <div class="routerMain" ref="routerMain">
               <RouterView></RouterView>

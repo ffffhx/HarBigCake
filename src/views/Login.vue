@@ -6,7 +6,12 @@
 
             <div class="username" >
                 <el-form-item style="width: 87%; " prop="username" label="用户名">
-                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" ref="test" class="test100">
+                    <el-input placeholder="请输入用户名"
+                     v-model="form.username" 
+                     size="large" 
+                     ref="test" 
+                     class="test100"
+                      @keyup.enter.native="handelTab(1,$event)">
                         <template #prefix>
                             <el-icon>
                                 <Avatar />
@@ -17,7 +22,14 @@
             </div>
             <div class="password">
                 <el-form-item style="width: 310px;margin-right: -32px;" prop="password" label="密码">
-                    <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large" type="password">
+                    <el-input 
+                    style="width: 240px;" 
+                    placeholder="请输入密码" 
+                    v-model="form.password" 
+                    size="large"
+                     type="password"
+                     @keyup.enter.native="handelTab(2,$event)">
+                     
                         <template #prefix>
                             <el-icon>
                                 <Lock />
@@ -60,6 +72,18 @@ import validCode from '@/components/validCode.vue'
 import { useDark, useToggle, useColorMode } from "@vueuse/core";
 import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
+// let j:number;
+function handelTab(j:number, e:any) {
+        let that=this
+        if(that.$refs['input'+j]){
+            that.$nextTick(()=>{
+                e.target.blur()
+                let index=j+1
+                that.$refs['input'+index].focus()
+            })
+        }
+
+    }
 const router = useRouter();
 function pushToPhoneVerify() {
     router.push('/phoneverify')
