@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRouter } from 'vue-router'
 import { onMounted, onUpdated, ref, provide } from 'vue';
-// const containerRight = ref<HTMLDivElement | null>(null);
+const containerRight = ref<HTMLDivElement | null>(null);
 const routerMain = ref<HTMLDivElement | null>(null);
 // const changeImgNext2 = ref<HTMLDivElement | null>(null)
 // const service = ref<HTMLDivElement | null>(null)
@@ -16,6 +16,11 @@ function toggleDark() {
   // service.value?.classList.toggle('darkMode');
   // changeImgPre2.value?.classList.toggle('darkMode');
   background.value?.classList.toggle('darkMode');
+  const containerRightValue = containerRight.value;
+  if (containerRightValue) {
+    console.log(666);
+    containerRightValue.style.backgroundImage = `url(${images.value[i.value]})`;
+  }
 }
 
 
