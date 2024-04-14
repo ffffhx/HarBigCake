@@ -3,10 +3,18 @@ template {
   padding: 0;
   border: 0;
 }
+.el-button.el-button--primary{
+  width: 260px;
+  height: 40px;
+}
+.FindPassword{
+  margin-top: -20px;
+}
 
 @background-color-dark: gray;
 @font-color-dark: white;
 @background-image: url('./public/2.png');
+
 .darkMode {
   --background-color: @background-color-dark ;
   --font-color: @font-color-dark;
@@ -15,30 +23,20 @@ template {
 
 .el-form-item__label {
   color: var(--font-color, #000);
-  // .el-form-item{
-  //   background-image: url('./public/3.png');
-  //   }
+
 }
 
-.test6 {
-  color: var(--font-color, #000);
-}
 
-// .el-form .el-form--default .el-form--label-right .form2{
-
-// }
-.changeButton{
+.changeButton {
   position: absolute;
-  bottom: 100px;
+  bottom: 40px;
 }
-// .autoPlay{
-//   // color: #ff0058;
 
-// }
-.themeChange{
-  // position: absolute;
-  // bottom: 70px;
+.autoPlay{
+  color: var(--font-color,#000)
+
 }
+
 .background {
 
   .container {
@@ -49,47 +47,52 @@ template {
     border-radius: 12px;
     height: 100%;
     width: 100%;
-    .name{
+
+    .name {
       position: relative;
-      bottom: 40px;
-      // background-color: black;
+      bottom: 30px;
       width: 500px;
-      p{
+      
+      // span {
+      //   position: relative;
+      //   font-size: 20px;
+      //   color: #a79b9b;
+      //   left: 10px;
+      //   top: -35px;
+      //   display: inline-block;
+      // }
+      p {
         position: relative;
-        font-size: 50px;
-        color: #333;
-        // color: red;
-        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 30px;
+        color: #a79b9b;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       }
 
-      p::after{
+      p::after {
         content: "哈大饼前端控制台";
         position: absolute;
         top: 0;
         left: 0;
         color: teal;
-        // clip-path: ellipse(
-        //   100px 100px at 0% center
-        // );
         animation: animate 4s linear infinite;
-        background-image: linear-gradient(
-          60deg,#00d0ff,#4dff03,
-          #ff0058,#ffbc00,#ff0058
-        );
-        background-clip: text; /* 标准属性 */
-        -webkit-background-clip: text; /* 兼容性属性 */
-        color: transparent; /* 透明色，文字颜色为透明色，即看不到文字 */
+        background-image: linear-gradient(8deg, #00d0ff, pink,
+            #00d0ff,  pink);
+        background-clip: text;
+        /* 标准属性 */
+        -webkit-background-clip: text;
+        /* 兼容性属性 */
+        color: transparent;
+        /* 透明色，文字颜色为透明色，即看不到文字 */
       }
+
       @keyframes animate {
-        0%,100% {
-          clip-path: ellipse(
-            100px 100px at 0% center
-          );
+        0%,
+        100% {
+          clip-path: ellipse(100px 100px at 0% center);
         }
+
         50% {
-          clip-path: ellipse(
-            100px 100px at 100% center
-          );
+          clip-path: ellipse(100px 100px at 100% center);
         }
       }
     }
@@ -103,7 +106,7 @@ template {
       position: absolute;
       bottom: 70px;
       left: 140px;
-      color: var(--font-color,#000);
+      color:#000;
       background-color: #fff;
       // color: red;
     }
@@ -120,7 +123,7 @@ template {
       font-size: 20px;
       position: absolute;
       bottom: 70px;
-      color: var(--font-color,#000);
+      color: var(--font-color, #000);
       background-color: #fff;
     }
 
@@ -132,9 +135,10 @@ template {
       position: relative;
       top: 400px;
       left: 1450px;
+
       a {
         text-decoration: none;
-      color: var(--font-color,#000);
+        color: var(--font-color, #000);
 
         // color: pink;
       }
@@ -156,12 +160,16 @@ template {
         flex-direction: row;
         justify-content: space-around;
         align-items: flex-start;
-        .loginTitleHover{
+        height: 80px;
+
+        .loginTitleHover {
           border-radius: 30%;
           border-bottom: 4px solid red;
           transition: 0.5s;
         }
-        .logintitle {
+
+        .logintitle1,
+        .logintitle2 {
           cursor: pointer;
           padding: 10px 0 0;
           --font-color: @font-color-dark;
@@ -177,7 +185,9 @@ template {
           text-align: center;
           line-height: 1.2;
         }
-        .logintitle:hover{
+
+        .logintitle1:hover,
+        .logintitle2:hover {
           // color: red;
           // background-color: #fff;
           border-radius: 30%;
@@ -192,7 +202,7 @@ template {
           // text-decoration-skip-ink: all;
           // text-decoration: underline;
         }
-        
+
 
 
       }
@@ -256,9 +266,6 @@ template {
     display: flex;
     width: 350px;
     height: 60px;
-    // color: var(--font-color, red);
-    // background-color: var(--background-color, #fff);
-    // background-image: url('./public/2.png');
     flex-direction: row;
     align-content: center;
     justify-content: center;
@@ -266,9 +273,6 @@ template {
 
   }
 
-  // .test100{
-  //   height: 100px;
-  // }
   .password {
     display: flex;
     width: 350px;
@@ -299,9 +303,11 @@ template {
     width: 350px;
     height: 60px;
     background-color: transparent;
-    .el-form-item.is-required.asterisk-left{
+
+    .el-form-item.is-required.asterisk-left {
       width: 350px;
-      .el-form-item__content{
+
+      .el-form-item__content {
         width: 350px;
       }
     }
@@ -315,8 +321,8 @@ template {
   }
 
   .verify {
-    width: 363px;
-    height: 50px;
+    width: 350px;
+    height: 60px;
     display: flex;
     background-color: transparent;
     justify-content: center;
@@ -324,7 +330,7 @@ template {
     flex-direction: row;
 
     .yourCaptcha {
-      width: 177px;
+      width: 191px;
       background-color: transparent;
       margin-right: 21px;
     }
@@ -354,11 +360,13 @@ template {
   }
 
   .registerButton {
+    margin-left: 60px;
     width: 240px;
     height: 50px;
     background-color: transparent;
     font-size: 20px;
-    .el-button.el-button--primary{
+
+    .el-button.el-button--primary {
       width: 240px;
       height: 40px;
     }

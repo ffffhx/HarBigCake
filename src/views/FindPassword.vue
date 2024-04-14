@@ -1,9 +1,9 @@
 <template>
     <div class="loginContainer" v-next-focus>
-        <el-form :model="form" :rules="rules" ref="formRef">
+        <el-form :model="form" :rules="rules" ref="formRef" class="FindPassword">
             <div class="username">
                 <el-form-item label="用户名" prop="username">
-                    <el-input placeholder="用户名" v-model="form.username">
+                    <el-input placeholder="用户名" v-model="form.username" size="large">
                         <template #prefix>
                             <el-icon class="el-input_icon">
                                 <Avatar />
@@ -14,7 +14,7 @@
             </div>
             <div class="password">
                 <el-form-item label="密码" prop="password">
-                    <el-input placeholder="密码" v-model="form.password">
+                    <el-input placeholder="密码" v-model="form.password" size="large">
                         <template #prefix>
                             <el-icon class="el-input_icon">
                                 <Lock />
@@ -25,18 +25,18 @@
             </div>
             <div class="identifyPassword">
                 <el-form-item label="确认新密码" prop="identifyPassword">
-                    <el-input placeholder="确认新密码" v-model="form.identifyPassword"></el-input>
+                    <el-input placeholder="确认新密码" v-model="form.identifyPassword" size="large"></el-input>
                 </el-form-item>
             </div>
             <div class="phoneNumber">
                 <el-form-item label="电话号码 " prop="phone">
-                    <el-input placeholder="请输入您的电话号码 " v-model="form.phone"></el-input>
+                    <el-input placeholder="请输入您的电话号码 " v-model="form.phone" size="large"></el-input>
                 </el-form-item>
             </div>
             <div class="verify">
                 <div class="yourCaptcha">
                     <el-form-item prop="validCode" label="验证码">
-                        <el-input placeholder="请输入验证码" v-model="form.validCode"></el-input>
+                        <el-input placeholder="请输入验证码" v-model="form.validCode" size="large"></el-input>
                     </el-form-item>
                 </div>
                 <div class="getCaptcha">
@@ -54,10 +54,10 @@
     </div>
 
 </template>
-<script setup>
-import { reactive, ref } from "vue";
+<script setup lang="ts">
+import { reactive, ref,inject } from "vue";
 import { Avatar,Lock } from "@element-plus/icons-vue";
-
+// const logintitle1DelClass=inject('logintitle1DelClass')
 const form = ref({
     username: '',
     password: '',
@@ -109,7 +109,7 @@ const rules = reactive({
     ]
 })
 const onSubmit = async () => {
-    await formRef.value?.validate().catch((err) => {
+    await formRef.value?.validate().catch((err:any) => {
         ElMessage.error("表单校验失败")
         throw err
     })

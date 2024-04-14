@@ -3,9 +3,8 @@
         <el-form class="form2" :model="form" :rules="rules" ref="formRef">
 
             <div class="username">
-                <el-form-item style="width: 87%; " prop="username" label="用户名">
-                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" ref="test" class="test100"
-                        >
+                <el-form-item style="width: 87%; " prop="username" label="用户名" class="username">
+                    <el-input placeholder="请输入用户名" v-model="form.username" size="large" ref="test" class="test100">
                         <template #prefix>
                             <el-icon>
                                 <Avatar />
@@ -17,7 +16,7 @@
             <div class="password">
                 <el-form-item style="width: 310px;margin-right: -32px;" prop="password" label="密码">
                     <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large"
-                        type="password" >
+                        type="password">
 
                         <template #prefix>
                             <el-icon>
@@ -45,14 +44,9 @@
             </div>
             <div class="loginButton">
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit" style="width: 260px; height: 40px;">
+                    <el-button type="primary" @click="onSubmit">
                         登录
                     </el-button>
-                    <!-- <div v-next-focus>
-                        <el-input></el-input>
-                        <el-input></el-input>
-                        <el-input></el-input>
-                    </div> -->
 
                 </el-form-item>
             </div>
@@ -62,12 +56,17 @@
 
 </template>
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref,inject } from "vue";
 import { ElMessage } from 'element-plus';
 import validCode from '@/components/validCode.vue'
 import { useDark, useToggle, useColorMode } from "@vueuse/core";
 import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
+const logintitle1DelClass=inject('logintitle1DelClass')
+// import { logintitle1DelClass } from '../App.vue'
+// import { useLogintitle1DelClass } from '../App.vue'
+// const logintitle1DelClass = useLogintitle1DelClass()
+// import {logintitle1AddClass} from '../App.vue'
 // let j:number;
 // function handelTab(j: number, e: any) {
 //     const that = <typeof this>{};
@@ -83,9 +82,15 @@ import { useRouter } from 'vue-router'
 const router = useRouter();
 function pushToPhoneVerify() {
     router.push('/phoneverify')
+    logintitle1DelClass();
+    // logintitle1DelClass()
+    // logintitle1DelClass()
+    // logintitle1AddClass();
+    // logintitle2.value?.classList.remove('loginTitleHover')
 }
 function pushToFindPassword() {
     router.push('/findpassword')
+    logintitle1DelClass();
 }
 
 const isDark = useDark();
@@ -197,4 +202,8 @@ document.addEventListener('keypress', handleKeyPress);
 // });
 
 </script>
-<style lang="less"></style>
+<style lang="less">
+// .el-button.el-button--primary{
+//   background-color: red;
+// }
+</style>

@@ -49,13 +49,11 @@
                     <validCode @click="toggleDark()"></validCode>
                 </div>
             </div>
-            <div class="registerButton">
-                <el-form-item>
+                <el-form-item class="registerButton">
                     <el-button type="primary" @click="onSubmit">
                         注册
                     </el-button>
                 </el-form-item>
-            </div>
         </el-form>
     </div>
 
@@ -82,7 +80,6 @@ const onSubmit = async () => {
         throw err
     })
     ElMessage.success("登录成功")
-    
 }
 const rules = reactive({
     username: [
