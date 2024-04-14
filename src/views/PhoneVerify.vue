@@ -1,5 +1,5 @@
 <template>
-    <div class="loginContainer">
+    <div class="loginContainer" v-next-focus>
         <el-form :model="form" :rules="rules" ref="formRef">
             <div class="phoneNumber">
                 <el-form-item prop="phone" label="电话号码">

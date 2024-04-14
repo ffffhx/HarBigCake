@@ -17,6 +17,7 @@
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-drag-verify-img-rotate": "^1.1.0",
+    "vue-next-focus": "^0.0.12",
     "vue-puzzle-vcode": "^1.1.10",
     "vue-router": "^4.3.0"
   },

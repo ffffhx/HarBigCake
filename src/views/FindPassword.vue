@@ -1,5 +1,5 @@
 <template>
-    <div class="loginContainer">
+    <div class="loginContainer" v-next-focus>
         <el-form :model="form" :rules="rules" ref="formRef">
             <div class="username">
                 <el-form-item label="用户名" prop="username">
@@ -78,14 +78,14 @@ const rules = reactive({
         {
             required: true,
             message: '请输入密码',
-            trigger: blur
+            trigger: 'blur'
         }
     ],
     identifyPassword: [
         {
             required: true,
             message: '请输入确认密码',
-            trigger: blur
+            trigger: 'blur'
         }
     ],
     phone: [

@@ -1,5 +1,5 @@
 <template>
-    <div class="loginContainer">
+    <div class="loginContainer" v-next-focus>
         <el-form :model="form" :rules="rules" ref="formRef">
             <div class="username">
                 <el-form-item style="width: 87%;" prop="username" label="用户名">
@@ -14,7 +14,7 @@
             </div>
             <div class="password">
                 <el-form-item style="width: 310px;margin-right: -32px;"prop="password" label="密码">
-                    <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large">
+                    <el-input style="width: 240px;" placeholder="请输入密码" v-model="form.password" size="large" type="password">
                         <template #prefix>
                             <el-icon>
                                 <Lock />
@@ -26,7 +26,7 @@
             </div>
             <div class="phoneNumber">
                 <el-form-item style="width: 317px;margin-left: 8px;"prop="phone" label="电话号码">
-                    <el-input style="width: 240px;" placeholder="请输入您的电话号码" v-model="form.password" size="large">
+                    <el-input style="width: 240px;" placeholder="请输入您的电话号码" v-model="form.phone" size="large">
                         <template #prefix>
                             <el-icon>
                                 <Bell />
@@ -90,6 +90,10 @@ const rules = reactive({
             required: true,
             message: '请输入用户名',
             trigger: 'blur'
+        },
+        {
+            max:20,
+            message:'用户名最多20个字符'
         }
     ],
     phone: [
@@ -100,7 +104,7 @@ const rules = reactive({
         },
         {
             pattern: /^1[3-9]\d{9}$/,//1开头，中间必须是3-9的数字，共10位
-            message: '请输入正确的电话号码',
+            message: '电话号码必须1开头,中间必须是3-9的数字,共10位',
             trigger: 'blur'
         }
     ],
@@ -117,8 +121,9 @@ const rules = reactive({
             trigger: 'blur'
         },
         {
-            pattern: /^(?=.*[a-zA-Z])(?=.*[\u4e00-\u9fa5])[\u4e00-\u9fa5a-zA-Z]+$/,
-            message: '密码必须由中文加英文组成',
+            pattern: /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z\d]+$/,
+            // pattern: /^(?=.*[a-zA-Z])(?=.*[\u4e00-\u9fa5])[\u4e00-\u9fa5a-zA-Z]+$/,
+            message: '密码必须由数字加英文组成',
             trigger: 'blur'
         }
     ],
