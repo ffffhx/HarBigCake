@@ -63,20 +63,6 @@ import { useDark, useToggle, useColorMode } from "@vueuse/core";
 import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 const logintitle1DelClass=inject('logintitle1DelClass')
-// import { logintitle1DelClass } from '../App.vue'
-// import { useLogintitle1DelClass } from '../App.vue'
-// const logintitle1DelClass = useLogintitle1DelClass()
-// import {logintitle1AddClass} from '../App.vue'
-// let j:number;
-// function handelTab(j: number, e: any) {
-//     const that = <typeof this>{};
-//     if (that.$refs['input' + j]) {
-//         that.$nextTick(() => {
-//             e.target.blur()
-//             let index = j + 1
-//             that.$refs['input' + index].focus()
-//         })
-//     }
 
 // }
 const router = useRouter();

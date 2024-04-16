@@ -3,42 +3,40 @@ template {
   padding: 0;
   border: 0;
 }
-.el-button.el-button--primary{
+.el-button.el-button--primary {
   width: 260px;
   height: 40px;
 }
-.FindPassword{
+.FindPassword {
   margin-top: -20px;
 }
 
 @background-color-dark: gray;
 @font-color-dark: white;
-@background-image: url('./public/2.png');
+@background-image: url("./public/2.png");
 
 .darkMode {
-  --background-color: @background-color-dark ;
+  --background-color: @background-color-dark;
   --font-color: @font-color-dark;
   --background-imgage: @background-image;
 }
 
 .el-form-item__label {
   color: var(--font-color, #000);
-
 }
-
 
 .changeButton {
   position: absolute;
   bottom: 40px;
+  height: 100%;
+  width: 100%;
 }
 
-.autoPlay{
-  color: var(--font-color,#000)
-
+.autoPlay {
+  color: var(--font-color, #000);
 }
 
 .background {
-
   .container {
     color: var(--font-color, #000);
     // background-color: var(--background-color, #fff);
@@ -47,25 +45,20 @@ template {
     border-radius: 12px;
     height: 100%;
     width: 100%;
+    .themeChange {
+      bottom: 20px;
+    }
 
     .name {
       position: relative;
       bottom: 30px;
       width: 500px;
-      
-      // span {
-      //   position: relative;
-      //   font-size: 20px;
-      //   color: #a79b9b;
-      //   left: 10px;
-      //   top: -35px;
-      //   display: inline-block;
-      // }
+
       p {
         position: relative;
         font-size: 30px;
         color: #a79b9b;
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
       }
 
       p::after {
@@ -75,8 +68,7 @@ template {
         left: 0;
         color: teal;
         animation: animate 4s linear infinite;
-        background-image: linear-gradient(8deg, #00d0ff, pink,
-            #00d0ff,  pink);
+        background-image: linear-gradient(8deg, #00d0ff, pink, #00d0ff, pink);
         background-clip: text;
         /* 标准属性 */
         -webkit-background-clip: text;
@@ -106,7 +98,7 @@ template {
       position: absolute;
       bottom: 70px;
       left: 140px;
-      color:#000;
+      color: #000;
       background-color: #fff;
       // color: red;
     }
@@ -132,9 +124,13 @@ template {
     }
 
     .service {
-      position: relative;
-      top: 400px;
-      left: 1450px;
+      display: flex;
+      position: absolute;
+      top: 13px;
+      width: 500px;
+      right: 0;
+      flex-direction: row;
+      justify-content: space-around;
 
       a {
         text-decoration: none;
@@ -149,8 +145,6 @@ template {
     }
 
     .containerRight {
-
-
       .navHeader {
         display: flex;
         background-color: transparent;
@@ -188,23 +182,10 @@ template {
 
         .logintitle1:hover,
         .logintitle2:hover {
-          // color: red;
-          // background-color: #fff;
           border-radius: 30%;
           border-bottom: 3px solid red;
           transition: 0.5s;
-          // text-decoration-line: line-through;
-          // text-decoration-line: dashed;
-          // text-decoration-style: wavy;
-          // text-decoration-color: red;
-          // text-decoration-skip-ink: auto;
-          // text-decoration-skip-ink: none;
-          // text-decoration-skip-ink: all;
-          // text-decoration: underline;
         }
-
-
-
       }
 
       .routerMain {
@@ -223,31 +204,15 @@ template {
           align-items: center;
         }
       }
-
-      // .navFooter {
-      //   display: flex;
-      //   justify-content: space-between;
-      //   height: 80px;
-      //   color: var(--font-color, #000);
-      //   background-color: var(--background-color, #fff);
-      //   width: 350px;
-      //   font-size: 30px;
-      // }
     }
   }
 }
 
-
 .loginContainer {
-  // .el-form-item__content{
-  //   width: 300px;
-  // }
   display: flex;
   width: 100%;
   height: 277px;
   color: var(--font-color, #000);
-  // background-color: var(--background-color, #fff);
-  // background-image: url('./public/2.png');
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
@@ -270,7 +235,6 @@ template {
     align-content: center;
     justify-content: center;
     align-items: center;
-
   }
 
   .password {
@@ -311,7 +275,6 @@ template {
         width: 350px;
       }
     }
-
   }
 
   .phoneNumber {
