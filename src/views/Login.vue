@@ -63,19 +63,20 @@ import { useDark, useToggle, useColorMode } from "@vueuse/core";
 import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 const logintitle1DelClass=inject('logintitle1DelClass')
+import { useIndexView } from "@/stores/IndexView";
+import { storeToRefs } from "pinia";
 
 // }
+const data = storeToRefs(useIndexView()).data;
+const UpdateLogin = useIndexView().UpdateLogin
 const router = useRouter();
 function pushToPhoneVerify() {
-    router.push('/phoneverify')
+    // data.value[1] = 
+    UpdateLogin('PhoneVerify');
     logintitle1DelClass();
-    // logintitle1DelClass()
-    // logintitle1DelClass()
-    // logintitle1AddClass();
-    // logintitle2.value?.classList.remove('loginTitleHover')
 }
 function pushToFindPassword() {
-    router.push('/findpassword')
+    UpdateLogin('FindPassword');
     logintitle1DelClass();
 }
 
