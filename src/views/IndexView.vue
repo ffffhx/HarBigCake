@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { ref, provide, onMounted } from 'vue'
+import { ref, provide, onMounted, watch } from 'vue'
+import { storeToRefs } from 'pinia';
+import { useIndexView } from '@/stores/IndexView';
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 const containerRight = ref<HTMLDivElement | null>(null);
@@ -17,7 +19,10 @@ const images = ref<string[]>([
     './62.png', './63.png', './64.png', './65.png', './66.png', './67.png', './68.png', './69.png', './70.png', './71.png', './72.png', './73.png', './74.png', './75.png', './76.png', './77.png', './78.png', './79.png', './80.png',
 ]);
 //.value  数据要都是响应式数据才可以
-let i = ref(0);
+let { nowpic } = storeToRefs(useIndexView());
+const updateNowpic = useIndexView().updateNowpic;
+// console.log(nowpic);
+
 const value1 = ref(false);
 const value2 = ref(false);
 let timerId: ReturnType<typeof setInterval> | null;
@@ -28,20 +33,20 @@ function toggleDark() {
     const containerRightValue = containerRight.value;
     if (containerRightValue) {
         console.log(666);
-        containerRightValue.style.backgroundImage = `url(${images.value[i.value]})`;
+        containerRightValue.style.backgroundImage = `url(${images.value[nowpic.value]})`;
     }
 }
 function changeImgNext() {
-    i.value++;
-    if (i.value == images.value.length) {
-        i.value = 0
+    updateNowpic(nowpic.value + 1)
+    if (nowpic.value == images.value.length) {
+        updateNowpic(0)
     }
 }
 function changeImgPre() {
-    if (i.value == 0) {
-        i.value = images.value.length - 1
+    if (nowpic.value == 0) {
+        updateNowpic(images.value.length - 1)
     }
-    i.value--;
+    else updateNowpic(nowpic.value - 1)
     console.log('pre');
 }
 function autoPlayFunction() {
@@ -87,9 +92,9 @@ function pushToRegister() {
     logintitle2AddClass();
 }
 </script>
-// 如何通过组件名称引入组件？
+
 <template>
-    <div class="background" ref="background" :style="{ backgroundImage: `url(${images[i]})` }">
+    <div class="background" ref="background" :style="{ backgroundImage: `url(${images[nowpic]})` }">
         <div class="container">
             <div class="changeButton"></div>
             <div class="themeChange" @click="toggleDark" ref="themeChange"><!-- 主题色切换 -->
@@ -112,7 +117,7 @@ function pushToRegister() {
                 <div class="opinion"><a href="#">改进意见</a></div>
                 <div class="clientService"><a href="">人工客服</a></div>
             </div>
-            <div class="containerRight" ref="containerRight" :style="{ backgroundImage: `url(${images[i]})` }">
+            <div class="containerRight" ref="containerRight" :style="{ backgroundImage: `url(${images[nowpic]})` }">
                 <div class="navHeader">
                     <p class="logintitle1" @click="pushToLogin" ref="logintitle1">账号登录</p>
                     <p class="logintitle2" @click="pushToRegister" ref="logintitle2">注册</p>

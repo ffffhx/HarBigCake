@@ -12,8 +12,6 @@ import 'element-plus/theme-chalk/dark/css-vars.css'//暗黑模式主题切换
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import '@/assets/rgbaster.js'
 import { vue_next_focus } from 'vue-next-focus'
-// import 'element-plus/lib/theme-chalk/index.css'
-// import 'element-plus/lib/theme-chalk/el-icon.css'
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
