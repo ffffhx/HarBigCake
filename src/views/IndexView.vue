@@ -123,12 +123,13 @@ function pushToRegister() {
                     <p class="logintitle2" @click="pushToRegister" ref="logintitle2">注册</p>
                 </div>
                 <div class="routerMain" ref="routerMain">
-                    <div v-if="Nowpage == 'Login'">
+                    <Login />
+                    <!-- <div v-if="Nowpage == 'Login'">
                         <Login />
                     </div>
                     <div v-else-if="Nowpage == 'Register'">
                         <Register />
-                    </div>
+                    </div> -->
                 </div>
                 <div class="navFooter">
 

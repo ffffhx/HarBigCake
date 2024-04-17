@@ -4,14 +4,14 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/Login/login",
+      redirect: "/Login",
     },
     {
       path: "/Login",
       component: () => import("../views/IndexView.vue"),
     },
     {
-      path: "/Login/login",
+      path: "/Login",
       name: "login",
       component: () => import("../views/Login.vue"),
     },
