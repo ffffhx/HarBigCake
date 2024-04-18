@@ -12,7 +12,15 @@ import 'element-plus/theme-chalk/dark/css-vars.css'//暗黑模式主题切换
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import '@/assets/rgbaster.js'
 import { vue_next_focus } from 'vue-next-focus'
+import * as echarts from 'echarts';
+import 'echarts-gl';
+// import Vue from 'vue' // 添加这一行
+
+// Vue.prototype.$echarts = echarts //可以全局使用 不用每次使用需要在页面导入
+// import * as echarts from 'echarts';
 const app = createApp(App)
+app.config.globalProperties.$echarts = echarts
+//文件全部再
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

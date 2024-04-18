@@ -4,6 +4,8 @@ import { storeToRefs } from 'pinia';
 import { useIndexView } from '@/stores/IndexView';
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
+import FindPassword from './FindPassword.vue';
+import PhoneVerify from './PhoneVerify.vue';
 const containerRight = ref<HTMLDivElement | null>(null);
 const routerMain = ref<HTMLDivElement | null>(null);
 const logintitle1 = ref<HTMLDivElement | null>(null);
@@ -19,8 +21,9 @@ const images = ref<string[]>([
     './62.png', './63.png', './64.png', './65.png', './66.png', './67.png', './68.png', './69.png', './70.png', './71.png', './72.png', './73.png', './74.png', './75.png', './76.png', './77.png', './78.png', './79.png', './80.png',
 ]);
 //.value  数据要都是响应式数据才可以
-let { nowpic } = storeToRefs(useIndexView());
+let nowpic = storeToRefs(useIndexView()).data;
 const updateNowpic = useIndexView().updateNowpic;
+const UpdateLogin = useIndexView().UpdateLogin;
 // console.log(nowpic);
 
 const value1 = ref(false);
@@ -33,20 +36,23 @@ function toggleDark() {
     const containerRightValue = containerRight.value;
     if (containerRightValue) {
         console.log(666);
-        containerRightValue.style.backgroundImage = `url(${images.value[nowpic.value]})`;
+        const imgUrl = images.value[nowpic.value[0] as number];
+        if (typeof imgUrl === 'string') {
+            containerRightValue.style.backgroundImage = `url(${imgUrl})`;
+        }
     }
 }
 function changeImgNext() {
-    updateNowpic(nowpic.value + 1)
-    if (nowpic.value == images.value.length) {
+    updateNowpic(Number(nowpic.value[0]) + 1);
+    if (nowpic.value[0] == images.value.length) {
         updateNowpic(0)
     }
 }
 function changeImgPre() {
-    if (nowpic.value == 0) {
+    if (nowpic.value[0] == 0) {
         updateNowpic(images.value.length - 1)
     }
-    else updateNowpic(nowpic.value - 1)
+    else updateNowpic(Number(nowpic.value[0]) - 1)
     console.log('pre');
 }
 function autoPlayFunction() {
@@ -82,19 +88,18 @@ function logintitle2AddClass() {
     logintitle2.value?.classList.add('loginTitleHover')
     logintitle1.value?.classList.remove('loginTitleHover')
 }
-let Nowpage = ref('Login');
 function pushToLogin() {
-    Nowpage.value = 'Login'
+    UpdateLogin('Login');
     logintitle1AddClass();
 }
 function pushToRegister() {
-    Nowpage.value = 'Register'
+    UpdateLogin('Register');
     logintitle2AddClass();
 }
 </script>
 
 <template>
-    <div class="background" ref="background" :style="{ backgroundImage: `url(${images[nowpic]})` }">
+    <div class="background" ref="background" :style="{ backgroundImage: `url(${images[Number(nowpic[0])]})` }">
         <div class="container">
             <div class="changeButton"></div>
             <div class="themeChange" @click="toggleDark" ref="themeChange"><!-- 主题色切换 -->
@@ -117,19 +122,24 @@ function pushToRegister() {
                 <div class="opinion"><a href="#">改进意见</a></div>
                 <div class="clientService"><a href="">人工客服</a></div>
             </div>
-            <div class="containerRight" ref="containerRight" :style="{ backgroundImage: `url(${images[nowpic]})` }">
+            <div class="containerRight" ref="containerRight" :style="{ backgroundImage: `url(${images[Number(nowpic[0])]})` }">
                 <div class="navHeader">
                     <p class="logintitle1" @click="pushToLogin" ref="logintitle1">账号登录</p>
                     <p class="logintitle2" @click="pushToRegister" ref="logintitle2">注册</p>
                 </div>
                 <div class="routerMain" ref="routerMain">
-                    <Login />
-                    <!-- <div v-if="Nowpage == 'Login'">
+                    <div v-if="nowpic[1] == 'Login'">
                         <Login />
                     </div>
-                    <div v-else-if="Nowpage == 'Register'">
+                    <div v-else-if="nowpic[1] == 'Register'">
                         <Register />
-                    </div> -->
+                    </div>
+                    <div v-else-if="nowpic[1] == 'PhoneVerify'">
+                        <PhoneVerify />
+                    </div>
+                    <div v-else-if="nowpic[1] == 'FindPassword'">
+                        <FindPassword />
+                    </div>
                 </div>
                 <div class="navFooter">
 

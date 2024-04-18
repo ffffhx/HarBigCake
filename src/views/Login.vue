@@ -63,22 +63,25 @@ import { useDark, useToggle, useColorMode } from "@vueuse/core";
 import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 const logintitle1DelClass=inject('logintitle1DelClass')
+import { useIndexView } from "@/stores/IndexView";
+import { storeToRefs } from "pinia";
 
 // }
+const data = storeToRefs(useIndexView()).data;
+const UpdateLogin = useIndexView().UpdateLogin
 const router = useRouter();
 function pushToPhoneVerify() {
-    router.push('/phoneverify')
+    // data.value[1] = 
+    UpdateLogin('PhoneVerify');
     logintitle1DelClass();
-    // logintitle1DelClass()
-    // logintitle1DelClass()
-    // logintitle1AddClass();
-    // logintitle2.value?.classList.remove('loginTitleHover')
 }
 function pushToFindPassword() {
-    router.push('/findpassword')
+    UpdateLogin('FindPassword');
     logintitle1DelClass();
 }
-
+function pushToHome() {
+    router.push('/home');
+}
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const formRef = ref()
@@ -94,6 +97,7 @@ const onSubmit = async () => {
         await formRef.value?.validate()
         // 登录成功，显示提示信息
         ElMessage.success("登录成功")
+        pushToHome();
     } catch (err) {
         // 验证失败，显示错误信息
         ElMessage.error("表单校验失败")
