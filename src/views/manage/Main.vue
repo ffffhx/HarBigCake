@@ -1,6 +1,15 @@
 <template>
     <div class="mainContainer">
-        <p>首页 </p>
+        <div class="title">
+            <div class="home">首页</div>
+            <div class="info">
+                <div class="infoIcon"></div>
+                <div class="infoText">
+                    <p>管理员昵称</p>
+                    <p>部门/权限等级</p>
+                </div>
+            </div>
+        </div>
         <div class="top">
             <div class="totalOrder">
                 <p>总点单量:</p>
@@ -24,7 +33,7 @@
             </div>
         </div>
         <div class="center">
-            <div class="materialManage" :style="{ width: '600px', height: '200px' }"></div>
+            <div class="materialManage" :style="{ width: '450px', height: '220px' }"></div>
             <div class="latestForm">
                 <p>最新表单列表:</p>
                 <table>
@@ -49,19 +58,38 @@
                 </table>
             </div>
             <div class="workingPeople">
-                <p>正在工作员工</p>
+                <p>正在作业员工</p>
                 <ul>
-                    <li>A</li>
-                    <li>B</li>
-                    <li>C</li>
+                    <li>
+                        <div class="worker">
+                            <div class="workerIcon"></div>
+                            <div class="workerName" >
+                               
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="worker">
+                            <div class="workerIcon"></div>
+                            <div class="workerName">A</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="worker">
+                            <div class="workerIcon"></div>
+                            <div class="workerName">A</div>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </div>
         <div class="bottom">
-            <div class="soldStatistics" :style="{ width: '500px', height: '200px' }"></div>
+            <div class="soldStatistics" :style="{ width: '430px', height: '220px' }"></div>
             <div class="costAndGet">
-                <div class="costAndGetLeft" :style="{ width: '300px', height: 'auto' }"></div>
-                <div class="costAndGetRight" :style="{ width: '400px', height: 'auto' }"></div>
+                <div class="costAndGetLeft" :style="{ width: '350px', height: '220px' }"></div>
+                <div style="height:200px;border-left: 3px solid #ccc;"></div>
+                <div class="costAndGetRight" :style="{ width: '350px', height: '220px' }"></div>
             </div>
         </div>
 
@@ -90,8 +118,9 @@ onMounted(() => {
 
     // console.log(myChart);
     const option = {
+        // style="width: 400px;",
         title: {
-            text: 'World Population'
+            text: '物料管理'
         },
         tooltip: {
             trigger: 'axis',
@@ -99,11 +128,16 @@ onMounted(() => {
                 type: 'shadow'
             }
         },
-        legend: {},
+        legend: {
+            top: 'bottom',
+            textStyle: {
+                color: 'red' // 设置图例文字颜色为红色
+            }
+        },
         grid: {
             left: '3%',
             right: '4%',
-            bottom: '3%',
+            bottom: '15%',
             containLabel: true
         },
         xAxis: {
@@ -112,70 +146,70 @@ onMounted(() => {
         },
         yAxis: {
             type: 'category',
-            data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
+            data: ['咖啡豆', '牛年', '糖浆', '纸杯', '吸管', '包装袋']
         },
         series: [
             {
-                name: '2011',
+                name: '仓位值',
                 type: 'bar',
-                data: [18203, 23489, 29034, 104970, 131744, 630230]
+                data: [18, 23, 29, 104, 15, 98]
             },
             {
-                name: '2012',
+                name: '警戒值',
                 type: 'bar',
-                data: [19325, 23438, 31000, 121594, 134141, 681807]
+                data: [19, 23, 31, 119, 51, 65]
             }
         ]
     };
     chart.setOption(option);
-    document.querySelector<HTMLElement>('.materialManage').setAttribute('_echarts_instance_', '');
+    dom.setAttribute('_echarts_instance_', '');
 });
-
-onUpdated(() => {
-    if (chart) {
-        chart.resize();
-    }
-});
-
-
 onMounted(() => {
     const dom = document.querySelector('.soldStatistics')
     const myChart = echarts.init(dom); // 初始化echarts实例
     // console.log(myChart);
     const option = {
+        title: {
+            text: '销量统计'
+        },
         xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['一月', '二月', '三月', '四月 ', '五月', '六月']
         },
         yAxis: {
             type: 'value'
         },
         series: [
             {
-                data: [150, 230, 224, 218, 135, 147, 260],
+                data: [15, 43, 52, 61, 13, 54, 26],
                 type: 'line'
             }
         ]
     };
     myChart.setOption(option);
+    dom.setAttribute('_echarts_instance_', '');
 });
 onMounted(() => {
     const dom = document.querySelector('.costAndGetLeft')
     const myChart = echarts.init(dom); // 初始化echarts实例
     // console.log(myChart);
     const option = {
+        title: {
+            text: '开支和收入情况占比'
+        },
         tooltip: {
             trigger: 'item'
         },
         legend: {
-            top: '5%',
+            top: '80%',
             left: 'center'
         },
         series: [
             {
                 name: 'Access From',
                 type: 'pie',
-                radius: ['40%', '70%'],
+                radius: ['40%', '60%'],
+                center: ['50%', '40%'],
                 avoidLabelOverlap: false,
                 label: {
                     show: false,
@@ -189,20 +223,21 @@ onMounted(() => {
                     }
                 },
                 labelLine: {
-                    show: false
+                    show: true
                 },
                 data: [
-                    { value: 1048, name: 'Search Engine' },
-                    { value: 735, name: 'Direct' },
-                    { value: 580, name: 'Email' },
-                    { value: 484, name: 'Union Ads' },
-                    { value: 300, name: 'Video Ads' }
+                    { value: 1048, name: '员工薪资' },
+                    { value: 735, name: '设备维护' },
+                    { value: 580, name: '物料采购' },
+                    { value: 484, name: '场地租金' },
+                    { value: 300, name: '折损消耗' }
                 ]
             }
         ]
     };
 
     myChart.setOption(option);
+    dom.setAttribute('_echarts_instance_', '');
 });
 
 onMounted(() => {
@@ -226,8 +261,10 @@ onMounted(() => {
             {
                 name: 'Nightingale Chart',
                 type: 'pie',
-                radius: [50, 250],
-                center: ['50%', '50%'],
+                radius: [20, 80],
+                //radius的第一个数据为饼的直径，第二个为图表的大小
+                center: ['50%', '40%'],
+                //center的第一个数据代表左右，第二个数据表示上下
                 roseType: 'area',
                 itemStyle: {
                     borderRadius: 8
@@ -246,6 +283,7 @@ onMounted(() => {
         ]
     };
     myChart.setOption(option);
+    dom.setAttribute('_echarts_instance_', '');
 });
 </script>
 
@@ -253,33 +291,96 @@ onMounted(() => {
 
 
 <style scoped lang="less">
-.latestForm{
+.title {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    .info{
+        display: flex;
+        .infoIcon{
+        height: 70px;
+        width: 70px;
+        background-color: red;
+    }
+    }
+
+}
+
+
+.latestForm {
     border: 2px solid gray;
     border-radius: 10%;
+    margin-right: 20px;
+    width: 400px;
+
+    table {
+        border-collapse: collapse;
+
+        tr:nth-child(1) {
+            td:nth-child(1) {
+                background-color: red;
+            }
+        }
+
+        tr {
+
+            // height: 10px;
+            td {
+                border: 1px solid gray;
+                width: 400px;
+            }
+        }
+    }
 }
-.workingPeople{
+
+
+.workingPeople {
     border: 2px solid gray;
     border-radius: 10%;
+    width: 240px;
+    ul{
+        li{
+            .worker{
+                display: flex;
+                .workerIcon{
+                    width: 50px;
+                    height: 50px;
+                    background-color: red;
+                    margin-bottom: 5px;
+                }
+            }   
+        }
+    }
 }
+
 .materialManage {
     border: 2px solid gray;
     border-radius: 10%;
+    margin-right: 20px;
 }
-.soldStatistics{
+
+.soldStatistics {
     border: 2px solid gray;
     border-radius: 10%;
 }
-.costAndGetLeft{
+
+.costAndGet {
     border: 2px solid gray;
     border-radius: 10%;
+    margin-left: 20px;
 }
-.costAndGetRight{
-    border: 2px solid gray;
-    border-radius: 10%;
+
+.costAndGetLeft {}
+
+.costAndGetRight {
+    // border: 2px solid gray;
+    // border-radius: 10%;
 }
+
 .mainContainer {
-    height: 100vh;
-    width: 100vw;
+    // height: 100vh;
+    // width: 100vw;
+    // height: 100%;
     padding: 0;
     margin: 0;
 }
@@ -290,10 +391,11 @@ onMounted(() => {
 
 .top {
     display: flex;
+    margin-bottom: 25px;
 }
 
 .top div {
-    background-color: #fff;
+    background-color: skyblue;
     border-radius: 10%;
     margin-right: 10px;
     margin-left: 10px;
@@ -304,6 +406,7 @@ onMounted(() => {
 
 .center {
     display: flex;
+    margin-bottom: 25px;
 }
 
 .bottom {

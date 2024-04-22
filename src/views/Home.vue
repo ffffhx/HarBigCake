@@ -35,11 +35,13 @@ template{
   display: flex;
   margin: 0;
   padding: 0;
+    width: 100vw;
+  height: 100vh;
 }
 
 .homeContainer {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background-color: green;
   display: flex ;
   flex-direction: row;
@@ -52,7 +54,8 @@ template{
 .homeLeft {
   justify-content: center;
   align-items: center;
-  width: 20%;
+  width: 450px;
+  margin-right: 20px;
 }
 
 .homeLeft div:first-child {
@@ -93,6 +96,6 @@ template{
 .homeRight{
   /* display: flex; */
   background-color: pink;
-  width: 80%;
+  /* width: 80%; */
 }
 </style>

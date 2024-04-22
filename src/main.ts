@@ -14,6 +14,8 @@ import '@/assets/rgbaster.js'
 import { vue_next_focus } from 'vue-next-focus'
 import * as echarts from 'echarts';
 import 'echarts-gl';
+// import 'virtual:uno.css'
+import { presetUno } from 'unocss'
 // import Vue from 'vue' // 添加这一行
 
 // Vue.prototype.$echarts = echarts //可以全局使用 不用每次使用需要在页面导入
@@ -24,6 +26,7 @@ app.config.globalProperties.$echarts = echarts
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
+app.use(presetUno())
 app.use(createPinia())
 app.use(router)
 app.use(elementPlus)
