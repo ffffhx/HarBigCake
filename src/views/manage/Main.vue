@@ -2,7 +2,23 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-22 16:29:26
+ * @LastEditTime: 2024-04-23 11:36:10
+ * @FilePath: \HarBigCake\src\views\manage\Main.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!--
+ * @Author: ffffhx 17862926305@163.com
+ * @Date: 2024-04-19 12:56:09
+ * @LastEditors: ffffhx 17862926305@163.com
+ * @LastEditTime: 2024-04-23 11:31:16
+ * @FilePath: \HarBigCake\src\views\manage\Main.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
+<!--
+ * @Author: ffffhx 17862926305@163.com
+ * @Date: 2024-04-19 12:56:09
+ * @LastEditors: ffffhx 17862926305@163.com
+ * @LastEditTime: 2024-04-23 11:26:46
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -11,7 +27,9 @@
         <div class="title">
             <div class="home">首页</div>
             <div class="info">
-                <div class="infoIcon"></div>
+                <div class="infoIcon">
+                    <upLoad></upLoad>
+                </div>
                 <div class="infoText">
                     <p>管理员昵称</p>
                     <p>部门/权限等级</p>
@@ -44,6 +62,7 @@
             <div class="materialManage" :style="{ width: '450px', height: '220px' }"></div>
             <div class="latestForm">
                 <p>最新表单列表:</p>
+                <!-- <tableele></tableele> -->
                 <table>
                     <tr>
                         <td>第三季度财报</td>
@@ -71,8 +90,8 @@
                     <li>
                         <div class="worker">
                             <div class="workerIcon"></div>
-                            <div class="workerName" >
-                               
+                            <div class="workerName">
+
                             </div>
                         </div>
                     </li>
@@ -101,7 +120,7 @@
             </div>
         </div>
 
-
+        
 
     </div>
 </template>
@@ -109,6 +128,8 @@
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, ref, onUpdated } from 'vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
+import upLoad from '@/components/upLoad.vue';
+import tableele from '@/components/tableele.vue';
 let internalInstance = getCurrentInstance();
 let echarts: typeof import('echarts');
 if (internalInstance) {
@@ -164,8 +185,8 @@ onMounted(() => {
         ]
     };
     chart.setOption(option);
-    if(dom){
-    dom.setAttribute('_echarts_instance_', '');
+    if (dom) {
+        dom.setAttribute('_echarts_instance_', '');
     }
 });
 onMounted(() => {
@@ -191,7 +212,7 @@ onMounted(() => {
         ]
     };
     myChart.setOption(option);
-    if(dom){
+    if (dom) {
         dom.setAttribute('_echarts_instance_', '');
     }
 });
@@ -291,7 +312,7 @@ onMounted(() => {
         ]
     };
     myChart.setOption(option);
-    if(dom){
+    if (dom) {
         dom.setAttribute('_echarts_instance_', '');
     }
 });
@@ -301,17 +322,31 @@ onMounted(() => {
 
 
 <style scoped lang="less">
+@font-face {
+    font-family: "钉钉进步体 Regular";
+    font-weight: 400;
+    src: url('iconfont/DingTalk-JinBuTi.ttf')format('truetype');
+}
+
 .title {
+    // backdrop-filter: blur(35px);
+    // border: 2px solid rgba(255, 255, 255, 0.1);
+    // box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
+    font-family: '钉钉进步体 Regular';
     display: flex;
     justify-content: space-between;
     height: 80px;
-    .info{
-        display: flex;
-        .infoIcon{
-        height: 70px;
-        width: 70px;
-        background-color: red;
+    .home{
+        font-size: 50px;
     }
+    .info {
+        display: flex;
+
+        .infoIcon {
+            height: 70px;
+            width: 70px;
+            // background-color: red;
+        }
     }
 
 }
@@ -322,6 +357,10 @@ onMounted(() => {
     border-radius: 10%;
     margin-right: 20px;
     width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
 
     table {
         border-collapse: collapse;
@@ -348,17 +387,24 @@ onMounted(() => {
     border: 2px solid gray;
     border-radius: 10%;
     width: 240px;
-    ul{
-        li{
-            .worker{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
+
+    ul {
+        li {
+            .worker {
                 display: flex;
-                .workerIcon{
+
+                .workerIcon {
                     width: 50px;
                     height: 50px;
                     background-color: red;
                     margin-bottom: 5px;
+
                 }
-            }   
+            }
         }
     }
 }
@@ -367,17 +413,29 @@ onMounted(() => {
     border: 2px solid gray;
     border-radius: 10%;
     margin-right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
 }
 
 .soldStatistics {
     border: 2px solid gray;
     border-radius: 10%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
 }
 
 .costAndGet {
     border: 2px solid gray;
     border-radius: 10%;
     margin-left: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
 }
 
 // .costAndGetLeft {
@@ -406,13 +464,17 @@ onMounted(() => {
 }
 
 .top div {
-    background-color: skyblue;
+    // background-color: skyblue;
     border-radius: 10%;
     margin-right: 10px;
     margin-left: 10px;
     width: 200px;
     border: 2px solid gray;
     border-radius: 10%;
+    background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
 }
 
 .center {

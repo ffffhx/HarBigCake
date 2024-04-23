@@ -44,7 +44,7 @@
             </div>
             <div class="loginButton">
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">
+                    <el-button type="primary" @click="onSubmit" @keyup.enter="onSubmit">
                         登录
                     </el-button>
 
@@ -92,6 +92,8 @@ const login = () => {
 
 // 登录事件处理函数，接受用户输入的登录信息，并进行表单验证。如果验证成功，则显示登录成功的提示信息。如果验证失败，则显示错误信息。
 const onSubmit = async () => {
+    console.log(1234);
+    
     try {
         // 等待formRef对应的表单完成验证，如果验证失败，则抛出错误并显示错误信息
         await formRef.value?.validate()
