@@ -1,8 +1,25 @@
 <template>
     <div class="materialContainer">
-        <div class="materialHeader">
-            <div>物料管理</div>
-            <div>管理员个人信息</div>
+        <div class="title">
+            <div class="home">首页</div>
+            <div class="info">
+                <div class="infoIcon">
+                    <el-row class="demo-avatar demo-basic">
+                        <el-col :span="12">
+                            <!-- <div class="sub-title">circle</div> -->
+                            <div class="demo-basic--circle">
+                                <div class="block">
+                                    <el-avatar :size="50" :src="circleUrl" />
+                                </div>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+                <div class="infoText">
+                    <p>管理员昵称</p>
+                    <p>部门/权限等级</p>
+                </div>
+            </div>
         </div>
         <div class="materialMain">
             <div class="manageLeft">
@@ -54,39 +71,51 @@
                 <div class="quickOperation">
                     <el-form>
                         <p>物料快捷操作</p>
-                        <div>
+                        <div style="display: flex;">
                             <div>
                                 <p>物料名称</p>
                                 <el-input style="width: 240px" placeholder="Please input" />
-                                <br>
                                 <div style="display: flex;">
-                                    <el-input style="width: 120px" placeholder="Please input" />
-                                    <el-input style="width: 240px" placeholder="Please input" />
+                                    <div>
+                                        <p>变化数量</p>
+                                        <el-input style="width: 120px" placeholder="Please input" />
+                                    </div>
+                                    <div>
+                                        <p>变动类型</p>
+                                        <el-input style="width: 240px" placeholder="Please input" />
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <div class="materialPic">
+                                <div class="materialPic" style="width: 80px;height: 50px ;background-color: aqua;">
+                                    <input type="file" />
+                                </div>
+                                <div class="invoicePic" style="width: 80px;height: 50px ;background-color: red;">
 
-                                     </div>
-                                <div class="invoicePic"> 
-                                    
                                 </div>
                             </div>
                         </div>
-                        <br>
                         <div style="display: flex;">
-                            <el-input style="width: 240px" placeholder="Please input" />
-                            <el-input style="width: 240px" placeholder="Please input" />
+                            <div>
+                                <p>生产日期</p>
+                                <el-input style="width: 120px" placeholder="Please input" />
+                            </div>
+                            <div>
+                                <p>保质期</p>
+                                <el-input style="width: 240px" placeholder="Please input" />
+                            </div>
                         </div>
                         <p>物料来源</p>
-                        <el-input></el-input>
+                        <el-input style="width: 350px" placeholder="Please input" />
                         <div style="display: flex;">
-                            <el-input style="width: 240px" placeholder="Please input" />
-                            <el-input style="width: 240px" placeholder="Please input" />
-                        </div>
-                        <div style="display: flex;">
-                            <el-input style="width: 240px" placeholder="Please input" />
-                            <el-input style="width: 240px" placeholder="Please input" />
+                            <div>
+                                <p>单价</p>
+                                <el-input style="width: 120px" placeholder="Please input" />
+                            </div>
+                            <div>
+                                <p>总价</p>
+                                <el-input style="width: 240px" placeholder="Please input" />
+                            </div>
                         </div>
                         <p>操作员</p>
                         <el-input></el-input>
@@ -104,8 +133,22 @@
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, ref, onUpdated } from 'vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
+import { reactive, toRefs } from 'vue'
+
+const state = reactive({
+    circleUrl:
+        'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+    squareUrl:
+        'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
+    sizeList: ['small', '', 'large'] as const,
+})
+
+const { circleUrl, squareUrl, sizeList } = toRefs(state)
 let internalInstance = getCurrentInstance();
-let echarts = internalInstance.appContext.config.globalProperties.$echarts;
+let echarts = null;
+if (internalInstance) {
+    echarts = internalInstance.appContext.config.globalProperties.$echarts;
+}
 onMounted(() => {
     const lookPositions = ref(null)
     // const dom = lookPositions.value;
@@ -152,60 +195,62 @@ onMounted(() => {
                 max: 250,
                 interval: 50,
                 axisLabel: {
-                    formatter: '{value} ml'
+                    formatter: '{value} '
                 }
             },
-            {
-                type: 'value',
-                // name: 'Temperature',
-                min: 0,
-                max: 25,
-                interval: 5,
-                axisLabel: {
-                    formatter: '{value} °C'
-                }
-            }
+            // {
+            //     type: 'value',
+            //     // name: 'Temperature',
+            //     min: 0,
+            //     max: 25,
+            //     interval: 5,
+            //     axisLabel: {
+            //         formatter: '{value} °C'
+            //     }
+            // }
         ],
         series: [
             {
-                name: 'Evaporation',
+                name: '仓位值',
                 type: 'bar',
-                tooltip: {
-                    valueFormatter: function (value) {
-                        return (value as number) + ' ml';
-                    }
-                },
+                // tooltip: {
+                //     valueFormatter: function (value: any): string {
+                //         return (value as number) + ' ml';
+                //     }
+                // },
                 data: [
                     2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3
                 ]
             },
             {
-                name: 'Precipitation',
+                name: '预警值',
                 type: 'bar',
-                tooltip: {
-                    valueFormatter: function (value) {
-                        return (value as number) + ' ml';
-                    }
-                },
+                // tooltip: {
+                //     valueFormatter: function (value: any) {
+                //         return (value as number) + ' ml';
+                //     }
+                // },
                 data: [
                     2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3
                 ]
             },
-            {
-                name: 'Temperature',
-                type: 'line',
-                yAxisIndex: 1,
-                tooltip: {
-                    valueFormatter: function (value) {
-                        return (value as number) + ' °C';
-                    }
-                },
-                data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-            }
+            // {
+            //     name: 'Temperature',
+            //     type: 'line',
+            //     yAxisIndex: 1,
+            //     tooltip: {
+            //         valueFormatter: function (value: any) {
+            //             return (value as number) + ' °C';
+            //         }
+            //     },
+            //     // data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
+            // }
         ]
     };
     myChart.setOption(option);
-    dom.setAttribute('_echarts_instance_', '');
+    if (dom) {
+        dom.setAttribute('_echarts_instance_', '');
+    }
 });
 </script>
 <style scoped lang="less">
@@ -216,6 +261,23 @@ onMounted(() => {
     border: 2px solid gray;
     margin-top: 10px;
     border-radius: 5%;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+
+    .info {
+        display: flex;
+
+        .infoIcon {
+            // height: 50px;
+            // width: 50px;
+            // background-color: red;
+        }
+    }
+
 }
 
 .materialContainer {
@@ -256,13 +318,11 @@ onMounted(() => {
     }
 
     // display: flex;
-    width: 100vw;
-    height: 100vh;
+    // width: 100vw;
+    // height: 100vh;
     background-color: pink;
 
-    .manageLeft {
-        // width: 60%;
-    }
+
 
     .manageRight {
         margin-left: 30px;
@@ -272,6 +332,7 @@ onMounted(() => {
 
     .materialHeader {
         display: flex;
+        justify-content: space-between;
         width: 100%;
         height: 50px;
     }

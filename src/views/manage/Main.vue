@@ -1,3 +1,11 @@
+<!--
+ * @Author: ffffhx 17862926305@163.com
+ * @Date: 2024-04-19 12:56:09
+ * @LastEditors: ffffhx 17862926305@163.com
+ * @LastEditTime: 2024-04-22 16:29:26
+ * @FilePath: \HarBigCake\src\views\manage\Main.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
     <div class="mainContainer">
         <div class="title">
@@ -109,13 +117,7 @@ if (internalInstance) {
 let chart: echarts.ECharts | undefined;
 onMounted(() => {
     const dom = document.querySelector<HTMLElement>('.materialManage');
-    if (dom) {
-        chart = echarts.init(dom);
-    } else {
-        console.error('找不到节点 .materialManage');
-    }
-    console.log('123456');
-
+    chart = echarts.init(dom);
     // console.log(myChart);
     const option = {
         // style="width: 400px;",
@@ -162,10 +164,12 @@ onMounted(() => {
         ]
     };
     chart.setOption(option);
+    if(dom){
     dom.setAttribute('_echarts_instance_', '');
+    }
 });
 onMounted(() => {
-    const dom = document.querySelector('.soldStatistics')
+    const dom = document.querySelector<HTMLElement>('.soldStatistics')
     const myChart = echarts.init(dom); // 初始化echarts实例
     // console.log(myChart);
     const option = {
@@ -187,10 +191,12 @@ onMounted(() => {
         ]
     };
     myChart.setOption(option);
-    dom.setAttribute('_echarts_instance_', '');
+    if(dom){
+        dom.setAttribute('_echarts_instance_', '');
+    }
 });
 onMounted(() => {
-    const dom = document.querySelector('.costAndGetLeft')
+    const dom = document.querySelector<HTMLElement>('.costAndGetLeft')
     const myChart = echarts.init(dom); // 初始化echarts实例
     // console.log(myChart);
     const option = {
@@ -237,11 +243,13 @@ onMounted(() => {
     };
 
     myChart.setOption(option);
-    dom.setAttribute('_echarts_instance_', '');
+    if (dom) {
+        dom.setAttribute('_echarts_instance_', '');
+    }
 });
 
 onMounted(() => {
-    const dom = document.querySelector('.costAndGetRight')
+    const dom = document.querySelector<HTMLElement>('.costAndGetRight')
     const myChart = echarts.init(dom); // 初始化echarts实例
     // console.log(myChart);
     const option = {
@@ -283,7 +291,9 @@ onMounted(() => {
         ]
     };
     myChart.setOption(option);
-    dom.setAttribute('_echarts_instance_', '');
+    if(dom){
+        dom.setAttribute('_echarts_instance_', '');
+    }
 });
 </script>
 
@@ -370,12 +380,13 @@ onMounted(() => {
     margin-left: 20px;
 }
 
-.costAndGetLeft {}
+// .costAndGetLeft {
+// font-size: medium;}
 
-.costAndGetRight {
-    // border: 2px solid gray;
-    // border-radius: 10%;
-}
+// .costAndGetRight {
+//     // border: 2px solid gray;
+//     // border-radius: 10%;
+// }
 
 .mainContainer {
     // height: 100vh;

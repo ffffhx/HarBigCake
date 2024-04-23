@@ -12,13 +12,13 @@ const logintitle1 = ref<HTMLDivElement | null>(null);
 const logintitle2 = ref<HTMLDivElement | null>(null);
 const background = ref<HTMLDivElement | null>(null);
 const images = ref<string[]>([
-    './0.jpg', './1.png', './2.png', './3.png',
-    './4.png', './5.jpg', './6.jpg', './7.jpg', './8.jpg', './9.jpg', './10.jpg', './11.jpg', './12.jpg', './13.jpg', './14.jpg', './15.jpg', './16.jpg', './17.jpg', './18.jpg', './19.jpg', './20.jpg', './21.jpg', './22.jpg', './23.jpg', './24.jpg', './25.jpg',
-    './26.jpg', './27.jpg', './28.jpg', './29.jpg', './30.jpg', './31.jpg',
-    './32.jpg', './33.jpg', './34.jpg', './35.jpg',
-    './36.jpg', './37.jpg', './38.jpg', './39.jpg', './40.jpg', './41.jpg', './42.jpg', './43.jpg', './44.jpg', './45.png', './46.png',
-    './47.png', './48.png', './49.png', './50.png', './51.png', './52.png', './53.png', './54.png', './55.png', './56.png', './57.png', './58.png', './59.png', './60.png', './61.png',
-    './62.png', './63.png', './64.png', './65.png', './66.png', './67.png', './68.png', './69.png', './70.png', './71.png', './72.png', './73.png', './74.png', './75.png', './76.png', './77.png', './78.png', './79.png', './80.png',
+    './public/0.jpg', './public/1.png', './public/2.png', './public/3.png',
+    './public/4.png', './public/5.jpg', './public/6.jpg', './public/7.jpg', './public/8.jpg', './public/9.jpg', './public/10.jpg', './public/11.jpg', './public/12.jpg', './public/13.jpg', './public/14.jpg', './public/15.jpg', './public/16.jpg', './public/17.jpg', './public/18.jpg', './public/19.jpg', './public/20.jpg', './public/21.jpg', './public/22.jpg', './public/23.jpg', './public/24.jpg', './public/25.jpg',
+    './public/26.jpg', './public/27.jpg', './public/28.jpg', './public/29.jpg', './public/30.jpg', './public/31.jpg',
+    './public/32.jpg', './public/33.jpg', './public/34.jpg', './public/35.jpg',
+    './public/36.jpg', './public/37.jpg', './public/38.jpg', './public/39.jpg', './public/40.jpg', './public/41.jpg', './public/42.jpg', './public/43.jpg', './public/44.jpg', './public/45.png', './public/46.png',
+    './public/47.png', './public/48.png', './public/49.png', './public/50.png', './public/51.png', './public/52.png', './public/53.png', './public/54.png', './public/55.png', './public/56.png', './public/57.png', './public/58.png', './public/59.png', './public/60.png', './public/61.png',
+    './public/62.png', './public/63.png', './public/64.png', './public/65.png', './public/66.png', './public/67.png', './public/68.png', './public/69.png', './public/70.png', './public/71.png', './public/72.png', './public/73.png', './public/74.png', './public/75.png', './public/76.png', './public/77.png', './public/78.png', './public/79.png', './public/80.png',
 ]);
 //.value  数据要都是响应式数据才可以
 let nowpic = storeToRefs(useIndexView()).data;

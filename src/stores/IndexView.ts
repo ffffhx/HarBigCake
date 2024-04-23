@@ -1,3 +1,11 @@
+/*
+ * @Author: ffffhx 17862926305@163.com
+ * @Date: 2024-04-19 12:56:09
+ * @LastEditors: ffffhx 17862926305@163.com
+ * @LastEditTime: 2024-04-22 19:03:11
+ * @FilePath: \HarBigCake\src\stores\IndexView.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import { ref, markRaw } from "vue";
 import { defineStore } from "pinia";
 
@@ -6,7 +14,7 @@ export const useIndexView = defineStore("IndexView", () => {
   // 使用 markRaw 标记为原始对象
   // const nowpic = ref(0);
   // let Nowpage = ref("Login");
-  let data = ref([0, "Login"])
+  let data = ref([4, "Login"])
   // 加载数据从 localStorage
   function loadFromLocalStorage() {
     const saveddata = localStorage.getItem("data");
