@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-23 11:36:10
+ * @LastEditTime: 2024-04-23 14:42:40
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -89,22 +89,38 @@
                 <ul>
                     <li>
                         <div class="worker">
-                            <div class="workerIcon"></div>
+                            <div class="workerIcon">
+                                <el-icon :size="45" color="white" class="is-loading">
+                                    <Stamp />
+                                </el-icon>
+                            </div>
                             <div class="workerName">
-
+                                牛马A
                             </div>
                         </div>
                     </li>
                     <li>
                         <div class="worker">
-                            <div class="workerIcon"></div>
-                            <div class="workerName">A</div>
+                            <div class="workerIcon">
+                                <el-icon :size="45" color="white" class="is-loading">
+                                    <Stamp />
+                                </el-icon>
+                            </div>
+                            <div class="workerName">
+                                牛马B
+                            </div>
                         </div>
                     </li>
                     <li>
                         <div class="worker">
-                            <div class="workerIcon"></div>
-                            <div class="workerName">A</div>
+                            <div class="workerIcon">
+                                <el-icon :size="45" color="white" class="is-loading">
+                                    <Stamp />
+                                </el-icon>
+                            </div>
+                            <div class="workerName">
+                                牛马C
+                            </div>
                         </div>
                     </li>
 
@@ -120,7 +136,7 @@
             </div>
         </div>
 
-        
+
 
     </div>
 </template>
@@ -322,6 +338,7 @@ onMounted(() => {
 
 
 <style scoped lang="less">
+
 @font-face {
     font-family: "钉钉进步体 Regular";
     font-weight: 400;
@@ -336,9 +353,12 @@ onMounted(() => {
     display: flex;
     justify-content: space-between;
     height: 80px;
-    .home{
+
+    .home {
+        // font-family: '钉钉进步体 Regular';
         font-size: 50px;
     }
+
     .info {
         display: flex;
 
@@ -394,13 +414,15 @@ onMounted(() => {
 
     ul {
         li {
+            // text-decoration: none;
+            list-style: none;
             .worker {
                 display: flex;
 
                 .workerIcon {
                     width: 50px;
                     height: 50px;
-                    background-color: red;
+                    // background-color: red;
                     margin-bottom: 5px;
 
                 }
@@ -459,6 +481,7 @@ onMounted(() => {
 }
 
 .top {
+    font-family: '钉钉进步体 Regular';
     display: flex;
     margin-bottom: 25px;
 }
@@ -472,9 +495,9 @@ onMounted(() => {
     border: 2px solid gray;
     border-radius: 10%;
     background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
 }
 
 .center {
