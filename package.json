@@ -17,6 +17,10 @@
     "echarts-gl": "^2.0.9",
     "element-plus": "^2.6.3",
     "pinia": "^2.1.7",
+    "stats": "^1.0.0",
+    "stats.js": "^0.17.0",
+    "three": "^0.163.0",
+    "three-orbitcontrols": "^2.110.3",
     "vue": "^3.4.21",
     "vue-drag-verify-img-rotate": "^1.1.0",
     "vue-next-focus": "^0.0.12",
@@ -26,6 +30,7 @@
   "devDependencies": {
     "@tsconfig/node20": "^20.1.2",
     "@types/node": "^20.11.25",
+    "@types/three": "^0.163.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "@vue/tsconfig": "^0.5.1",
     "less": "^4.2.0",
@@ -33,7 +38,7 @@
     "style-resources-loader": "^1.5.0",
     "typescript": "~5.4.0",
     "unocss": "^0.59.4",
-    "vite": "^5.1.5",
+    "vite": "^5.2.10",
     "vue-tsc": "^2.0.6"
   }
 }

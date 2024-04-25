@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-23 14:42:40
+ * @LastEditTime: 2024-04-24 15:18:24
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -144,8 +144,8 @@
 <script setup lang="ts">
 import { getCurrentInstance, onMounted, ref, onUpdated } from 'vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
-import upLoad from '@/components/upLoad.vue';
-import tableele from '@/components/tableele.vue';
+import upLoad from '@/components/el-components/upLoad.vue';
+import tableele from '@/components/el-components/tableele.vue';
 let internalInstance = getCurrentInstance();
 let echarts: typeof import('echarts');
 if (internalInstance) {

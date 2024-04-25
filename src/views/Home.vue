@@ -1,6 +1,8 @@
 <template>
   <div class="homeContainer">
     <div class="homeLeft">
+      <!-- <threejs></threejs> -->
+      <!-- <star></star> -->
       <div @click="pushToCommodity" class="logo"> 哈大饼<br>管理平台</div>
       <div class="nav">
         <ul class="ulone">
@@ -59,10 +61,11 @@
 </template>
 
 <script setup>
+
 import { getCurrentInstance, onMounted, ref } from 'vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
-import switchele from '@/components/switchele.vue';
-
+import switchele from '@/components/el-components/switchele.vue';
+import threejs from '@/components//ThreeJsDemo/threejs.vue';
 let show = ref(true);
 const ulone = ref(null);
 // console.log(ulone.value);

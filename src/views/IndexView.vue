@@ -2,10 +2,12 @@
 import { ref, provide, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useIndexView } from '@/stores/IndexView';
-import Login from '../views/Login.vue'
-import Register from '../views/Register.vue'
-import FindPassword from './FindPassword.vue';
-import PhoneVerify from './PhoneVerify.vue';
+import Login from '../views/nav/Login.vue';
+import Register from '../views/nav/Register.vue';
+import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
+const router = useRouter();
+// import FindPassword from '../views/nav/FindPassword.vue';
+// import PhoneVerify from '../views/nav/PhoneVerify.vue';
 const containerRight = ref<HTMLDivElement | null>(null);
 const routerMain = ref<HTMLDivElement | null>(null);
 const logintitle1 = ref<HTMLDivElement | null>(null);
@@ -89,11 +91,11 @@ function logintitle2AddClass() {
     logintitle1.value?.classList.remove('loginTitleHover')
 }
 function pushToLogin() {
-    UpdateLogin('Login');
+    router.push('/Login');
     logintitle1AddClass();
 }
 function pushToRegister() {
-    UpdateLogin('Register');
+    router.push('/Register');
     logintitle2AddClass();
 }
 </script>
@@ -122,24 +124,28 @@ function pushToRegister() {
                 <div class="opinion"><a href="#">改进意见</a></div>
                 <div class="clientService"><a href="">人工客服</a></div>
             </div>
-            <div class="containerRight" ref="containerRight" :style="{ backgroundImage: `url(${images[Number(nowpic[0])]})` }">
+            <div class="containerRight" ref="containerRight"
+                :style="{ backgroundImage: `url(${images[Number(nowpic[0])]})` }">
                 <div class="navHeader">
                     <p class="logintitle1" @click="pushToLogin" ref="logintitle1">账号登录</p>
                     <p class="logintitle2" @click="pushToRegister" ref="logintitle2">注册</p>
                 </div>
+
                 <div class="routerMain" ref="routerMain">
-                    <div v-if="nowpic[1] == 'Login'">
+                <RouterView></RouterView>
+
+                    <!-- <div v-if="nowpic[1] == 'Login'">
                         <Login />
                     </div>
                     <div v-else-if="nowpic[1] == 'Register'">
                         <Register />
-                    </div>
-                    <div v-else-if="nowpic[1] == 'PhoneVerify'">
+                    </div> -->
+                    <!-- <div v-else-if="nowpic[1] == 'PhoneVerify'">
                         <PhoneVerify />
                     </div>
                     <div v-else-if="nowpic[1] == 'FindPassword'">
                         <FindPassword />
-                    </div>
+                    </div> -->
                 </div>
                 <div class="navFooter">
 
@@ -150,7 +156,6 @@ function pushToRegister() {
 
 </template>
 <style scoped lang="less">
-
 .containerRight {
     box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.6);
     display: flex;
