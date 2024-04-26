@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-26 12:15:06
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-26 18:13:58
+ * @LastEditTime: 2024-04-26 22:27:07
  * @FilePath: \HarBigCake\src\views\nav\Cover4.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -151,6 +151,9 @@ function render() {
     position: absolute;
     top: 80%;
     left: 50%;
+    // height: 100vh;
+    // width: 100vw;
     // font-size: 50px;
 }
+
 </style>

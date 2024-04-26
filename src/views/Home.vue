@@ -112,7 +112,7 @@ template {
   justify-content: flex-start;
   align-items: flex-start;
   border-bottom: 1px solid #eee;
-  height: 100%;
+  height: 100vh;
 }
 
 .homeLeft {

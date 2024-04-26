@@ -187,5 +187,7 @@ function pushToRegister() {
     background-repeat: no-repeat;
     background-position: center;
     transition: background-image 0.5s ease-in-out;
+    // height: 100vh;
+    // width: 100vw;
 }
 </style>
