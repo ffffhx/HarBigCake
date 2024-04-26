@@ -1,8 +1,6 @@
 <template>
   <div class="homeContainer">
     <div class="homeLeft">
-      <!-- <threejs></threejs> -->
-      <!-- <star></star> -->
       <div @click="pushToCommodity" class="logo"> 哈大饼<br>管理平台</div>
       <div class="nav">
         <ul class="ulone">
@@ -108,7 +106,7 @@ template {
   margin: 0;
   padding: 0;
   border-radius: 20px;
-  background-image: url('homeContainer.png');
+  background-image: url('/public/images/homeContainer.png');
   display: flex;
   flex-direction: row;
   justify-content: flex-start;

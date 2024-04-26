@@ -1,22 +1,23 @@
-<!-- <template>
-    <div>
-
-        <body>
-            <div id="info">
-            </div>
-        </body>
+<template>
+    <div id="info">
+        <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> webgl - skinning and morphing<br />
+        <p>
+            The animation system allows clips to be played individually, looped, or crossfaded with other clips. This
+            example shows a character looping in one of several base animation states, then transitioning smoothly to
+            one-time actions. Facial expressions are controlled independently with morph targets.
+        </p>
+        Model by
+        <a href="https://www.patreon.com/quaternius" target="_blank" rel="noopener">Tomás Laulhé</a>,
+        modifications by <a href="https://donmccurdy.com/" target="_blank" rel="noopener">Don McCurdy</a>. CC0.<br />
     </div>
-
 </template>
-
-
 
 <script setup>
 import * as THREE from 'three';
 
 import Stats from 'three/addons/libs/stats.module.js';
 import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 let container, stats, clock, gui, mixer, actions, activeAction, previousAction;
@@ -51,7 +52,7 @@ function init() {
     const dirLight = new THREE.DirectionalLight(0xffffff, 3);
     dirLight.position.set(0, 20, 10);
     scene.add(dirLight);
-
+``
     // ground
 
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2000, 2000), new THREE.MeshPhongMaterial({ color: 0xcbcbcb, depthWrite: false }));
@@ -64,14 +65,9 @@ function init() {
     scene.add(grid);
 
     // model
-    // 实例化draco
-    //这个是用来解压缩glb文件的
+
     const loader = new GLTFLoader();
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath('/draco/');
-    loader.setDRACOLoader(dracoLoader);
-    
-    loader.load('/model/Blend_4077.glb', function (gltf) {
+    loader.load('models/RobotExpressive.glb', function (gltf) {
 
         model = gltf.scene;
         scene.add(model);
@@ -80,7 +76,7 @@ function init() {
 
     }, undefined, function (e) {
 
-        // console.error(e);
+        console.error(e);
 
     });
 
@@ -237,7 +233,7 @@ function animate() {
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 a {
     color: #2fa1d6;
 }
@@ -248,4 +244,4 @@ p {
     margin-right: auto;
     padding: 0 2em;
 }
-</style> -->
+</style>

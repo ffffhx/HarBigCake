@@ -56,7 +56,7 @@
 
 </template>
 <script setup lang="ts">
-import { reactive, ref, inject } from "vue";
+import { reactive, ref, inject, onMounted } from "vue";
 import validCode from '@/components/validCode/validCode.vue'
 import { ElMessage } from 'element-plus';
 import { useDark, useToggle, useColorMode } from "@vueuse/core";
@@ -65,11 +65,24 @@ import { useRouter } from 'vue-router'
 const logintitle1DelClass = inject('logintitle1DelClass')
 import { useIndexView } from "@/stores/IndexView";
 import { storeToRefs } from "pinia";
-
+import requests from "@/utils/requests";
 // }
 const data = storeToRefs(useIndexView()).data;
 const UpdateLogin = useIndexView().UpdateLogin
 const router = useRouter();
+onMounted(() => {
+    requests({
+        url:'/validCode',
+        method:'post',
+        data:{
+            username:'123',
+            password:'123456'
+        }
+    }).then((res)=>{
+        console.log(res);
+        
+    })
+})
 function pushToPhoneVerify() {
     // data.value[1] = 
     // UpdateLogin('PhoneVerify');
@@ -201,7 +214,4 @@ function toggleDark2() {
 // });
 
 </script>
-<style lang="less">
-// .el-button.el-button--primary{
-//   background-color: red;
-// }</style>
+<style lang="less"></style>
