@@ -8,24 +8,8 @@
 -->
 <script setup lang="ts">
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
-// const router = createRouter({
-//   history: createWebHistory(),
-//   routes: []
-// });
-// import demo1 from './components/ThreeJsDemo/demo1.vue';
-// import threejs from './components/threejs.vue';
-// import threejsTest from './components/threejsTest.vue';
-// import circle from './components/circle.vue';
-// import robot from './components/robot.vue';
-// import demo2 from './components/ThreeJsDemo/demo2.vue';
 </script>
 
 <template>
   <RouterView></RouterView>
-  <!-- <threejsTest></threejsTest> -->
-  <!-- <threejs></threejs> -->
-  <!-- <circle></circle> -->
-  <!-- <robot></robot> -->
-  <!-- <demo1></demo1> -->
-  <!-- <demo2></demo2> -->
 </template>

@@ -23,7 +23,7 @@ const router = createRouter({
       component: () => import("../views/Cover.vue"),
     },
     {
-      path: "/",//当默认路径的时候，自动跳转到login
+      path: "/",//当默认路径的时候，自动跳转到indexView
       redirect: "/indexView",
     },
     {
@@ -31,7 +31,7 @@ const router = createRouter({
       component: () => import("../views/IndexView.vue"),
       children: [
         {
-          path: "/indexView",//当路径默认为/login的时候，自动跳转到login
+          path: "/indexView",//当路径默认为/indexView的时候，自动跳转到login
           redirect: "/login",
         },
         {
@@ -52,24 +52,6 @@ const router = createRouter({
         }
       ]
     },
-    // {
-    //   path: "/Login",
-    //   // name: "login",
-    //   component: () => import("../views/nav/Login.vue"),
-    // },
-    // {
-    //   path: "/Login/register",
-    //   // name: "register",
-    //   component: () => import("../views/nav/Register.vue"),
-    // },
-    // {
-    //   path: "/Login/phoneverify",
-    //   component: () => import("../views/nav/PhoneVerify.vue"),
-    // },
-    // {
-    //   path: "/Login/findpassword",
-    //   component: () => import("../views/nav/FindPassword.vue"),
-    // },
     {
       path: "/home",
       component: () => import("../views/Home.vue"),

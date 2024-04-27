@@ -133,19 +133,6 @@ function pushToRegister() {
 
                 <div class="routerMain" ref="routerMain">
                 <RouterView></RouterView>
-
-                    <!-- <div v-if="nowpic[1] == 'Login'">
-                        <Login />
-                    </div>
-                    <div v-else-if="nowpic[1] == 'Register'">
-                        <Register />
-                    </div> -->
-                    <!-- <div v-else-if="nowpic[1] == 'PhoneVerify'">
-                        <PhoneVerify />
-                    </div>
-                    <div v-else-if="nowpic[1] == 'FindPassword'">
-                        <FindPassword />
-                    </div> -->
                 </div>
                 <div class="navFooter">
 
