@@ -99,13 +99,25 @@ function pushToRegister() {
     router.push('/Register');
     logintitle2AddClass();
 }
+function fullScreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
+    else {
+        document.documentElement.requestFullscreen();
+    }
+}
+
 </script>
 
 <template>
     <div class="background" ref="background" :style="{ backgroundImage: `url(${images[Number(nowpic[0])]})` }">
         <div class="container">
-            <div class="changeButton"></div>
-            <div class="themeChange" @click="toggleDark" ref="themeChange"><!-- 主题色切换 -->
+            <!-- <div class="changeButton"> -->
+                <el-button @click="fullScreen">
+                    切换全屏模式 
+                </el-button>
+            <div class="themeChange" @click="toggleDark" ref="themeChange">
                 <el-switch v-model="value2" class="ml-2"
                     style="--el-switch-on-color: black; --el-switch-off-color: #fff" active-text="暗黑模式"
                     inactive-text="亮白模式" />
@@ -114,9 +126,13 @@ function pushToRegister() {
                 自动更换背景图片
                 <el-switch v-model="value1" />
             </div>
-            <div class="changeImgNext" @click="changeImgNext()" ref="changeImgNext2"> + </div>
+            <div class="changeImgNext" @click="changeImgNext()" ref="changeImgNext2">
+                +
+            </div>
             <div class="changeImgPre" @click="changeImgPre()" ref="changeImgPre2">
-                - </div>
+                -
+            </div>
+        <!-- </div> -->
             <div class="name">
                 <p>哈大饼前端控制台</p>
             </div>
@@ -133,7 +149,7 @@ function pushToRegister() {
                 </div>
 
                 <div class="routerMain" ref="routerMain">
-                <RouterView></RouterView>
+                    <RouterView></RouterView>
 
                     <!-- <div v-if="nowpic[1] == 'Login'">
                         <Login />

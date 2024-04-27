@@ -2,17 +2,18 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-26 12:15:06
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-26 22:27:07
+ * @LastEditTime: 2024-04-27 16:05:05
  * @FilePath: \HarBigCake\src\views\nav\Cover4.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-        <div id="info" ref="info" @click="pushToIndexView">
-			点击登陆
-		</div>
+    <div id="info" ref="info" @click="pushToIndexView">
+        点击登陆
+    </div>
 </template>
 
 <script setup>
+// document.documentElement.requestFullscreen();
 import { useRouter } from 'vue-router';
 const router = useRouter();
 import * as THREE from 'three';
@@ -142,12 +143,12 @@ function render() {
     }
 
     effect.render(scene, camera);
-
+    // document.body.style.overflow = 'hidden';//防止页面滚动非常非常非常important
 }
 </script>
 
 <style lang="less" scoped>
-#info{
+#info {
     position: absolute;
     top: 80%;
     left: 50%;
@@ -155,5 +156,4 @@ function render() {
     // width: 100vw;
     // font-size: 50px;
 }
-
 </style>

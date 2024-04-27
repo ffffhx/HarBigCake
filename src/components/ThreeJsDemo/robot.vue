@@ -84,7 +84,6 @@ function init() {
 
     }, undefined, function (e) {
 
-        // console.error(e);
 
     });
 
