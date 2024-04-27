@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-26 10:04:11
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-27 15:36:27
+ * @LastEditTime: 2024-04-27 18:17:56
  * @FilePath: \HarBigCake\src\utils\requests.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,19 +28,22 @@ requests.interceptors.response.use((res) => {
         let status = error.response.status;
         switch (status) {
             case 401:
-                message = 'token过期';
+                message = 'token过期401';
                 break;
             case 403:
-                message = '无权访问';
+                message = '无权访问403';
                 break;
             case 404:
-                message = '请求地址错误';
+                message = '请求地址错误404';
                 break;
             case 500:
-                message = '服务器异常';
+                message = '服务器异常500';
+                break;
+            case 405:
+                message = '请求方式错误405';
                 break;
             default:
-                message = '网络出现问题';
+                message = '网络出现问题啦';
         }
         ElMessage({
             type: 'error',

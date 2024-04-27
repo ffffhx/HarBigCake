@@ -1,12 +1,11 @@
 <template>
     <div class="materialContainer">
         <div class="title">
-            <div class="home">首页</div>
+            <div class="home">物料管理</div>
             <div class="info">
                 <div class="infoIcon">
                     <el-row class="demo-avatar demo-basic">
                         <el-col :span="12">
-                            <!-- <div class="sub-title">circle</div> -->
                             <div class="demo-basic--circle">
                                 <div class="block">
                                     <el-avatar :size="50" :src="circleUrl" />
@@ -24,7 +23,7 @@
         <div class="materialMain">
             <div class="manageLeft">
                 <div class="lookPositions" ref="lookPositions" id="lookPositions"
-                    :style="{ width: '400px', height: '280px' }"></div>
+                    :style="{ width: '600px', height: '280px' }"></div>
                 <div class="variationDetails">
                     <p>近期仓位变动明细</p>
                     <table>
@@ -62,14 +61,13 @@
                 </div>
             </div>
             <div class="manageRight">
-                <el-form>
-                    <el-item>
-                        <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px;"></el-input>
-                        <el-button style="height: 50px; margin-left: 20px;">搜索</el-button>
-                    </el-item>
-                </el-form>
+
                 <div class="quickOperation">
                     <el-form>
+                        <el-item>
+                            <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px;"></el-input>
+                            <el-button style="height: 50px; margin-left: 20px;">搜索</el-button>
+                        </el-item>
                         <p>物料快捷操作</p>
                         <div style="display: flex;">
                             <div>
@@ -119,7 +117,6 @@
                         </div>
                         <p>操作员</p>
                         <el-input></el-input>
-                        <p>备注</p>
 
                     </el-form>
                 </div>
@@ -253,88 +250,4 @@ onMounted(() => {
     }
 });
 </script>
-<style scoped lang="less">
-.quickOperation {
-    // background-color: red;
-    height: 550px;
-    width: 500px;
-    border: 2px solid gray;
-    margin-top: 10px;
-    border-radius: 5%;
-}
-
-.title {
-    display: flex;
-    justify-content: space-between;
-    height: 60px;
-
-    .info {
-        display: flex;
-
-        .infoIcon {
-            // height: 50px;
-            // width: 50px;
-            // background-color: red;
-        }
-    }
-
-}
-
-.materialContainer {
-    .materialMain {
-        display: flex;
-
-        .lookPositions {
-            border: 2px solid gray;
-            border-radius: 10%;
-            margin-bottom: 20px;
-        }
-
-        .variationDetails {
-            border: 2px solid gray;
-            border-radius: 10%;
-            height: 320px;
-            width: 600px;
-
-            table {
-                border-collapse: collapse;
-
-                tr:nth-child(1) {
-                    td:nth-child(1) {
-                        background-color: red;
-                    }
-                }
-
-                tr {
-
-                    // height: 10px;
-                    td {
-                        border: 1px solid gray;
-                        width: 400px;
-                    }
-                }
-            }
-        }
-    }
-
-    // display: flex;
-    // width: 100vw;
-    // height: 100vh;
-    background-color: pink;
-
-
-
-    .manageRight {
-        margin-left: 30px;
-        width: 500px;
-        background-color: skyblue;
-    }
-
-    .materialHeader {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 50px;
-    }
-}
-</style>
+<style scoped lang="less"></style>

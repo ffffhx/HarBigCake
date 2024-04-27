@@ -58,8 +58,8 @@
 import { reactive, ref, inject, onMounted } from "vue";
 import validCode from '@/components/validCode/validCode.vue'
 import { ElMessage } from 'element-plus';
-import { useDark, useToggle, useColorMode } from "@vueuse/core";
-import { Avatar, Lock } from "@element-plus/icons-vue";
+import { useDark, useToggle, useColorMode, identity } from "@vueuse/core";
+import { Avatar, Lock, Phone } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 import requests from "@/utils/requests";
 import useUserStore from '@/stores/modules/user'
@@ -129,11 +129,18 @@ function toggleDark2() {
 }
 onMounted(() => {
     requests({
-        url: 'http://116.196.99.29:8090 - Generated server url',
+        url: 'http://116.196.99.29:8090/swagger-ui/index.html#/UserController/register',
         method: 'post',
         data: {
-            username: '123',
-            password: '123456'
+            // username: '123',
+            // password: '123456'
+            identity: 0,
+            account:'admin',
+            phone:'17862926305',
+            password:'12345678',
+            gender:0,
+            isOwner:0,
+            name:'feng',
         }
     }).then((res) => {
         console.log(res,'这个是res');
