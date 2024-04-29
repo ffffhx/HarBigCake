@@ -57,12 +57,13 @@
 <script setup lang="ts">
 import { reactive, ref, inject, onMounted } from "vue";
 import validCode from '@/components/validCode/validCode.vue'
-import { ElMessage } from 'element-plus';
+import { ElMessage,ElNotification  } from 'element-plus';
 import { useDark, useToggle, useColorMode, identity } from "@vueuse/core";
 import { Avatar, Lock, Phone } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 import requests from "@/utils/requests";
 import useUserStore from '@/stores/modules/user'
+
 const userStore = useUserStore()
 const logintitle1DelClass = inject('logintitle1DelClass')
 const router = useRouter();
@@ -70,7 +71,7 @@ const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const formRef = ref()
 const form = reactive({
-    username: '17862926305',
+    username: 'admin',
     password: '12345678',
 })
 const rules = reactive({
@@ -99,7 +100,11 @@ const rules = reactive({
             required: true,
             message: '请输入验证码',
             trigger: 'blur'
-
+        },
+        {
+            pattern: /^1234$/,
+            message: '验证码不对',
+            trigger: 'blur'
         }
     ]
 })
@@ -128,39 +133,65 @@ function toggleDark2() {
     test.value?.classList.toggle('darkMode');
 }
 onMounted(() => {
-    requests({
-        url: 'http://116.196.99.29:8090/swagger-ui/index.html#/UserController/register',
-        method: 'post',
-        data: {
-            // username: '123',
-            // password: '123456'
-            identity: 0,
-            account:'admin',
-            phone:'17862926305',
-            password:'12345678',
-            gender:0,
-            isOwner:0,
-            name:'feng',
-        }
-    }).then((res) => {
-        console.log(res,'这个是res');
-    })
+
+    // requests({
+    //     // url: 'http://ajax-api.itheima.net/api/login4',
+    //     url: 'http://116.196.99.29:8090/user/register',
+    //     // url:'http://116.196.99.29:8090/swagger-ui/index.html#/UserController/register',
+    //     method: 'post',
+    //     data: {
+    //         identity: 0,
+    //         account:'admin',
+    //         phone:'17862926305',
+    //         password:'12345678',
+    //         gender:0,
+    //         isOwner:0,
+    //         name:'feng',
+    //     }
+    // }).then((res) => {
+    //     console.log(res, '这个是res');
+    // })
+    // .catch((err) => {
+    //     console.log(err, '这个是err');
+    // })
 })
 // 登录事件处理函数，接受用户输入的登录信息，并进行表单验证。如果验证成功，则显示登录成功的提示信息。如果验证失败，则显示错误信息。
 const onSubmit = async () => {
     try {
-        // 等待formRef对应的表单完成验证，如果验证失败，则抛出错误并显示错误信息
-        await formRef.value?.validate()
-        userStore.userLogin(form)
-        console.log(form,'这个是form');
-        console.log('onSubmit的try方法成功执行');        
-        ElMessage.success("登录成功")
-        pushToHome();
+        await formRef.value?.validate()//这是表单验证功能
+        console.log('表单验证成功');
+        
     } catch (err) {
         ElMessage.error("表单校验失败")
         throw err
-
     }
+    requests({
+        url: 'http://116.196.99.29:8090/user/login',
+        method: 'post',
+        data: {
+            account: form.username,
+            password: form.password,
+        }
+    }).then((res:any) => {
+        console.log('then');
+        console.log(res);
+        
+        if (res.code === '1') {
+            // console.log(res.code);
+            // console.log(res, '登录成功');
+            ElMessage.success("登录成功")
+            pushToHome();
+        }else if(res.code === '0'){
+            console.log('密码错误');
+            // ElNotification.error({
+            //     title: '密码错误',
+            //     // message: '密码错误',
+            // })
+            ElMessage.error("密码错误")
+        }
+    }).catch((err) => {
+        console.log(err, '登录失败');
+    })
 }
 </script>
 <style lang="less"></style>

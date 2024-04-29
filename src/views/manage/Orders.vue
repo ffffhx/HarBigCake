@@ -1,6 +1,6 @@
 <template>
  <div class="title">
-            <div class="home">首页</div>
+            <div class="home">订单管理</div>
             <div class="info">
                 <div class="infoIcon">
                     <el-row class="demo-avatar demo-basic">
