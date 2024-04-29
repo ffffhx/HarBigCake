@@ -14,13 +14,14 @@ const logintitle1 = ref<HTMLDivElement | null>(null);
 const logintitle2 = ref<HTMLDivElement | null>(null);
 const background = ref<HTMLDivElement | null>(null);
 const images = ref<string[]>([
-    './public/0.jpg', './public/1.png', './public/2.png', './public/3.png',
-    './public/4.png', './public/5.jpg', './public/6.jpg', './public/7.jpg', './public/8.jpg', './public/9.jpg', './public/10.jpg', './public/11.jpg', './public/12.jpg', './public/13.jpg', './public/14.jpg', './public/15.jpg', './public/16.jpg', './public/17.jpg', './public/18.jpg', './public/19.jpg', './public/20.jpg', './public/21.jpg', './public/22.jpg', './public/23.jpg', './public/24.jpg', './public/25.jpg',
-    './public/26.jpg', './public/27.jpg', './public/28.jpg', './public/29.jpg', './public/30.jpg', './public/31.jpg',
-    './public/32.jpg', './public/33.jpg', './public/34.jpg', './public/35.jpg',
-    './public/36.jpg', './public/37.jpg', './public/38.jpg', './public/39.jpg', './public/40.jpg', './public/41.jpg', './public/42.jpg', './public/43.jpg', './public/44.jpg', './public/45.png', './public/46.png',
-    './public/47.png', './public/48.png', './public/49.png', './public/50.png', './public/51.png', './public/52.png', './public/53.png', './public/54.png', './public/55.png', './public/56.png', './public/57.png', './public/58.png', './public/59.png', './public/60.png', './public/61.png',
-    './public/62.png', './public/63.png', './public/64.png', './public/65.png', './public/66.png', './public/67.png', './public/68.png', './public/69.png', './public/70.png', './public/71.png', './public/72.png', './public/73.png', './public/74.png', './public/75.png', './public/76.png', './public/77.png', './public/78.png', './public/79.png', './public/80.png',
+    //  一个'/'代表根目录，在这里就是HARBIGCAKE  ,./表示当前文件的上一级，../表示当前文件的上两级
+    '/public/images/0.jpg', '/public/images/1.png', '/public/images/2.png', '/public/images/3.png',
+    '/public/images/4.png', '/public/images/5.jpg', '/public/images/6.jpg', '/public/images/7.jpg', '/public/images/8.jpg', '/public/images/9.jpg', '/public/images/10.jpg', '/public/images/11.jpg', '/public/images/12.jpg', '/public/images/13.jpg', '/public/images/14.jpg', '/public/images/15.jpg', '/public/images/16.jpg', '/public/images/17.jpg', '/public/images/18.jpg', '/public/images/19.jpg', '/public/images/20.jpg', '/public/images/21.jpg', '/public/images/22.jpg', '/public/images/23.jpg', '/public/images/24.jpg', '/public/images/25.jpg',
+    '/public/images/26.jpg', '/public/images/27.jpg', '/public/images/28.jpg', '/public/images/29.jpg', '/public/images/30.jpg', '/public/images/31.jpg',
+    '/public/images/32.jpg', '/public/images/33.jpg', '/public/images/34.jpg', '/public/images/35.jpg',
+    '/public/images/36.jpg', '/public/images/37.jpg', '/public/images/38.jpg', '/public/images/39.jpg', '/public/images/40.jpg', '/public/images/41.jpg', '/public/images/42.jpg', '/public/images/43.jpg', '/public/images/44.jpg', '/public/images/45.png', '/public/images/46.png',
+    '/public/images/47.png', '/public/images/48.png', '/public/images/49.png', '/public/images/50.png', '/public/images/51.png', '/public/images/52.png', '/public/images/53.png', '/public/images/54.png', '/public/images/55.png', '/public/images/56.png', '/public/images/57.png', '/public/images/58.png', '/public/images/59.png', '/public/images/60.png', '/public/images/61.png',
+    '/public/images/62.png', '/public/images/63.png', '/public/images/64.png', '/public/images/65.png', '/public/images/66.png', '/public/images/67.png', '/public/images/68.png', '/public/images/69.png', '/public/images/70.png', '/public/images/71.png', '/public/images/72.png', '/public/images/73.png', '/public/images/74.png', '/public/images/75.png', '/public/images/76.png', '/public/images/77.png', '/public/images/78.png', '/public/images/79.png', '/public/images/80.png',
 ]);
 //.value  数据要都是响应式数据才可以
 let nowpic = storeToRefs(useIndexView()).data;
@@ -98,13 +99,25 @@ function pushToRegister() {
     router.push('/Register');
     logintitle2AddClass();
 }
+function fullScreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
+    else {
+        document.documentElement.requestFullscreen();
+    }
+}
+
 </script>
 
 <template>
     <div class="background" ref="background" :style="{ backgroundImage: `url(${images[Number(nowpic[0])]})` }">
         <div class="container">
-            <div class="changeButton"></div>
-            <div class="themeChange" @click="toggleDark" ref="themeChange"><!-- 主题色切换 -->
+            <!-- <div class="changeButton"> -->
+                <el-button @click="fullScreen">
+                    切换全屏模式 
+                </el-button>
+            <div class="themeChange" @click="toggleDark" ref="themeChange">
                 <el-switch v-model="value2" class="ml-2"
                     style="--el-switch-on-color: black; --el-switch-off-color: #fff" active-text="暗黑模式"
                     inactive-text="亮白模式" />
@@ -113,9 +126,13 @@ function pushToRegister() {
                 自动更换背景图片
                 <el-switch v-model="value1" />
             </div>
-            <div class="changeImgNext" @click="changeImgNext()" ref="changeImgNext2"> + </div>
+            <div class="changeImgNext" @click="changeImgNext()" ref="changeImgNext2">
+                +
+            </div>
             <div class="changeImgPre" @click="changeImgPre()" ref="changeImgPre2">
-                - </div>
+                -
+            </div>
+        <!-- </div> -->
             <div class="name">
                 <p>哈大饼前端控制台</p>
             </div>
@@ -132,7 +149,24 @@ function pushToRegister() {
                 </div>
 
                 <div class="routerMain" ref="routerMain">
+<<<<<<< HEAD
                 <RouterView></RouterView>
+=======
+                    <RouterView></RouterView>
+
+                    <!-- <div v-if="nowpic[1] == 'Login'">
+                        <Login />
+                    </div>
+                    <div v-else-if="nowpic[1] == 'Register'">
+                        <Register />
+                    </div> -->
+                    <!-- <div v-else-if="nowpic[1] == 'PhoneVerify'">
+                        <PhoneVerify />
+                    </div>
+                    <div v-else-if="nowpic[1] == 'FindPassword'">
+                        <FindPassword />
+                    </div> -->
+>>>>>>> aec0399625ac27655d6adff2d9a093344d45d9b9
                 </div>
                 <div class="navFooter">
 
@@ -173,5 +207,7 @@ function pushToRegister() {
     background-repeat: no-repeat;
     background-position: center;
     transition: background-image 0.5s ease-in-out;
+    // height: 100vh;
+    // width: 100vw;
 }
 </style>

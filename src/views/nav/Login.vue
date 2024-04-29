@@ -53,80 +53,26 @@
         </el-form>
 
     </div>
-
 </template>
 <script setup lang="ts">
-import { reactive, ref, inject } from "vue";
+import { reactive, ref, inject, onMounted } from "vue";
 import validCode from '@/components/validCode/validCode.vue'
 import { ElMessage } from 'element-plus';
 import { useDark, useToggle, useColorMode } from "@vueuse/core";
 import { Avatar, Lock } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
+import requests from "@/utils/requests";
+import useUserStore from '@/stores/modules/user'
+const userStore = useUserStore()
 const logintitle1DelClass = inject('logintitle1DelClass')
-import { useIndexView } from "@/stores/IndexView";
-import { storeToRefs } from "pinia";
-
-// }
-const data = storeToRefs(useIndexView()).data;
-const UpdateLogin = useIndexView().UpdateLogin
 const router = useRouter();
-function pushToPhoneVerify() {
-    // data.value[1] = 
-    // UpdateLogin('PhoneVerify');
-    router.push('/phoneverify');
-    if (typeof logintitle1DelClass === 'function') {
-        logintitle1DelClass();
-    }
-}
-function pushToFindPassword() {
-    router.push('/findpassword');
-    // UpdateLogin('FindPassword');
-    if (typeof logintitle1DelClass === 'function') {
-        logintitle1DelClass();
-    }
-
-}
-function pushToHome() {
-    router.push('/home');
-}
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const formRef = ref()
-//登录事件处理
-const login = () => {
-    ElMessage.success("登录成功")
-}
-
-// 登录事件处理函数，接受用户输入的登录信息，并进行表单验证。如果验证成功，则显示登录成功的提示信息。如果验证失败，则显示错误信息。
-const onSubmit = async () => {
-    console.log(1234);
-
-    try {
-        // 等待formRef对应的表单完成验证，如果验证失败，则抛出错误并显示错误信息
-        await formRef.value?.validate()
-        // 登录成功，显示提示信息
-        ElMessage.success("登录成功")
-        pushToHome();
-    } catch (err) {
-        // 验证失败，显示错误信息
-        ElMessage.error("表单校验失败")
-        console.log('before');
-
-        // 重新抛出错误，可以在外部进行错误处理
-        throw err
-        // console.log('after');
-
-    }
-}
 const form = reactive({
     username: '17862926305',
     password: '12345678',
-    validCode: ''
 })
-
-
-// const specialCharacterReg = /^[\u4e00-\u9fa5a-zA-Z0-9]+$/;
-
 const rules = reactive({
     username: [
         {
@@ -158,50 +104,56 @@ const rules = reactive({
     ]
 })
 const test = ref<HTMLDivElement | null>(null)
+function pushToPhoneVerify() {
+    // data.value[1] = 
+    // UpdateLogin('PhoneVerify');
+    router.push('/phoneverify');
+    if (typeof logintitle1DelClass === 'function') {
+        logintitle1DelClass();
+    }
+}
+function pushToFindPassword() {
+    router.push('/findpassword');
+    // UpdateLogin('FindPassword');
+    if (typeof logintitle1DelClass === 'function') {
+        logintitle1DelClass();
+    }
+
+}
+function pushToHome() {
+    router.push('/home');
+}
 function toggleDark2() {
     console.log('successfulTest2');
     test.value?.classList.toggle('darkMode');
 }
-// function handleKeyPress(e: KeyboardEvent) {
-//     const input = e.target as HTMLInputElement;
-//     if (e.key === 'Enter' && input.tagName === 'INPUT') {
-//         const value = input.value.trim();
-//         const lines = value.split('\n');
-//         const start = input.selectionStart || 0;
-//         const end = input.selectionEnd || 0;
-//         const newLines = [...lines.slice(0, lines.length - 1), lines[lines.length - 1].slice(0, start), '\n', lines[lines.length - 1].slice(end)];
-//         input.value = newLines.join('');
-//         input.setSelectionRange(start + 1, start + 1);
-//         input.dispatchEvent(new Event('input', { bubbles: true, cancelable: true }));
-//         e.preventDefault();
-//     }
-// }
-// document.addEventListener('keypress', handleKeyPress);
-// app.directive('enterNextInput', {
-//   beforeMount(el) {
-//     // 监听键盘按键事件，如果是回车键，则触发下一个输入框的聚焦
-//     el.addEventListener('keypress', function(e) {
-//       e = e || window.event;
-//       const charcode = typeof e.charCode == 'number' ? e.charCode : e.keyCode;
-//       if (charcode == 13) {
-//         const inputElements = document.getElementsByName('input');
-//         for (let i = 0; i < inputElements.length; i++) {
-//           if (inputElements[i] == document.activeElement) {
-//             if (i == inputElements.length - 1) return;
-//             if (!inputElements[i + 1]) return;
-//             if (inputElements[i + 1].localName === 'input') {
-//               inputElements[i + 1].focus();
-//               return;
-//             }
-//           } 
-//         }
-//       }
-//     });
-//   }
-// });
+onMounted(() => {
+    requests({
+        url: 'http://116.196.99.29:8090 - Generated server url',
+        method: 'post',
+        data: {
+            username: '123',
+            password: '123456'
+        }
+    }).then((res) => {
+        console.log(res,'这个是res');
+    })
+})
+// 登录事件处理函数，接受用户输入的登录信息，并进行表单验证。如果验证成功，则显示登录成功的提示信息。如果验证失败，则显示错误信息。
+const onSubmit = async () => {
+    try {
+        // 等待formRef对应的表单完成验证，如果验证失败，则抛出错误并显示错误信息
+        await formRef.value?.validate()
+        userStore.userLogin(form)
+        console.log(form,'这个是form');
+        console.log('onSubmit的try方法成功执行');        
+        ElMessage.success("登录成功")
+        pushToHome();
+    } catch (err) {
+        ElMessage.error("表单校验失败")
+        throw err
 
+    }
+}
 </script>
-<style lang="less">
-// .el-button.el-button--primary{
-//   background-color: red;
-// }</style>
+<style lang="less"></style>
