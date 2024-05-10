@@ -46,7 +46,7 @@
                     </el-form-item>
                 </div>
                 <div class="getCaptcha">
-                    <validCode @click="toggleDark()"></validCode>
+                    <validCode></validCode>
                 </div>
             </div>
                 <el-form-item class="registerButton">
@@ -64,7 +64,12 @@ import type { FormRules } from 'element-plus'
 import validCode from '@/components/validCode/validCode.vue'
 import { ElMessage } from 'element-plus';
 import { Avatar,Lock,Bell } from "@element-plus/icons-vue";
-
+import requests from '@/utils/requests'
+import { useRouter } from 'vue-router';
+const router = useRouter();
+function pushToLogin() {
+    router.push('/Login');
+}
 // import { login } from '../api/users'
 const form = reactive({
     username: '',
@@ -79,7 +84,38 @@ const onSubmit = async () => {
         ElMessage.error("表单校验失败")
         throw err
     })
-    ElMessage.success("登录成功")
+    requests({
+        url: 'http://116.196.99.29:8090/user/register',
+        method: 'post',
+        data: {
+            identity: 0,
+            account: form.username,
+            phone:form.phone,
+            password: form.password,
+            gender:0,
+            isOwner:0,
+            name:'zs',
+        }
+    }).then((res:any) => {
+        console.log(res);
+        
+        // console.log('then');
+        // if (res.code === 1) {
+        //     // console.log(res.code);
+        //     // console.log(res.data.code,'这是res.data.code');
+        //     // console.log(res.code,'这是res.data');
+        //     console.log(res.code);
+            
+        //     console.log(res, '登录成功');
+        //     ElMessage.success("登录成功")
+        //     // console.log(form.password);
+        //     pushToHome();
+        // }
+    ElMessage.success("注册成功")
+    pushToLogin();
+    }).catch((err) => {
+        console.log(err,'err为');
+    })
 }
 const rules = reactive({
     username: [
@@ -129,7 +165,6 @@ const rules = reactive({
             required: true,
             message: '请输入验证码',
             trigger: 'blur'
-
         }
     ]
 })

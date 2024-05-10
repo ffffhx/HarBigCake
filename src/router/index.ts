@@ -78,12 +78,6 @@ const router = createRouter({
         }
       ]
     },
-    // {
-    //   path: "/Login/commodity",
-    //   components: {
-    //     manage: () => import("../views/manage/Commodity.vue"),
-    //   }
-    // }
   ],
 });
 

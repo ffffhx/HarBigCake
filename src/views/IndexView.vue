@@ -149,24 +149,7 @@ function fullScreen() {
                 </div>
 
                 <div class="routerMain" ref="routerMain">
-<<<<<<< HEAD
-                <RouterView></RouterView>
-=======
                     <RouterView></RouterView>
-
-                    <!-- <div v-if="nowpic[1] == 'Login'">
-                        <Login />
-                    </div>
-                    <div v-else-if="nowpic[1] == 'Register'">
-                        <Register />
-                    </div> -->
-                    <!-- <div v-else-if="nowpic[1] == 'PhoneVerify'">
-                        <PhoneVerify />
-                    </div>
-                    <div v-else-if="nowpic[1] == 'FindPassword'">
-                        <FindPassword />
-                    </div> -->
->>>>>>> aec0399625ac27655d6adff2d9a093344d45d9b9
                 </div>
                 <div class="navFooter">
 

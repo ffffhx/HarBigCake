@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-24 15:18:24
+ * @LastEditTime: 2024-04-28 10:39:40
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -34,6 +34,7 @@
                     <p>管理员昵称</p>
                     <p>部门/权限等级</p>
                 </div>
+                <el-button @click="fullScreen">全屏模式</el-button>
             </div>
         </div>
         <div class="top">
@@ -59,7 +60,7 @@
             </div>
         </div>
         <div class="center">
-            <div class="materialManage" :style="{ width: '450px', height: '220px' }"></div>
+            <div class="materialManage" ref="materialManageRef" :style="{ width: '450px', height: '220px' }"></div>
             <div class="latestForm">
                 <p>最新表单列表:</p>
                 <!-- <tableele></tableele> -->
@@ -135,9 +136,6 @@
                 <div class="costAndGetRight" :style="{ width: '350px', height: '220px' }"></div>
             </div>
         </div>
-
-
-
     </div>
 </template>
 
@@ -146,14 +144,24 @@ import { getCurrentInstance, onMounted, ref, onUpdated } from 'vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
 import upLoad from '@/components/el-components/upLoad.vue';
 import tableele from '@/components/el-components/tableele.vue';
+// import homeless from '@/components/el-components/leftover.vue';
 let internalInstance = getCurrentInstance();
 let echarts: typeof import('echarts');
+function fullScreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    }
+    else {
+        document.documentElement.requestFullscreen();
+    }
+}
 if (internalInstance) {
     echarts = internalInstance.appContext.config.globalProperties.$echarts;
 }
 let chart: echarts.ECharts | undefined;
+const materialManageRef = ref<HTMLDivElement>();
 onMounted(() => {
-    const dom = document.querySelector<HTMLElement>('.materialManage');
+    const dom = materialManageRef.value!;
     chart = echarts.init(dom);
     // console.log(myChart);
     const option = {
@@ -333,184 +341,5 @@ onMounted(() => {
     }
 });
 </script>
-
-
-
-
 <style scoped lang="less">
-
-@font-face {
-    font-family: "钉钉进步体 Regular";
-    font-weight: 400;
-    src: url('iconfont/DingTalk-JinBuTi.ttf')format('truetype');
-}
-
-.title {
-    // backdrop-filter: blur(35px);
-    // border: 2px solid rgba(255, 255, 255, 0.1);
-    // box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-    font-family: '钉钉进步体 Regular';
-    display: flex;
-    justify-content: space-between;
-    height: 80px;
-
-    .home {
-        // font-family: '钉钉进步体 Regular';
-        font-size: 50px;
-    }
-
-    .info {
-        display: flex;
-
-        .infoIcon {
-            height: 70px;
-            width: 70px;
-            // background-color: red;
-        }
-    }
-
-}
-
-
-.latestForm {
-    border: 2px solid gray;
-    border-radius: 10%;
-    margin-right: 20px;
-    width: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-
-    table {
-        border-collapse: collapse;
-
-        tr:nth-child(1) {
-            td:nth-child(1) {
-                background-color: red;
-            }
-        }
-
-        tr {
-
-            // height: 10px;
-            td {
-                border: 1px solid gray;
-                width: 400px;
-            }
-        }
-    }
-}
-
-
-.workingPeople {
-    border: 2px solid gray;
-    border-radius: 10%;
-    width: 240px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-
-    ul {
-        li {
-            // text-decoration: none;
-            list-style: none;
-            .worker {
-                display: flex;
-
-                .workerIcon {
-                    width: 50px;
-                    height: 50px;
-                    // background-color: red;
-                    margin-bottom: 5px;
-
-                }
-            }
-        }
-    }
-}
-
-.materialManage {
-    border: 2px solid gray;
-    border-radius: 10%;
-    margin-right: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-}
-
-.soldStatistics {
-    border: 2px solid gray;
-    border-radius: 10%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-}
-
-.costAndGet {
-    border: 2px solid gray;
-    border-radius: 10%;
-    margin-left: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-}
-
-// .costAndGetLeft {
-// font-size: medium;}
-
-// .costAndGetRight {
-//     // border: 2px solid gray;
-//     // border-radius: 10%;
-// }
-
-.mainContainer {
-    // height: 100vh;
-    // width: 100vw;
-    // height: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-.costAndGet {
-    display: flex;
-}
-
-.top {
-    font-family: '钉钉进步体 Regular';
-    display: flex;
-    margin-bottom: 25px;
-}
-
-.top div {
-    // background-color: skyblue;
-    border-radius: 10%;
-    margin-right: 10px;
-    margin-left: 10px;
-    width: 200px;
-    border: 2px solid gray;
-    border-radius: 10%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-}
-
-.center {
-    display: flex;
-    margin-bottom: 25px;
-}
-
-.bottom {
-    display: flex;
-}
-
-template {
-    margin: 0;
-    padding: 0;
-}
 </style>

@@ -1,6 +1,7 @@
 <template>
     <div class="materialContainer">
         <div class="title">
+            <div class="home">物料管理</div>
             <div class="info">
                 <div class="infoIcon">
                     <el-row class="demo-avatar demo-basic">
@@ -21,9 +22,9 @@
         </div>
         <div class="materialMain">
             <div class="manageLeft">
-                <div class="lookPositions blurbackground" ref="lookPositions" id="lookPositions"
-                    :style="{ width: '400px', height: '280px' }"></div>
-                <div class="variationDetails blurbackground">
+                <div class="lookPositions" ref="lookPositions" id="lookPositions"
+                    :style="{ width: '600px', height: '280px' }"></div>
+                <div class="variationDetails">
                     <p>近期仓位变动明细</p>
                     <table>
                         <tr v-for="item in 10">
@@ -35,62 +36,57 @@
             <div class="manageRight blurbackground">
                 <el-form>
                     <el-item>
-                        <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px"></el-input>
-                        <el-button style="height: 50px; margin-left: 20px">搜索</el-button>
+                        <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px;"></el-input>
+                        <el-button style="height: 50px; margin-left: 20px;">搜索</el-button>
                     </el-item>
+                    <p>物料快捷操作</p>
+                    <div style="display: flex">
+                        <div>
+                            <p>物料名称</p>
+                            <el-input style="width: 240px" placeholder="Please input" />
+                            <div style="display: flex">
+                                <div>
+                                    <p>变化数量</p>
+                                    <el-input style="width: 120px" placeholder="Please input" />
+                                </div>
+                                <div>
+                                    <p>变动类型</p>
+                                    <el-input style="width: 240px" placeholder="Please input" />
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="materialPic">
+                                <input type="file" />
+                            </div>
+                            <div class="invoicePic"></div>
+                        </div>
+                    </div>
+                    <div style="display: flex">
+                        <div>
+                            <p>生产日期</p>
+                            <el-input style="width: 120px" placeholder="Please input" />
+                        </div>
+                        <div>
+                            <p>保质期</p>
+                            <el-input style="width: 240px" placeholder="Please input" />
+                        </div>
+                    </div>
+                    <p>物料来源</p>
+                    <el-input style="width: 350px" placeholder="Please input" />
+                    <div style="display: flex">
+                        <div>
+                            <p>单价</p>
+                            <el-input style="width: 120px" placeholder="Please input" />
+                        </div>
+                        <div>
+                            <p>总价</p>
+                            <el-input style="width: 240px" placeholder="Please input" />
+                        </div>
+                    </div>
+                    <p>操作员</p>
+                    <el-input></el-input>
                 </el-form>
-                <div class="quickOperation">
-                    <el-form>
-                        <p>物料快捷操作</p>
-                        <div style="display: flex">
-                            <div>
-                                <p>物料名称</p>
-                                <el-input style="width: 240px" placeholder="Please input" />
-                                <div style="display: flex">
-                                    <div>
-                                        <p>变化数量</p>
-                                        <el-input style="width: 120px" placeholder="Please input" />
-                                    </div>
-                                    <div>
-                                        <p>变动类型</p>
-                                        <el-input style="width: 240px" placeholder="Please input" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="materialPic" style="width: 80px; height: 50px; background-color: aqua">
-                                    <input type="file" />
-                                </div>
-                                <div class="invoicePic" style="width: 80px; height: 50px; background-color: red"></div>
-                            </div>
-                        </div>
-                        <div style="display: flex">
-                            <div>
-                                <p>生产日期</p>
-                                <el-input style="width: 120px" placeholder="Please input" />
-                            </div>
-                            <div>
-                                <p>保质期</p>
-                                <el-input style="width: 240px" placeholder="Please input" />
-                            </div>
-                        </div>
-                        <p>物料来源</p>
-                        <el-input style="width: 350px" placeholder="Please input" />
-                        <div style="display: flex">
-                            <div>
-                                <p>单价</p>
-                                <el-input style="width: 120px" placeholder="Please input" />
-                            </div>
-                            <div>
-                                <p>总价</p>
-                                <el-input style="width: 240px" placeholder="Please input" />
-                            </div>
-                        </div>
-                        <p>操作员</p>
-                        <el-input></el-input>
-                        <p>备注</p>
-                    </el-form>
-                </div>
             </div>
         </div>
     </div>
@@ -194,91 +190,4 @@ onMounted(() => {
     }
 });
 </script>
-<style scoped lang="less">
-.quickOperation {
-    height: auto;
-    width: 500px;
-    border: 2px solid gray;
-    margin-top: 10px;
-    border-radius: 5%;
-}
-
-.title {
-    float: right;
-
-    .info {
-        display: flex;
-
-        .infoIcon {}
-    }
-}
-
-.blurbackground {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-}
-
-.materialContainer {
-    .materialMain {
-        display: flex;
-
-        height: 700px;
-
-        .lookPositions {
-            border: 2px solid gray;
-            border-radius: 10%;
-            margin-bottom: 20px;
-        }
-
-        .variationDetails {
-            border: 2px solid gray;
-            border-radius: 10%;
-            height: 320px;
-            width: 600px;
-
-            table {
-                border-collapse: collapse;
-
-                tr:nth-child(1) {
-                    td:nth-child(1) {
-                        background-color: red;
-                    }
-                }
-
-                tr {
-                    td {
-                        border: 1px solid gray;
-                        width: 400px;
-                    }
-                }
-            }
-        }
-    }
-
-    background-color: transparent;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-end;
-    .manageRight {
-        display: flex;
-        border-radius: 10px;
-        margin-left: 30px;
-        width: 500px;
-        height: auto;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-content: space-around;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-
-    .materialHeader {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        height: 50px;
-    }
-}
-</style>
+<style scoped lang="less"></style>

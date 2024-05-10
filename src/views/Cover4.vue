@@ -8,7 +8,7 @@
 -->
 <template>
     <div id="info" ref="info" @click="pushToIndexView">
-        点击登陆
+        <el-button>点击登陆</el-button>
     </div>
 </template>
 
