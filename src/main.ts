@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-09 21:44:50
+ * @LastEditTime: 2024-05-13 18:35:36
  * @FilePath: \HarBigCake\src\main.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,6 +16,8 @@ import './assets/main.less'
 import '@/assets/font.css'
 import '@/assets/home.less'
 import App from './App.vue'
+
+const pinia = createPinia()
 import router from './router'
 import 'element-plus/theme-chalk/dark/css-vars.css'//暗黑模式主题切换
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
@@ -25,6 +27,7 @@ import * as echarts from 'echarts';
 import 'echarts-gl';
 import '@/input.css';
 import '@/output.css';
+
 // import 'virtual:uno.css'
 // import { presetUno } from 'unocss'
 // import Vue from 'vue' // 添加这一行
@@ -37,10 +40,11 @@ app.config.globalProperties.$echarts = echarts
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
-// app.use(presetUno())
-app.use(createPinia())
 app.use(router)
+// app.use(presetUno())
+app.use(pinia)
+
 app.use(elementPlus)
 app.use(vue_next_focus)
-import './permission'
+
 app.mount('#app')

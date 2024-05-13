@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-13 09:22:50
+ * @LastEditTime: 2024-05-13 17:55:36
  * @FilePath: \HarBigCake\src\views\manage\Orders.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -440,12 +440,12 @@ const lookList = () => {
         method: 'get',
         params: {
             orderId: rowLookId.value,
-            // state:2,
             shopId: 0
         },
     }).then((res) => {
         if (res.code === '1') {
-            lookTableData.value = res.data
+            // lookTableData.value = res.data.order
+            console.log(res.data.order, '这是res');
             console.log('这是查看订单状态的接口');
             ElMessage.success("查看成功")
         } else if (res.code === '0') {

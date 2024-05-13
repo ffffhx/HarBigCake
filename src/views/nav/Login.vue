@@ -57,16 +57,51 @@
 <script setup lang="ts">
 import { reactive, ref, inject, onMounted } from "vue";
 import validCode from '@/components/validCode/validCode.vue'
-import { ElMessage,ElNotification  } from 'element-plus';
+import { ElMessage, ElNotification } from 'element-plus';
 import { useDark, useToggle, useColorMode, identity } from "@vueuse/core";
 import { Avatar, Lock, Phone } from "@element-plus/icons-vue";
 import { useRouter } from 'vue-router'
 import requests from "@/utils/requests";
 import useUserStore from '@/stores/modules/user'
+const router = useRouter()
+
+// import nprogress from 'nprogress'
+// // import nprogress from 'nprogress'
+// //引入进度条样式
+// // import useStore from 'element-plus/es/components/table/src/store/index.mjs'
+// import 'nprogress/nprogress.css'
+import { useIndexView } from '@/stores/IndexView.ts';
+const useIndexViewStore = useIndexView();
+// router.beforeEach((to, from, next) => {
+//     console.log('全局前置守卫');
+//     //to:你将要访问哪个路由
+//     //from：你从哪个路由而来
+//     //next:路由的放行函数
+    console.log(useIndexViewStore.isLoggedIn);
+
+//     if (useIndexViewStore.isLoggedIn) {
+//         // 用户已登录，继续路由导航
+//         nprogress.start()
+//         next();
+//     } else {
+//         // 用户未登录，重定向到登录页面
+//         next('/login');
+//     }
+//     // console.log(useIndexViewStore.data);
+//     // log
+//     // nprogress.start()
+//     // next()
+// })
+
+// // 全局后置守卫
+// router.afterEach((to, from) => {
+//     nprogress.done()
+// })
+
 
 const userStore = useUserStore()
 const logintitle1DelClass = inject('logintitle1DelClass')
-const router = useRouter();
+// const router = useRouter();
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const formRef = ref()
@@ -141,7 +176,7 @@ const onSubmit = async () => {
     try {
         await formRef.value?.validate()//这是表单验证功能
         console.log('表单验证成功');
-        
+
     } catch (err) {
         ElMessage.error("表单校验失败")
         throw err
@@ -153,18 +188,15 @@ const onSubmit = async () => {
             account: form.username,
             password: form.password,
         }
-    }).then((res:any) => {
+    }).then((res: any) => {
         console.log(res);
         if (res.code === '1') {
             ElMessage.success("登录成功")
-            // console.log(res.data);
             localStorage.setItem("token", res.data);
             console.log(res.data);
-            // console.log(token);
-            
+            useIndexViewStore.isLoggedIn = true;
             pushToHome();
-        }else if(res.code === '0'){
-            // console.log('密码错误');
+        } else if (res.code === '0') {
             ElMessage.error("密码错误")
         }
     }).catch((err) => {
@@ -174,6 +206,6 @@ const onSubmit = async () => {
 </script>
 <style lang="less">
 .input-with-select .el-input-group__prepend {
-  background-color: var(--el-fill-color-blank);
+    background-color: var(--el-fill-color-blank);
 }
 </style>

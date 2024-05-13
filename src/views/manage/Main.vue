@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-28 10:39:40
+ * @LastEditTime: 2024-05-13 17:35:45
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -35,6 +35,7 @@
                     <p>部门/权限等级</p>
                 </div>
                 <el-button @click="fullScreen">全屏模式</el-button>
+                <el-button @click="logout">退出登录</el-button>
             </div>
         </div>
         <div class="top">
@@ -144,9 +145,14 @@ import { getCurrentInstance, onMounted, ref, onUpdated } from 'vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
 import upLoad from '@/components/el-components/upLoad.vue';
 import tableele from '@/components/el-components/tableele.vue';
+import router from '@/router';
 // import homeless from '@/components/el-components/leftover.vue';
 let internalInstance = getCurrentInstance();
 let echarts: typeof import('echarts');
+function logout(){
+    localStorage.removeItem("token");
+    router.push({ path: "/login" });
+}
 function fullScreen() {
     if (document.fullscreenElement) {
         document.exitFullscreen();
