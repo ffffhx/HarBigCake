@@ -71,8 +71,8 @@ const isDark = useDark();
 const toggleDark = useToggle(isDark);
 const formRef = ref()
 const form = reactive({
-    username: 'admin',
-    password: '12345678',
+    username: 'text',
+    password: '1234',
 })
 const rules = reactive({
     username: [
@@ -88,12 +88,12 @@ const rules = reactive({
             message: '请输入密码',
             trigger: 'blur'
         },
-        {
-            min: 6,
-            max: 12,
-            message: '请输入正确的密码',
-            trigger: 'blur'
-        }
+        // {
+        //     min: 6,
+        //     max: 12,
+        //     message: '请输入正确的密码',
+        //     trigger: 'blur'
+        // }
     ],
     validCode: [
         {
@@ -133,27 +133,8 @@ function toggleDark2() {
     test.value?.classList.toggle('darkMode');
 }
 onMounted(() => {
+    // userStore.userLogin(form);
 
-    // requests({
-    //     // url: 'http://ajax-api.itheima.net/api/login4',
-    //     url: 'http://116.196.99.29:8090/user/register',
-    //     // url:'http://116.196.99.29:8090/swagger-ui/index.html#/UserController/register',
-    //     method: 'post',
-    //     data: {
-    //         identity: 0,
-    //         account:'admin',
-    //         phone:'17862926305',
-    //         password:'12345678',
-    //         gender:0,
-    //         isOwner:0,
-    //         name:'feng',
-    //     }
-    // }).then((res) => {
-    //     console.log(res, '这个是res');
-    // })
-    // .catch((err) => {
-    //     console.log(err, '这个是err');
-    // })
 })
 // 登录事件处理函数，接受用户输入的登录信息，并进行表单验证。如果验证成功，则显示登录成功的提示信息。如果验证失败，则显示错误信息。
 const onSubmit = async () => {
@@ -166,27 +147,24 @@ const onSubmit = async () => {
         throw err
     }
     requests({
-        url: 'http://116.196.99.29:8090/user/login',
+        url: 'http://localhost:8090/user/login',
         method: 'post',
         data: {
             account: form.username,
             password: form.password,
         }
     }).then((res:any) => {
-        console.log('then');
         console.log(res);
-        
         if (res.code === '1') {
-            // console.log(res.code);
-            // console.log(res, '登录成功');
             ElMessage.success("登录成功")
+            // console.log(res.data);
+            localStorage.setItem("token", res.data);
+            console.log(res.data);
+            // console.log(token);
+            
             pushToHome();
         }else if(res.code === '0'){
-            console.log('密码错误');
-            // ElNotification.error({
-            //     title: '密码错误',
-            //     // message: '密码错误',
-            // })
+            // console.log('密码错误');
             ElMessage.error("密码错误")
         }
     }).catch((err) => {
@@ -194,4 +172,8 @@ const onSubmit = async () => {
     })
 }
 </script>
-<style lang="less"></style>
+<style lang="less">
+.input-with-select .el-input-group__prepend {
+  background-color: var(--el-fill-color-blank);
+}
+</style>
