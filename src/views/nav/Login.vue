@@ -123,12 +123,6 @@ const rules = reactive({
             message: '请输入密码',
             trigger: 'blur'
         },
-        // {
-        //     min: 6,
-        //     max: 12,
-        //     message: '请输入正确的密码',
-        //     trigger: 'blur'
-        // }
     ],
     validCode: [
         {
@@ -196,7 +190,7 @@ const onSubmit = async () => {
             console.log(res.data);
             useIndexViewStore.isLoggedIn = true;
             pushToHome();
-        } else if (res.code === '0') {
+        }else if(res.code === '0'){
             ElMessage.error("密码错误")
         }
     }).catch((err) => {

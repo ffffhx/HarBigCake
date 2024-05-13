@@ -8,7 +8,6 @@
 -->
 <script setup lang="ts">
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
-
 </script>
 
 <template>

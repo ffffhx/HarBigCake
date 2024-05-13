@@ -24,229 +24,166 @@
             <div class="manageLeft">
                 <div class="lookPositions" ref="lookPositions" id="lookPositions"
                     :style="{ width: '600px', height: '280px' }"></div>
-                <div class="variationDetails">
+                <div class="lookPositions">
                     <p>近期仓位变动明细</p>
                     <table>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
-                            <td>2024年4月9日咖啡豆进货+100</td>
-                        </tr>
-                        <tr>
+                        <tr v-for="item in 10">
                             <td>2024年4月9日咖啡豆进货+100</td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <div class="manageRight">
-
-                <div class="quickOperation">
-                    <el-form>
-                        <el-item>
-                            <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px;"></el-input>
-                            <el-button style="height: 50px; margin-left: 20px;">搜索</el-button>
-                        </el-item>
-                        <p>物料快捷操作</p>
-                        <div style="display: flex;">
-                            <div>
-                                <p>物料名称</p>
-                                <el-input style="width: 240px" placeholder="Please input" />
-                                <div style="display: flex;">
-                                    <div>
-                                        <p>变化数量</p>
-                                        <el-input style="width: 120px" placeholder="Please input" />
-                                    </div>
-                                    <div>
-                                        <p>变动类型</p>
-                                        <el-input style="width: 240px" placeholder="Please input" />
-                                    </div>
+            <div class="manageRight blurbackground">
+                <el-form class="manageForm">
+                    <el-item>
+                        <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px;"></el-input>
+                        <el-button style="height: 50px; margin-left: 20px;">搜索</el-button>
+                    </el-item>
+                    <p>物料快捷操作</p>
+                    <div style="display: flex;flex-direction: column;">
+                        <div>
+                            <p>物料名称</p>
+                            <el-input style="width: 240px" placeholder="Please input" />
+                            <div style="display: flex">
+                                <div>
+                                    <p>变化数量</p>
+                                    <el-input style="width: 120px" placeholder="Please input" />
                                 </div>
-                            </div>
-                            <div>
-                                <div class="materialPic" style="width: 80px;height: 50px ;background-color: aqua;">
-                                    <input type="file" />
-                                </div>
-                                <div class="invoicePic" style="width: 80px;height: 50px ;background-color: red;">
-
+                                <div>
+                                    <p>变动类型</p>
+                                    <el-input style="width: 240px" placeholder="Please input" />
                                 </div>
                             </div>
                         </div>
-                        <div style="display: flex;">
-                            <div>
-                                <p>生产日期</p>
-                                <el-input style="width: 120px" placeholder="Please input" />
-                            </div>
-                            <div>
-                                <p>保质期</p>
-                                <el-input style="width: 240px" placeholder="Please input" />
+                        <div>
+                            <div class="materialPic">
+                                <input type="file" />
                             </div>
                         </div>
-                        <p>物料来源</p>
-                        <el-input style="width: 350px" placeholder="Please input" />
-                        <div style="display: flex;">
-                            <div>
-                                <p>单价</p>
-                                <el-input style="width: 120px" placeholder="Please input" />
-                            </div>
-                            <div>
-                                <p>总价</p>
-                                <el-input style="width: 240px" placeholder="Please input" />
-                            </div>
+                    </div>
+                    <div style="display: flex">
+                        <div>
+                            <p>生产日期</p>
+                            <el-input style="width: 120px" placeholder="Please input" />
                         </div>
-                        <p>操作员</p>
-                        <el-input></el-input>
-
-                    </el-form>
-                </div>
-
+                        <div>
+                            <p>保质期</p>
+                            <el-input style="width: 240px" placeholder="Please input" />
+                        </div>
+                    </div>
+                    <p>物料来源</p>
+                    <el-input style="width: 350px" placeholder="Please input" />
+                    <div style="display: flex">
+                        <div>
+                            <p>单价</p>
+                            <el-input style="width: 120px" placeholder="Please input" />
+                        </div>
+                        <div>
+                            <p>总价</p>
+                            <el-input style="width: 240px" placeholder="Please input" />
+                        </div>
+                    </div>
+                    <p>操作员</p>
+                    <el-input></el-input>
+                </el-form>
             </div>
         </div>
-
     </div>
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, onMounted, ref, onUpdated } from 'vue';
-import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
-import { reactive, toRefs } from 'vue'
+import { getCurrentInstance, onMounted, ref, onUpdated } from "vue";
+import {
+    RouterLink,
+    RouterView,
+    createRouter,
+    createWebHistory,
+    useRouter,
+} from "vue-router";
+import { reactive, toRefs } from "vue";
 
 const state = reactive({
     circleUrl:
-        'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
     squareUrl:
-        'https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png',
-    sizeList: ['small', '', 'large'] as const,
-})
+        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+    sizeList: ["small", "", "large"] as const,
+});
 
-const { circleUrl, squareUrl, sizeList } = toRefs(state)
+const { circleUrl, squareUrl, sizeList } = toRefs(state);
 let internalInstance = getCurrentInstance();
 let echarts = null;
 if (internalInstance) {
     echarts = internalInstance.appContext.config.globalProperties.$echarts;
 }
 onMounted(() => {
-    const lookPositions = ref(null)
-    // const dom = lookPositions.value;
-    const dom = document.getElementById('lookPositions')
-    const myChart = echarts.init(dom); // 初始化echarts实例
+    const dom = document.getElementById("lookPositions");
+    const myChart = echarts.init(dom);
     const option = {
         title: {
-            text: '仓位速览'
+            text: "仓位速览",
         },
         tooltip: {
-            trigger: 'axis',
+            trigger: "axis",
             axisPointer: {
-                type: 'cross',
+                type: "cross",
                 crossStyle: {
-                    color: '#999'
-                }
-            }
+                    color: "#999",
+                },
+            },
         },
         toolbox: {
             feature: {
                 dataView: { show: true, readOnly: false },
-                magicType: { show: true, type: ['line', 'bar'] },
+                magicType: { show: true, type: ["line", "bar"] },
                 restore: { show: true },
-                saveAsImage: { show: true }
-            }
+                saveAsImage: { show: true },
+            },
         },
-        // legend: {
-        //     data: ['Evaporation', 'Precipitation', 'Temperature']
-        // },
+
         xAxis: [
             {
-                type: 'category',
-                data: ['咖啡豆', '牛奶', '糖浆', '纸杯', '吸管', '包装袋'],
+                type: "category",
+                data: ["咖啡豆", "牛奶", "糖浆", "纸杯", "吸管", "包装袋"],
                 axisPointer: {
-                    type: 'shadow'
-                }
-            }
+                    type: "shadow",
+                },
+            },
         ],
         yAxis: [
             {
-                type: 'value',
-                // name: 'Precipitation',
+                type: "value",
+
                 min: 0,
                 max: 250,
                 interval: 50,
                 axisLabel: {
-                    formatter: '{value} '
-                }
+                    formatter: "{value} ",
+                },
             },
-            // {
-            //     type: 'value',
-            //     // name: 'Temperature',
-            //     min: 0,
-            //     max: 25,
-            //     interval: 5,
-            //     axisLabel: {
-            //         formatter: '{value} °C'
-            //     }
-            // }
         ],
         series: [
             {
-                name: '仓位值',
-                type: 'bar',
-                // tooltip: {
-                //     valueFormatter: function (value: any): string {
-                //         return (value as number) + ' ml';
-                //     }
-                // },
+                name: "仓位值",
+                type: "bar",
+
                 data: [
-                    2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3
-                ]
+                    2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3,
+                ],
             },
             {
-                name: '预警值',
-                type: 'bar',
-                // tooltip: {
-                //     valueFormatter: function (value: any) {
-                //         return (value as number) + ' ml';
-                //     }
-                // },
+                name: "预警值",
+                type: "bar",
+
                 data: [
-                    2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3
-                ]
+                    2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3,
+                ],
             },
-            // {
-            //     name: 'Temperature',
-            //     type: 'line',
-            //     yAxisIndex: 1,
-            //     tooltip: {
-            //         valueFormatter: function (value: any) {
-            //             return (value as number) + ' °C';
-            //         }
-            //     },
-            //     // data: [2.0, 2.2, 3.3, 4.5, 6.3, 10.2, 20.3, 23.4, 23.0, 16.5, 12.0, 6.2]
-            // }
-        ]
+        ],
     };
     myChart.setOption(option);
     if (dom) {
-        dom.setAttribute('_echarts_instance_', '');
+        dom.setAttribute("_echarts_instance_", "");
     }
 });
 </script>

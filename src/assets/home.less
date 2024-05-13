@@ -72,8 +72,6 @@
                 animation: move 5s ease-in-out infinite;
 
                 li {
-                    /* margin-bottom: 20px; */
-                    /* background-color: rgb(135, 235, 165); */
                     width: 150px;
                     height: 60px;
                     border-radius: 10%;
@@ -107,6 +105,7 @@
     display: flex;
     justify-content: space-between;
     height: 80px;
+    width:1236px;
 
     .home {
         // font-family: '钉钉进步体 Regular';
@@ -115,10 +114,12 @@
 
     .info {
         display: flex;
-
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
         .infoIcon {
-            height: 70px;
-            width: 70px;
+                height: 50px;
+                width: 60px;
             // background-color: red;
         }
     }
@@ -183,8 +184,6 @@
                 }
 
                 tr {
-
-                    // height: 10px;
                     td {
                         border: 1px solid gray;
                         width: 400px;
@@ -255,51 +254,22 @@
 
         .manageLeft {
             .lookPositions {
-                // border: 2px solid gray;
-                border-radius: 10%;
                 margin-bottom: 20px;
-                border: 2px solid gray;
-                border-radius: 10%;
+                border-radius: 28px;
+                padding: 14px;
                 background: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(15px);
                 border: 2px solid rgba(255, 255, 255, 0.1);
                 box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-            }
-
-            .variationDetails {
-                border: 2px solid gray;
-                border-radius: 10%;
-                background: rgba(255, 255, 255, 0.1);
-                backdrop-filter: blur(15px);
-                border: 2px solid rgba(255, 255, 255, 0.1);
-                box-shadow: 0 0 80px rgba(0, 0, 0, 0.25);
-                border-radius: 10%;
-                height: 320px;
-                width: 600px;
-
-                table {
-                    border-collapse: collapse;
-
-                    tr:nth-child(1) {
-                        td:nth-child(1) {
-                            background-color: red;
-                        }
-                    }
-
-                    tr {
-                        td {
-                            border: 1px solid gray;
-                            width: 400px;
-                        }
-                    }
-                }
             }
         }
 
         .manageRight {
             margin-left: 30px;
             width: 500px;
-
+            .manageForm {
+                padding: 20px;
+            }
             .quickOperation {
                 border-radius: 10%;
                 margin-bottom: 20px;
