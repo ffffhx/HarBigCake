@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-26 20:04:16
+ * @LastEditTime: 2024-05-08 16:53:41
  * @FilePath: \HarBigCake\src\router\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,11 +12,11 @@ const router = createRouter({
   routes: [
     {
       path: "/",//当默认路径的时候，自动跳转到login
-      redirect: "/cover4",
+      redirect: "/cover",
     },
     {
-      path: "/cover4",
-      component: () => import("../views/Cover4.vue"),
+      path: "/cover",
+      component: () => import("../views/Cover.vue"),
     },
     {
       path: "/indexView",

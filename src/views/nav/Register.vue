@@ -85,7 +85,7 @@ const onSubmit = async () => {
         throw err
     })
     requests({
-        url: 'http://116.196.99.29:8090/user/register',
+        url: 'http://localhost:8090/user/login',
         method: 'post',
         data: {
             identity: 0,
@@ -98,19 +98,6 @@ const onSubmit = async () => {
         }
     }).then((res:any) => {
         console.log(res);
-        
-        // console.log('then');
-        // if (res.code === 1) {
-        //     // console.log(res.code);
-        //     // console.log(res.data.code,'这是res.data.code');
-        //     // console.log(res.code,'这是res.data');
-        //     console.log(res.code);
-            
-        //     console.log(res, '登录成功');
-        //     ElMessage.success("登录成功")
-        //     // console.log(form.password);
-        //     pushToHome();
-        // }
     ElMessage.success("注册成功")
     pushToLogin();
     }).catch((err) => {
