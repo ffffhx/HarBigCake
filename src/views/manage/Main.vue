@@ -6,29 +6,22 @@
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
-<!--
- * @Author: ffffhx 17862926305@163.com
- * @Date: 2024-04-19 12:56:09
- * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-23 11:31:16
- * @FilePath: \HarBigCake\src\views\manage\Main.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
-<!--
- * @Author: ffffhx 17862926305@163.com
- * @Date: 2024-04-19 12:56:09
- * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-04-23 11:26:46
- * @FilePath: \HarBigCake\src\views\manage\Main.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
--->
 <template>
     <div class="mainContainer">
         <div class="title">
             <div class="home">首页</div>
             <div class="info">
                 <div class="infoIcon">
-                    <upLoad></upLoad>
+                    <div class="el-row demo-avatar demo-basic">
+                        <div class="el-col el-col-12">
+                            <div class="demo-basic--circle">
+                                <div class="block"><span class="el-avatar el-avatar--circle"
+                                        style="--el-avatar-size: 50px;"><img
+                                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+                                            style="object-fit: cover;"></span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="infoText">
                     <p>管理员昵称</p>

@@ -26,8 +26,6 @@ const images = ref<string[]>([
 //.value  数据要都是响应式数据才可以
 let nowpic = storeToRefs(useIndexView()).data;
 const updateNowpic = useIndexView().updateNowpic;
-const UpdateLogin = useIndexView().UpdateLogin;
-// console.log(nowpic);
 
 const value1 = ref(false);
 const value2 = ref(false);
@@ -38,7 +36,6 @@ function toggleDark() {
     background.value?.classList.toggle('darkMode');
     const containerRightValue = containerRight.value;
     if (containerRightValue) {
-        console.log(666);
         const imgUrl = images.value[nowpic.value[0] as number];
         if (typeof imgUrl === 'string') {
             containerRightValue.style.backgroundImage = `url(${imgUrl})`;
@@ -52,11 +49,10 @@ function changeImgNext() {
     }
 }
 function changeImgPre() {
-    if (nowpic.value[0] == 0) {
-        updateNowpic(images.value.length - 1)
-    }
-    else updateNowpic(Number(nowpic.value[0]) - 1)
-    console.log('pre');
+    if (nowpic.value[0] == 0) 
+        updateNowpic(images.value.length - 1);
+    else
+        updateNowpic(Number(nowpic.value[0]) - 1);
 }
 function autoPlayFunction() {
     if (value1.value) {

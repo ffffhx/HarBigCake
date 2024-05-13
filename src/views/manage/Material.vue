@@ -24,7 +24,7 @@
             <div class="manageLeft">
                 <div class="lookPositions" ref="lookPositions" id="lookPositions"
                     :style="{ width: '600px', height: '280px' }"></div>
-                <div class="variationDetails">
+                <div class="lookPositions">
                     <p>近期仓位变动明细</p>
                     <table>
                         <tr v-for="item in 10">
@@ -34,13 +34,13 @@
                 </div>
             </div>
             <div class="manageRight blurbackground">
-                <el-form>
+                <el-form class="manageForm">
                     <el-item>
                         <el-input placeholder="请输入想要查询的物料" style="width: 300px; height: 50px;"></el-input>
                         <el-button style="height: 50px; margin-left: 20px;">搜索</el-button>
                     </el-item>
                     <p>物料快捷操作</p>
-                    <div style="display: flex">
+                    <div style="display: flex;flex-direction: column;">
                         <div>
                             <p>物料名称</p>
                             <el-input style="width: 240px" placeholder="Please input" />
@@ -59,7 +59,6 @@
                             <div class="materialPic">
                                 <input type="file" />
                             </div>
-                            <div class="invoicePic"></div>
                         </div>
                     </div>
                     <div style="display: flex">
@@ -118,8 +117,6 @@ if (internalInstance) {
     echarts = internalInstance.appContext.config.globalProperties.$echarts;
 }
 onMounted(() => {
-    const lookPositions = ref(null);
-
     const dom = document.getElementById("lookPositions");
     const myChart = echarts.init(dom);
     const option = {
