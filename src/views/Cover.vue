@@ -2,13 +2,14 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-26 12:15:06
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-13 10:44:34
+ * @LastEditTime: 2024-05-23 16:27:40
  * @FilePath: \HarBigCake\src\views\nav\Cover4.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
     <div id="info" ref="info" @click="pushToIndexView">
-        <el-button>点击登陆</el-button>
+        <!-- <el-button>点击登陆</el-button> -->
+        <button>点击登陆</button>
     </div>
 </template>
 
@@ -155,9 +156,13 @@ function render() {
 #info {
     position: absolute;
     top: 80%;
-    left: 50%;
+    left: 47%;
     // height: 100vh;
     // width: 100vw;
     // font-size: 50px;
+    &:hover{
+        color: aqua;
+    }
 }
+
 </style>

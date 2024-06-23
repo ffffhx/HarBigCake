@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-26 10:04:11
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-13 19:09:20
+ * @LastEditTime: 2024-05-14 08:24:03
  * @FilePath: \HarBigCake\src\utils\requests.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,7 +13,8 @@ import { ElMessage } from 'element-plus';
 // import useUserStore from '@/stores/modules/user';
 //第一步：利用axios对象的create方法，创建一个axios实例（其他的配置:baseURL，timeout）
 let requests = axios.create({
-    // baseURL: import.meta.env.VITE_APP_BASE_API,
+    // baseURL: "http://47.99.148.150:8090/",
+    baseURL: "http://localhost:8090/",
     timeout: 5000,
 })
 //第二步：请求拦截器

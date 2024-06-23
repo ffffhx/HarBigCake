@@ -68,9 +68,8 @@ import requests from '@/utils/requests'
 import { useRouter } from 'vue-router';
 const router = useRouter();
 function pushToLogin() {
-    router.push('/Login');
+    router.push('/login');
 }
-// import { login } from '../api/users'
 const form = reactive({
     username: '',
     password: '',
@@ -85,8 +84,10 @@ const onSubmit = async () => {
         throw err
     })
     requests({
-        url: 'http://localhost:8090/user/login',
+        url: 'user/register',
         method: 'post',
+        //data一般用于post请求
+        //params一般用于get请求
         data: {
             identity: 0,
             account: form.username,

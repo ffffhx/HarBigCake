@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-13 17:35:45
+ * @LastEditTime: 2024-05-23 20:42:24
  * @FilePath: \HarBigCake\src\views\manage\Main.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -11,14 +11,15 @@
         <div class="title">
             <div class="home">首页</div>
             <div class="info">
+                <input type="file" @change="uploadImg($event)">
                 <div class="infoIcon">
                     <div class="el-row demo-avatar demo-basic">
                         <div class="el-col el-col-12">
                             <div class="demo-basic--circle">
                                 <div class="block"><span class="el-avatar el-avatar--circle"
-                                        style="--el-avatar-size: 50px;"><img
-                                            src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
-                                            style="object-fit: cover;"></span></div>
+                                        style="--el-avatar-size: 50px;"><img :src="imgUrl"
+                                            style="object-fit: cover;"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,11 +140,68 @@ import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } fro
 import upLoad from '@/components/el-components/upLoad.vue';
 import tableele from '@/components/el-components/tableele.vue';
 import router from '@/router';
+import { Plus } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
+import type { UploadProps } from 'element-plus'
+import requests from '@/utils/requests'
+import { any } from 'three/examples/jsm/nodes/Nodes.js';
+
+
+const token = localStorage.getItem("token");
+
+const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
+    if (rawFile.type !== 'image/jpeg') {
+        ElMessage.error('Avatar picture must be JPG format!')
+        return false
+    } else if (rawFile.size / 1024 / 1024 > 2) {
+        ElMessage.error('Avatar picture size can not exceed 2MB!')
+        return false
+    }
+    return true
+}
 // import homeless from '@/components/el-components/leftover.vue';
 let internalInstance = getCurrentInstance();
 let echarts: typeof import('echarts');
-function logout(){
+// let imgUrl = './public/images/47.png';
+// let imgUrl = ref('http://47.97.58.200:9000/hanpancake/841a58b4-e030-4ab3-be85-b453ae55c2a1.jpg')
+let imgUrl = ref('')
+imgUrl.value = localStorage.getItem("imgUrl");
+
+// if(!imgUrl.value){
+
+// }
+function uploadImg(e: any) {
+    let eFiles = e.target.files[0];
+    requests({
+        url: 'business/upload',
+        method: 'post',
+        headers: {
+            token: token,
+            'Content-Type': 'multipart/form-data',
+        },
+        data: {
+            file: eFiles
+        }
+
+    }).then((res: any) => {
+        if (res.code === '1') {
+            console.log(res.data, '上传成功');
+            localStorage.setItem("imgUrl", res.data);
+            imgUrl.value = localStorage.getItem("imgUrl");
+
+            // imgUrl.value = localStorage.getItem("imgUrl");
+            // imgUrl.value = localStorage.getItem("imgUrl")as string;xx
+        } else if (res.code === '0') {
+            console.log('权限不足');
+            ElMessage.error("权限不足")
+        }
+    }).catch((err) => {
+        console.log(err, '没对上接口');
+    })
+}
+function logout() {
     localStorage.removeItem("token");
+    localStorage.removeItem("imgUrl");
     router.push({ path: "/login" });
 }
 function fullScreen() {
@@ -177,7 +235,7 @@ onMounted(() => {
         legend: {
             top: 'bottom',
             textStyle: {
-                color: 'red' // 设置图例文字颜色为红色
+                color: 'red' // 设置图例文字颜色为红色f
             }
         },
         grid: {
@@ -341,4 +399,30 @@ onMounted(() => {
 });
 </script>
 <style scoped lang="less">
+.avatar-uploader .avatar {
+    width: 78px;
+    height: 78px;
+    display: block;
+}
+
+.avatar-uploader .el-upload {
+    border: 1px dashed var(--el-border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: var(--el-transition-duration-fast);
+}
+
+.avatar-uploader .el-upload:hover {
+    border-color: var(--el-color-primary);
+}
+
+.el-icon.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    text-align: center;
+}
 </style>

@@ -72,33 +72,7 @@ const router = useRouter()
 // import 'nprogress/nprogress.css'
 import { useIndexView } from '@/stores/IndexView.ts';
 const useIndexViewStore = useIndexView();
-// router.beforeEach((to, from, next) => {
-//     console.log('全局前置守卫');
-//     //to:你将要访问哪个路由
-//     //from：你从哪个路由而来
-//     //next:路由的放行函数
-    console.log(useIndexViewStore.isLoggedIn);
-
-//     if (useIndexViewStore.isLoggedIn) {
-//         // 用户已登录，继续路由导航
-//         nprogress.start()
-//         next();
-//     } else {
-//         // 用户未登录，重定向到登录页面
-//         next('/login');
-//     }
-//     // console.log(useIndexViewStore.data);
-//     // log
-//     // nprogress.start()
-//     // next()
-// })
-
-// // 全局后置守卫
-// router.afterEach((to, from) => {
-//     nprogress.done()
-// })
-
-
+console.log(useIndexViewStore.isLoggedIn);
 const userStore = useUserStore()
 const logintitle1DelClass = inject('logintitle1DelClass')
 // const router = useRouter();
@@ -176,7 +150,7 @@ const onSubmit = async () => {
         throw err
     }
     requests({
-        url: 'http://localhost:8090/user/login',
+        url: 'user/login',
         method: 'post',
         data: {
             account: form.username,

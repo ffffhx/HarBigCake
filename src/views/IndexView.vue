@@ -2,8 +2,6 @@
 import { ref, provide, onMounted, watch } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useIndexView } from '@/stores/IndexView';
-import Login from '../views/nav/Login.vue';
-import Register from '../views/nav/Register.vue';
 import { RouterLink, RouterView, createRouter, createWebHistory, useRouter } from 'vue-router'
 const router = useRouter();
 // import FindPassword from '../views/nav/FindPassword.vue';
@@ -88,11 +86,11 @@ function logintitle2AddClass() {
     logintitle1.value?.classList.remove('loginTitleHover')
 }
 function pushToLogin() {
-    router.push('/Login');
+    router.push('/login');
     logintitle1AddClass();
 }
 function pushToRegister() {
-    router.push('/Register');
+    router.push('/register');
     logintitle2AddClass();
 }
 function fullScreen() {

@@ -9,10 +9,9 @@
 import { ref, markRaw } from "vue";
 import { defineStore } from "pinia";
 
-// localStorage.setItem("data", [0,"Login"].toString());
 export const useIndexView = defineStore("IndexView", () => {
   let isLoggedIn = ref(false);
-  let data = ref([4, "Login"])
+  let data = ref([4, "login"])
   // 加载数据从 localStorage
   function loadFromLocalStorage() {
     const saveddata = localStorage.getItem("data");

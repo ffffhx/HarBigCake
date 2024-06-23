@@ -2,7 +2,7 @@
  * @Author: ffffhx 17862926305@163.com
  * @Date: 2024-04-19 12:56:09
  * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-13 17:55:36
+ * @LastEditTime: 2024-05-23 20:11:26
  * @FilePath: \HarBigCake\src\views\manage\Orders.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -12,15 +12,16 @@
             <div class="home">订单管理</div>
             <div class="info">
                 <div class="infoIcon">
-                    <el-row class="demo-avatar demo-basic">
-                        <el-col :span="12">
+                    <div class="el-row demo-avatar demo-basic">
+                        <div class="el-col el-col-12">
                             <div class="demo-basic--circle">
-                                <div class="block">
-                                    <el-avatar :size="50" />
+                                <div class="block"><span class="el-avatar el-avatar--circle"
+                                        style="--el-avatar-size: 50px;"><img :src="imgUrl"
+                                            style="object-fit: cover;"></span>
                                 </div>
                             </div>
-                        </el-col>
-                    </el-row>
+                        </div>
+                    </div>
                 </div>
                 <div class="infoText">
                     <p>管理员昵称</p>
@@ -31,8 +32,8 @@
 
         <el-card style="width: 1200px ;height: 600px ;overflow: auto" shadow="hover">
             <div class="mt-4">
-                <el-input v-model="input3" style="max-width: 600px" placeholder="根据订单状态查询订单"
-                    class="input-with-select">
+                <el-input v-model="input3" @keydown.enter="handleSearch" style="max-width: 600px"
+                    placeholder="根据订单状态查询订单" class="input-with-select">
                     <template #prepend>
                         <el-button :icon="Search" @click="handleSearch" />
                     </template>
@@ -89,10 +90,9 @@
             </div>
             <div class="demo-pagination-block">
                 <!-- <div class="demonstration">All combined</div> -->
-                <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize"
-                    :page-sizes="[5, 10, 20, 30, 40]" :small="small" :disabled="disabled" :background="background"
-                    layout="total, sizes, prev, pager, next, jumper" :total="total" @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange" />
+                <el-pagination v-model:current-page="currentPage" v-model:page-size="pageSize" :small="small"
+                    :disabled="disabled" :background="background" layout="total, sizes, prev, pager, next, jumper"
+                    :total="total" @size-change="handleSizeChange" @current-change="handleCurrentChange" />
             </div>
         </el-card>
 
@@ -108,7 +108,7 @@
         </el-dialog>
 
         <el-dialog v-model="dialogFormVisible" title="修改订单状态" width="500">
-            <el-form :model="form">
+            <el-form >
                 <el-form-item label="请选择状态" :label-width="formLabelWidth">
                     <el-select v-model="form.region" placeholder="请选择订单状态">
                         <el-option label="进行中" value=0 />
@@ -145,91 +145,7 @@ const input3 = ref('')
 let input3Value = ref()
 const select = ref('所有')
 const total = ref(0)
-let tableData = ref([
-    // {
-    //     shopName: 'KFC',
-    //     orderId: '1',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // },
-    // {
-    //     shopName: '2016-05-02',
-    //     orderId: '2',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // },
-    // {
-    //     shopName: '2016-05-04',
-    //     orderId: '3',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // },
-    // {
-    //     shopName: '2016-05-01',
-    //     orderId: '4',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // },
-    // {
-    //     shopName: '2016-05-08',
-    //     orderId: '5',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // },
-    // {
-    //     shopName: '2016-05-06',
-    //     orderId: '6',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // }
-    // ,
-    // {
-    //     shopName: '2016-05-06',
-    //     orderId: '7',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // }
-    // ,
-    // {
-    //     shopName: '2016-05-06',
-    //     orderId: '8',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // }
-    // ,
-    // {
-    //     shopName: '2016-05-06',
-    //     orderId: '9',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // },
-    // {
-    //     shopName: '2016-05-06',
-    //     orderId: '10',
-    //     orderState: '已接单',
-    //     state: 'California',
-    //     city: 'Los Angeles',
-    //     address: 'No. 189, Grove St, Los Angeles',
-    // }
-])
+let tableData = ref()
 let lookTableData = ref([])
 const newOrder = reactive({
     shopName: '测试',
@@ -246,9 +162,34 @@ const background = ref(true)
 const disabled = ref(false)
 let rowEditId = ref(0)
 let rowLookId = ref(0)
+let imgUrl = localStorage.getItem("imgUrl");
+const handleDelete = async (index, row) => {
+    console.log(row.id, '这是row.id');
+    console.log('删除订单接口');
+    let id = new Array
+    id.push(row.id)
+    console.log(id);
+    await requests({
+        url: `business/order/${id}`,
+        method: 'delete',
+        params: {
+            shopId: 0
+        },
+    }).then((res) => {
+        if (res.code === '1') {
+            // console.log('请求成功');
+            ElMessage('删除成功')
+        } else if (res.code === '0') {
+        }
+    }).catch((err) => {
+        console.log(err, '没对上接口');
+    })
+    getList()
+}
 const getList = () => {
+    console.log('getlist......');
     requests({
-        url: 'http://localhost:8090/business/orders',
+        url: 'business/orders',
         method: 'get',
         params: {
             pageSize: pageSize.value,
@@ -258,7 +199,7 @@ const getList = () => {
     }).then((res) => {
         if (res.code === '1') {
             console.log('请求成功');
-            ElMessage.success("请求成功")
+            // ElMessage.success("请求成功")
             for (let index = 0; index < res.data.list.length; index++) {
                 // console.log(res.data.list[index].state);
                 if (res.data.list[index].state === 0) {
@@ -282,7 +223,7 @@ const getList = () => {
 }
 const handleSelect = () => {
     requests({
-        url: 'http://localhost:8090/business/orderState',
+        url: 'business/orderState',
         method: 'get',
         params: {
             pageSize: pageSize.value,
@@ -318,6 +259,7 @@ const handleSelectAll = () => {
     getList()
 }
 const handleSearch = () => {
+    input3Value.value = null
     if (input3.value === '进行中') {
         input3Value.value = 0
     } else if (input3.value === '完成') {
@@ -325,14 +267,16 @@ const handleSearch = () => {
     } else if (input3.value === '未接单') {
         input3Value.value = 2
     }
-    if(input3Value.value !== 0||input3Value.value !== 1||input3Value.value !== 2){
+    if ((input3Value.value !== 0) && (input3Value.value !== 1) && (input3Value.value !== 2)) {
+        console.log(input3Value.value, '这是input3Value.value');
         ElMessage.error("请输入正确的订单状态 ")
         return;
     }
+
     // console.log("请输入正确的订单状态");
     // console.log(typeof input3.value);
     requests({
-        url: 'http://localhost:8090/business/orderState',
+        url: 'business/orderState',
         method: 'get',
         params: {
             pageSize: pageSize.value,
@@ -385,7 +329,7 @@ const handleEdit = () => {
     // console.log('这是row', row)
     // console.log('这是index', index)
     requests({
-        url: 'http://localhost:8090/business',
+        url: 'business/order',
         method: 'put',
         params: {
             orderId: rowEditId.value,
@@ -403,7 +347,7 @@ const handleEdit = () => {
         console.log(err, '没对上接口');
     })
     requests({
-        url: 'http://localhost:8090/business/orders',
+        url: 'business/orders',
         method: 'get',
         params: {
             pageSize: pageSize.value,
@@ -436,16 +380,19 @@ const handleEdit = () => {
 // const confirm = 
 const lookList = () => {
     requests({
-        url: 'http://localhost:8090/business/order',
+        url: 'business/order',
         method: 'get',
+        //params是将参数拼接到url后面，
+        //data是以键值对的形式放到请求体中
         params: {
             orderId: rowLookId.value,
             shopId: 0
         },
     }).then((res) => {
         if (res.code === '1') {
-            // lookTableData.value = res.data.order
-            console.log(res.data.order, '这是res');
+            lookTableData.value = []
+            console.log(res.data.order, '这是res.data.order');
+            lookTableData.value.push(res.data.order)
             console.log('这是查看订单状态的接口');
             ElMessage.success("查看成功")
         } else if (res.code === '0') {
@@ -461,13 +408,7 @@ const handleLook = (index, row) => {
     // console.log('这是index', index)
     lookList()
 }
-const handleDelete = (index, row) => {
-    // console.log(index, row)
-    console.log(index, '这是index');
-    console.log(row, '这是row');
-    tableData.value.splice(index, 1); // 删除指定索引的元素
-    ElMessage.success("删除成功")
-}
+
 localStorage.getItem("token");
 getList();
 </script>
