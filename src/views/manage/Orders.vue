@@ -108,7 +108,7 @@
         </el-dialog>
 
         <el-dialog v-model="dialogFormVisible" title="修改订单状态" width="500">
-            <el-form >
+            <el-form>
                 <el-form-item label="请选择状态" :label-width="formLabelWidth">
                     <el-select v-model="form.region" placeholder="请选择订单状态">
                         <el-option label="进行中" value=0 />

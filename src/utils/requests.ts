@@ -1,11 +1,3 @@
-/*
- * @Author: ffffhx 17862926305@163.com
- * @Date: 2024-04-26 10:04:11
- * @LastEditors: ffffhx 17862926305@163.com
- * @LastEditTime: 2024-05-14 08:24:03
- * @FilePath: \HarBigCake\src\utils\requests.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 //进行axios二次封装，使用请求与响应拦截器
 import axios from 'axios';
 import { ElMessage } from 'element-plus';
